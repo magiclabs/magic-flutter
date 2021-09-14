@@ -84,7 +84,7 @@ packages:
   magic_sdk:
     dependency: "direct main"
     description:
-      path: "../magic_sdk"
+      path: "../packages/magic_sdk"
       relative: true
     source: path
     version: "0.0.1"

@@ -30,7 +30,7 @@ dependencies:
   flutter:
     sdk: flutter
   magic_sdk:
-    path: ../magic_sdk/
+    path: ../packages/magic_sdk/
 
 
   # The following adds the Cupertino Icons font to your application.
