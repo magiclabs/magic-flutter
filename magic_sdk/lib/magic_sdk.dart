@@ -3,7 +3,7 @@ import 'package:magic_sdk/modules/auth/auth.dart';
 import 'package:magic_sdk/modules/user/user.dart';
 import 'package:magic_sdk/magic_sdk.dart';
 import 'package:magic_sdk/modules/web3/eth_network.dart';
-import 'package:magic_sdk/rpc_provider.dart';
+import 'package:magic_sdk/provider/rpc_provider.dart';
 export 'package:magic_sdk/magic_sdk.dart';
 
 /// The entry point for accessing Magic SDK.
@@ -27,7 +27,7 @@ class Magic {
   //
   // }
 
-  Magic({required String apiKey, String? locale}) {
+  Magic(String apiKey, {String? locale = 'en_US'}) {
     provider = RpcProvider(apiKey);
 
     auth = AuthModule(provider);

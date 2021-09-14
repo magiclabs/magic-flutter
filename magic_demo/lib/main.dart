@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:magic_sdk/magic_sdk.dart';
 
 void main() {
   runApp(const MyApp());
+
+  Magic("pk_live_F6875E92A3144E89");
 }
 
 class MyApp extends StatelessWidget {
@@ -48,18 +51,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+  final myController = TextEditingController(text: 'jerry@magic.link');
 
   @override
   Widget build(BuildContext context) {
@@ -95,21 +88,39 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 32.0),
+                  child:             TextFormField(
+                    controller: myController,
+                    decoration: const InputDecoration(
+                      hintText: 'Enter your email',
+                    ),
+                    validator: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your email';
+                      }
+                      return null;
+                    },
+                  ),
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+
+            TextButton(
+              style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+              ),
+              onPressed: () {debugPrint(myController.text);},
+              child: Text('Login With Magic Link'),
+            ),
+            TextButton(
+              style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+              ),
+              onPressed: () {debugPrint('123');},
+              child: Text('Google Login'),
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

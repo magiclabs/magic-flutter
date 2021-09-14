@@ -1,5 +1,5 @@
 import 'package:magic_sdk/magic_sdk.dart';
-import 'package:magic_sdk/rpc_provider.dart';
+import 'package:magic_sdk/provider/rpc_provider.dart';
 
 import '../base_module.dart';
 export 'package:magic_sdk/magic_sdk.dart';

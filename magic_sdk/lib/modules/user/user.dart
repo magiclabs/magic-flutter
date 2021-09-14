@@ -1,6 +1,6 @@
 import 'package:magic_sdk/magic_sdk.dart';
 import 'package:magic_sdk/modules/base_module.dart';
-import 'package:magic_sdk/rpc_provider.dart';
+import 'package:magic_sdk/provider/rpc_provider.dart';
 export 'package:magic_sdk/magic_sdk.dart';
 
 /// Allows users to login with magic link.
