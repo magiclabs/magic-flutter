@@ -1,9 +1,10 @@
 import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class WebViewController extends StatefulWidget {
+  const WebViewController({Key? key}) : super(key: key);
+
   @override
   WebViewExampleState createState() => WebViewExampleState();
 }

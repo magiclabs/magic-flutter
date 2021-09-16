@@ -4,7 +4,7 @@ import 'package:magic_sdk/magic_sdk.dart';
 void main() {
   runApp(const MyApp());
 
-  Magic("pk_live_F6875E92A3144E89");
+  Magic.instance = Magic("pk_live_F6875E92A3144E89");
 }
 
 class MyApp extends StatelessWidget {
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Magic Demo',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Magic Demo Home Page'),
     );
   }
 }
@@ -51,6 +51,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  Magic magic = Magic.instance;
 
   final myController = TextEditingController(text: 'jerry@magic.link');
 
@@ -90,7 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32.0),
-                  child:             TextFormField(
+                  child:  TextFormField(
                     controller: myController,
                     decoration: const InputDecoration(
                       hintText: 'Enter your email',
@@ -108,15 +109,15 @@ class _MyHomePageState extends State<MyHomePage> {
               style: ButtonStyle(
                 foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
               ),
-              onPressed: () {debugPrint(myController.text);},
-              child: Text('Login With Magic Link'),
+              onPressed: () {magic.auth.loginWithMagicLink(email: myController.text);},
+              child: const Text('Login With Magic Link'),
             ),
             TextButton(
               style: ButtonStyle(
                 foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
               ),
               onPressed: () {debugPrint('123');},
-              child: Text('Google Login'),
+              child: const Text('Google Login'),
             ),
           ],
         ),
