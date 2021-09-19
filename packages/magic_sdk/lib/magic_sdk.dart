@@ -19,25 +19,6 @@ class Magic {
   /// Internal Property
   // String? _publishableKey;
 
-  // //
-  // static set publishableKey(String value) {
-  //   if (value == instance._publishableKey) {
-  //     return;
-  //   }
-  //   instance._publishableKey = value;
-  // }
-  //
-  // //
-  // static set locale(String value) {
-  //   if (value == instance._publishableKey) {
-  //     return;
-  //   }
-  //   instance._publishableKey = value;
-  // }
-
-  // //
-  // static set
-
   static late Magic instance;
 
   /// External Property
@@ -62,8 +43,8 @@ class Magic {
 
   Magic(String apiKey, {MagicLocale locale = MagicLocale.en_US}) {
     _overlay = const WebViewController();
-    var urlBuilder = URLBuilder(apiKey, locale);
-    provider = RpcProvider(_overlay, urlBuilder);
+    URLBuilder.instance = URLBuilder(apiKey, locale);
+    provider = RpcProvider(_overlay);
 
 
     auth = AuthModule(provider);
@@ -71,16 +52,16 @@ class Magic {
   }
 
   Magic.eth(String apiKey, EthNetwork network, {MagicLocale locale = MagicLocale.en_US}) {
-    var urlBuilder = URLBuilder.eth(apiKey, network, locale);
-    provider = RpcProvider(_overlay, urlBuilder);
+    URLBuilder.eth(apiKey, network, locale);
+    provider = RpcProvider(_overlay);
 
     auth = AuthModule(provider);
     user = UserModule(provider);
   }
 
   Magic.custom({required String apiKey, required String rpcUrl, int? chainId, MagicLocale locale = MagicLocale.en_US}) {
-    var urlBuilder = URLBuilder.custom(apiKey, rpcUrl, chainId, locale);
-    provider = RpcProvider(_overlay, urlBuilder);
+    URLBuilder.custom(apiKey, rpcUrl, chainId, locale);
+    provider = RpcProvider(_overlay);
 
     auth = AuthModule(provider);
     user = UserModule(provider);

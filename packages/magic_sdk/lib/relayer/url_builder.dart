@@ -3,38 +3,46 @@ import 'package:flutter/cupertino.dart';
 import 'package:magic_sdk/modules/web3/eth_network.dart';
 import 'package:magic_sdk/relayer/locale.dart';
 
-
 class URLBuilder {
   final String _host = "https://box.magic.link";
-  late String apiKey;
-  late String encodedParams;
 
-  URLBuilder(String apiKey, MagicLocale locale){
-    init(apiKey, locale);
-  }
+  static late URLBuilder instance;
 
-  URLBuilder.custom(String apiKey, String rpcUrl, int? chainId, MagicLocale locale){
-    var network = {};
-    network['rpcUrl'] = rpcUrl;
-    network['chainId'] = chainId;
-    init(apiKey, locale, network: network);
-  }
+  String apiKey;
+  MagicLocale locale;
 
-  URLBuilder.eth(String apiKey, EthNetwork network, MagicLocale locale) {
-    var network = {};
-    network['network'] = network.toString();
-    init( apiKey, locale, network: network);
-  }
+  Map? _network;
 
-  init(String apiKey, MagicLocale locale, {Map? network}) {
+  String get encodedParams {
     var urlObj = {};
     urlObj['API_KEY'] = apiKey;
     urlObj['host'] = _host;
     urlObj['sdk'] = 'magic-sdk-flutter';
     urlObj['locale'] = locale.toString().split('.').last;
-    urlObj['ETH_NETWORK'] = network;
-    encodedParams = json.encode(urlObj);
-    debugPrint(encodedParams);
-    this.apiKey = apiKey;
+    urlObj['ETH_NETWORK'] = _network;
+
+    // Encode params to base64
+    var jsonStr = json.encode(urlObj);
+    debugPrint(jsonStr);
+    var bytes = utf8.encode(jsonStr);
+    return base64.encode(bytes);
+  }
+
+  String get url {
+    return '$_host/send/?params=$encodedParams';
+  }
+
+  URLBuilder(this.apiKey, this.locale);
+
+  URLBuilder.custom(this.apiKey, String rpcUrl, int? chainId, this.locale){
+    _network = {
+      rpcUrl: rpcUrl,
+      chainId: chainId
+    };
+  }
+
+  URLBuilder.eth(this.apiKey, EthNetwork network, this.locale) {
+    var network = {};
+    network['network'] = network.toString().split('.').last;
   }
 }

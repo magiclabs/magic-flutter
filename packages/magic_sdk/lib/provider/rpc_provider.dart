@@ -8,15 +8,16 @@ import 'package:magic_sdk/relayer/webview.dart';
 class RpcProvider {
 
   late WebViewController _overlay;
-  late URLBuilder _urlBuilder;
 
-  RpcProvider(WebViewController overlay, URLBuilder urlBuilder){
+  RpcProvider(WebViewController overlay){
     _overlay = overlay;
-    _urlBuilder = urlBuilder;
   }
 
-   send({required RPCRequest request}){
-
+   Future<String> send({required RPCRequest request}){
+    String foo () {
+      return '';
+    }
+    return Future(foo);
   }
 }
 

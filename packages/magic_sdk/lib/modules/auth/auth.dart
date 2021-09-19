@@ -1,5 +1,4 @@
 import 'package:magic_sdk/magic_sdk.dart';
-import 'package:magic_sdk/modules/auth/auth_configuration.dart';
 import 'package:magic_sdk/modules/auth/auth_methods.dart';
 import 'package:magic_sdk/provider/rpc_provider.dart';
 import 'package:magic_sdk/provider/rpc_request.dart';
@@ -17,11 +16,12 @@ class AuthModule extends BaseModule {
 
   /// Login with magic link
   Future<String> loginWithMagicLink({ required String email, bool? showUI = true}) async {
-    var params = {};
-    params['email'] = email;
-    params['showUI'] = showUI;
+    var params = {
+      email: email,
+      showUI: showUI
+    };
     RPCRequest request = RPCRequest(method: AuthMethod.magicAuthLoginWithMagicLink.toString(), params: [params]);
-    // return provider.send(request);
+    return provider.send(request: request);
     return '';
   }
 }
