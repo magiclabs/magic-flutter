@@ -25,7 +25,9 @@ class Magic {
   late UserModule user;
   late AuthModule auth;
   late RpcProvider provider;
-  late WebViewController _overlay;
+
+  /// Expose this property to display Webview
+  WebViewRelayer relayer = WebViewRelayer();
 
   /// Initializes a new Magic SDK instance using the given [publisherKey],
   ///
@@ -33,35 +35,26 @@ class Magic {
   ///
   /// On initializing successfully, it will return `true`.
   ///
-  // Magic({required String apiKey, EthNetwork network, String? locale}) {
-  //
-  // }
-  //
-  // Magic({required String apiKey, CustomNode customNode, String? locale}) {
-  //
-  // }
 
   Magic(String apiKey, {MagicLocale locale = MagicLocale.en_US}) {
-    _overlay = const WebViewController();
     URLBuilder.instance = URLBuilder(apiKey, locale);
-    provider = RpcProvider(_overlay);
-
-
-    auth = AuthModule(provider);
-    user = UserModule(provider);
-  }
-
-  Magic.eth(String apiKey, EthNetwork network, {MagicLocale locale = MagicLocale.en_US}) {
-    URLBuilder.eth(apiKey, network, locale);
-    provider = RpcProvider(_overlay);
+    provider = RpcProvider(relayer);
 
     auth = AuthModule(provider);
     user = UserModule(provider);
   }
 
-  Magic.custom({required String apiKey, required String rpcUrl, int? chainId, MagicLocale locale = MagicLocale.en_US}) {
-    URLBuilder.custom(apiKey, rpcUrl, chainId, locale);
-    provider = RpcProvider(_overlay);
+  Magic.eth(String apiKey, { required EthNetwork network, MagicLocale locale = MagicLocale.en_US}) {
+    URLBuilder.instance = URLBuilder.eth(apiKey, network, locale);
+    provider = RpcProvider(relayer);
+
+    auth = AuthModule(provider);
+    user = UserModule(provider);
+  }
+
+  Magic.custom(String apiKey, { required String rpcUrl, int? chainId, MagicLocale locale = MagicLocale.en_US}) {
+    URLBuilder.instance = URLBuilder.custom(apiKey, rpcUrl, chainId, locale);
+    provider = RpcProvider(relayer);
 
     auth = AuthModule(provider);
     user = UserModule(provider);
