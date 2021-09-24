@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
-import 'package:magic_sdk/provider/message_types.dart';
-import 'package:magic_sdk/provider/relayer_request.dart';
-import 'package:magic_sdk/provider/relayer_response.dart';
-import 'package:magic_sdk/provider/rpc_request.dart';
+import 'package:magic_sdk/provider/types/message_types.dart';
+import 'package:magic_sdk/provider/types/relayer_request.dart';
+import 'package:magic_sdk/provider/types/relayer_response.dart';
+import 'package:magic_sdk/provider/types/rpc_request.dart';
 import 'package:magic_sdk/relayer/url_builder.dart';
 import 'package:magic_sdk/relayer/webview.dart';
 

@@ -1,4 +1,4 @@
-import 'package:magic_sdk/provider/rpc_request.dart';
+import 'package:magic_sdk/provider/types/rpc_request.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'relayer_request.g.dart';
