@@ -22,13 +22,13 @@ class RpcProvider {
 
    Future<String> send({required RPCRequest request}){
 
-     var msgType = OutgoingMessageType.magicHandleRequest;
+     var msgType = OutgoingMessageType.MAGIC_HANDLE_REQUEST;
 
-     var payloadMessage = RelayerRequest(msgType: '${msgType.toString().split('.').last}-${URLBuilder.instance.encodedParams}', payload: request);
+     var relayerRequest = RelayerRequest(msgType: '${msgType.toString().split('.').last}-${URLBuilder.instance.encodedParams}', payload: request);
 
      var callback = Future(foo);
 
-     _overlay.enqueue(message: payloadMessage.toString(), id: request.id, callback: callback);
+     _overlay.enqueue(relayerRequest: relayerRequest, id: request.id, callback: callback);
 
     return callback;
   }

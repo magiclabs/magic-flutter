@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'relayer_request.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class RelayerRequest {
   String msgType;
   RPCRequest payload;

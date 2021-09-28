@@ -1,3 +1,9 @@
 enum AuthMethod {
-  magicAuthLoginWithMagicLink
+  magic_auth_login_with_magic_link
+}
+
+extension ParseAuthMethodToString on AuthMethod {
+  String toShortString() {
+    return toString().split('.').last;
+  }
 }

@@ -24,7 +24,6 @@ class URLBuilder {
 
     // Encode params to base64
     var jsonStr = json.encode(urlObj);
-    debugPrint(jsonStr);
     var bytes = utf8.encode(jsonStr);
     return base64.encode(bytes);
   }

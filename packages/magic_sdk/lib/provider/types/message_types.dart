@@ -1,5 +1,5 @@
 enum OutgoingMessageType {
-  magicHandleRequest
+  MAGIC_HANDLE_REQUEST
 }
 
 enum IncomingMessageType {

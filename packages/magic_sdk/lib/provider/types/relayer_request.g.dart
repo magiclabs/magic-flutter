@@ -15,5 +15,5 @@ RelayerRequest _$RelayerRequestFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$RelayerRequestToJson(RelayerRequest instance) =>
     <String, dynamic>{
       'msgType': instance.msgType,
-      'payload': instance.payload,
+      'payload': instance.payload.toJson(),
     };
