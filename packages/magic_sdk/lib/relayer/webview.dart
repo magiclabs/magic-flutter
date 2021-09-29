@@ -4,17 +4,13 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:magic_sdk/provider/types/message_types.dart';
 import 'package:magic_sdk/provider/types/relayer_request.dart';
-import 'package:magic_sdk/provider/types/relayer_response.dart';
+import 'package:magic_sdk/provider/types/rpc_response.dart';
 import 'package:magic_sdk/relayer/url_builder.dart';
-import 'package:magic_sdk/relayer/webview_loader_controller.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-
-final Completer _controller =
-Completer();
 
 class WebViewRelayer extends StatefulWidget {
 
-  Map<int, Future> messageHandlers = {};
+  Map<int, Completer> messageHandlers = {};
   List<RelayerRequest> queue = [];
 
   bool overlayReady = false;
@@ -22,12 +18,11 @@ class WebViewRelayer extends StatefulWidget {
 
   late WebViewController webViewCtrl;
 
-  void enqueue({required RelayerRequest relayerRequest, required int id, required Future callback}) {
+  void enqueue({required RelayerRequest relayerRequest, required int id, required Completer completer}) {
     queue.add(relayerRequest);
-    messageHandlers[id] = callback;
+    messageHandlers[id] = completer;
     dequeue();
   }
-
 
   void dequeue() {
 
@@ -46,7 +41,6 @@ class WebViewRelayer extends StatefulWidget {
   }
 
   void showOverlay() {
-    debugPrint('here');
     isOverlayVisible = true;
   }
 
@@ -55,9 +49,27 @@ class WebViewRelayer extends StatefulWidget {
   }
 
   void handleResponse(Map<String, dynamic> json) {
-    var payload = json['payload'];
-    var id = payload['id'].toInt();
-    debugPrint(id);
+    try {
+      var response = json['response'];
+      var id = response['id'].toInt();
+
+      // get callbacks in the handlers map
+      var completer = messageHandlers[id];
+
+      var rpcResponse = RPCResponse.fromJson(response);
+
+      // Surface Response back to the function call
+      if (rpcResponse.result != null) {
+        completer!.complete(rpcResponse.result);
+      }
+
+      if (rpcResponse.error != null) {
+        completer!.completeError(rpcResponse.error!.toJson());
+      }
+
+    } catch (err) {
+      debugPrint(err.toString());
+    }
   }
 
 
@@ -69,37 +81,35 @@ class WebViewRelayer extends StatefulWidget {
 
 class WebViewRelayerState extends State<WebViewRelayer> {
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   // Enable hybrid composition.
-  //   if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
-  // }
+  @override
+  void initState() {
+    super.initState();
+    // Enable hybrid composition.
+    if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
+  }
 
   @override
   Widget build(BuildContext context) {
 
     void onMessageReceived(JavascriptMessage message) {
 
-      debugPrint("message, ${message.message}");
+      debugPrint("Received message, ${message.message}");
 
       if(message.getMsgType() == IncomingMessageType.MAGIC_OVERLAY_READY.toShortString()) {
         widget.overlayReady = true;
-        // widget.dequeue();
+        widget.dequeue();
       } else if (message.getMsgType() == IncomingMessageType.MAGIC_SHOW_OVERLAY.toShortString()){
-        // widget.showOverlay();
         setState((){
           widget.isOverlayVisible = true;
         });
       } else if (message.getMsgType() == IncomingMessageType.MAGIC_HIDE_OVERLAY.toShortString()){
-        // widget.hideOverlay();
         setState(() {
           widget.isOverlayVisible = false;
         });
       } else if (message.getMsgType() == IncomingMessageType.MAGIC_HANDLE_EVENT.toShortString()) {
         //Todo PromiseEvent
       } else if (message.getMsgType() == IncomingMessageType.MAGIC_HANDLE_RESPONSE.toShortString()) {
-        widget.handleResponse(message.decode());
+          widget.handleResponse(message.decode());
       }
     }
 
@@ -107,26 +117,19 @@ class WebViewRelayerState extends State<WebViewRelayer> {
       visible: widget.isOverlayVisible,
         maintainState: true,
         child: WebView(
+          debuggingEnabled: true,
         initialUrl: URLBuilder.instance.url,
         javascriptMode: JavascriptMode.unrestricted,
         javascriptChannels: {
           JavascriptChannel(name: 'magicFlutter', onMessageReceived: onMessageReceived)},
         onWebViewCreated: (WebViewController w) {
-          _controller.complete(w);
           widget.webViewCtrl = w;
+          w.clearCache();
         },
         onPageFinished: (String url) {
           //TODO: events after page loading finished
         })
     );
-
-    // return ValueListenableBuilder<bool>(valueListenable: Loader.appLoader.loaderShowingNotifier, builder: (context, value, child) {
-    //   if (value) {
-    //
-    //   } else {
-    //     return Container();
-    //   }
-    // });
   }
 }
 

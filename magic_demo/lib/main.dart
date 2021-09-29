@@ -4,7 +4,8 @@ import 'package:magic_sdk/magic_sdk.dart';
 void main() {
   runApp(const MyApp());
 
-  Magic.instance = Magic("pk_live_F6875E92A3144E89");
+  Magic.instance = Magic("pk_test_A2090B6480EE6E3C");
+  // Magic.instance = Magic("pk_live_F6875E92A3144E89");
 }
 
 class MyApp extends StatelessWidget {
@@ -112,8 +113,10 @@ class _MyHomePageState extends State<MyHomePage> {
         style: ButtonStyle(
           foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
         ),
-        onPressed: () {
-          magic.auth.loginWithMagicLink(email: myController.text);
+        onPressed: () async {
+            var token = await magic.auth.loginWithMagicLink(
+                email: myController.text);
+            debugPrint("token, $token");
         },
         child: const Text('Login With Magic Link'),
       ),

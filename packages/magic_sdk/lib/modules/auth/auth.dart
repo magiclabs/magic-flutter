@@ -1,4 +1,5 @@
-import 'package:magic_sdk/magic_sdk.dart';
+import 'dart:async';
+
 import 'package:magic_sdk/modules/auth/auth_methods.dart';
 import 'package:magic_sdk/provider/rpc_provider.dart';
 import 'package:magic_sdk/provider/types/rpc_request.dart';
@@ -21,7 +22,7 @@ class AuthModule extends BaseModule {
       'showUI': showUI
     };
     RPCRequest request = RPCRequest(method: AuthMethod.magic_auth_login_with_magic_link.toShortString(), params: [params]);
-    return provider.send(request: request);
-    return '';
+    var completer = Completer<String>();
+    return provider.send(request: request, completer: completer) as Future<String>;
   }
 }
