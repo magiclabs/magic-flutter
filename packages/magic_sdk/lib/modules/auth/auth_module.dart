@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:magic_sdk/modules/auth/auth_methods.dart';
+import 'package:magic_sdk/modules/auth/auth_method.dart';
 import 'package:magic_sdk/provider/rpc_provider.dart';
 import 'package:magic_sdk/provider/types/rpc_request.dart';
 

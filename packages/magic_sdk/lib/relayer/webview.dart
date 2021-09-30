@@ -99,7 +99,7 @@ class WebViewRelayerState extends State<WebViewRelayer> {
         widget.overlayReady = true;
         widget.dequeue();
       } else if (message.getMsgType() == IncomingMessageType.MAGIC_SHOW_OVERLAY.toShortString()){
-        setState((){
+        setState((){ // setState can only be accessed in this context
           widget.isOverlayVisible = true;
         });
       } else if (message.getMsgType() == IncomingMessageType.MAGIC_HIDE_OVERLAY.toShortString()){

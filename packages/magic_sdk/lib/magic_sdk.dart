@@ -1,7 +1,5 @@
-import 'dart:async';
-import 'package:magic_sdk/modules/auth/auth.dart';
-import 'package:magic_sdk/modules/user/user.dart';
-import 'package:magic_sdk/magic_sdk.dart';
+import 'package:magic_sdk/modules/auth/auth_module.dart';
+import 'package:magic_sdk/modules/user/user_module.dart';
 import 'package:magic_sdk/modules/web3/eth_network.dart';
 import 'package:magic_sdk/provider/rpc_provider.dart';
 import 'package:magic_sdk/relayer/locale.dart';
