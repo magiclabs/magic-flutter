@@ -11,7 +11,7 @@ class BaseModule {
   Future<dynamic> sendToProvider({required String method, dynamic params}) async {
 
     RPCRequest request = RPCRequest(method: method, params: [params]);
-    var completer = Completer<String>();
+    var completer = Completer();
     return provider.send(request: request, completer: completer);
   }
 }

@@ -68,7 +68,7 @@ class WebViewRelayer extends StatefulWidget {
       }
 
     } catch (err) {
-      debugPrint(err.toString());
+      debugPrint("parse Error ${err.toString()}");
     }
   }
 

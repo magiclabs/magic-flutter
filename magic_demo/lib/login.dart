@@ -15,14 +15,26 @@ class _LoginPageState extends State<LoginPage> {
   final myController = TextEditingController(text: 'jerry@magic.link');
 
   @override
+  void initState() {
+    super.initState();
+    var future = magic.user.isLoggedIn();
+    future.then((isLoggedIn) {
+      if (isLoggedIn) {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const HomePage()));
+      }
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           title: const Text('Magic Demo Login'),
+          automaticallyImplyLeading: false,
         ),
         body: Center(
-            child:
-                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+            child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 32.0),
             child: TextFormField(

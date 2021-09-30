@@ -33,6 +33,7 @@ class _HomePageState extends State<HomePage> {
       length: 2,
       child: Scaffold(
       appBar: AppBar(
+          automaticallyImplyLeading: false,
         title: const Text('Home'),
         bottom: const TabBar(
           tabs: [

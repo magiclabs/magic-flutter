@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/cupertino.dart';
 import 'package:magic_sdk/modules/base_module.dart';
 import 'package:magic_sdk/modules/user/user_method.dart';
 import 'package:magic_sdk/modules/user/user_response.dart';
