@@ -6,8 +6,7 @@ import 'login.dart';
 void main() {
   runApp(const MyApp());
 
-  Magic.instance = Magic("pk_test_A2090B6480EE6E3C");
-  // Magic.instance = Magic("pk_live_F6875E92A3144E89");
+  Magic.instance = Magic("pk_live_D5EA1E346A791DB7");
 }
 
 class MyApp extends StatelessWidget {
