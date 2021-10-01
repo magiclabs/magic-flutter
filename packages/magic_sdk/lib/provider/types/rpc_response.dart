@@ -3,18 +3,18 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'rpc_response.g.dart';
 
-@JsonSerializable()
-class RPCResponse {
-  int? id;
-  String? jsonrpc;
-  Object? result; // Use object here to handle dynamic
+@JsonSerializable(genericArgumentFactories: true, explicitToJson: true)
+class RPCResponse<T> {
+  int id;
+  String jsonrpc;
+  T? result;
   RPCError? error;
 
-  RPCResponse();
+  RPCResponse({required this.id, required this.jsonrpc});
 
-  factory RPCResponse.fromJson(Map<String, dynamic> json) => _$RPCResponseFromJson(json);
+  factory RPCResponse.fromJson(Map<String, dynamic> json, T Function(Object? json) fromJsonT) => _$RPCResponseFromJson<T>(json, fromJsonT);
 
-  Map<String, dynamic> toJson() => _$RPCResponseToJson(this);
+  Map<String, dynamic> toJson(Object? Function(T value) toJsonT) => _$RPCResponseToJson(this, toJsonT);
 }
 
 @JsonSerializable()

@@ -8,6 +8,7 @@ import 'package:magic_sdk/provider/types/rpc_request.dart';
 import 'package:magic_sdk/provider/types/rpc_response.dart';
 import 'package:magic_sdk/relayer/url_builder.dart';
 import 'package:magic_sdk/relayer/webview.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 /// Rpc Provider
 class RpcProvider {
@@ -16,7 +17,7 @@ class RpcProvider {
 
   RpcProvider(this._overlay);
 
-   Future<Object> send({required RPCRequest request, required Completer<Object> completer}){
+   Future<JavascriptMessage> send({required RPCRequest request, required Completer<JavascriptMessage> completer}){
 
      var msgType = OutgoingMessageType.MAGIC_HANDLE_REQUEST;
 

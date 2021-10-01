@@ -6,6 +6,7 @@ import 'package:magic_sdk/modules/base_module.dart';
 import 'package:magic_sdk/modules/user/user_method.dart';
 import 'package:magic_sdk/modules/user/user_response.dart';
 import 'package:magic_sdk/provider/rpc_provider.dart';
+import 'package:magic_sdk/provider/types/relayer_response.dart';
 export 'package:magic_sdk/magic_sdk.dart';
 
 class UserModule extends BaseModule {
@@ -17,7 +18,10 @@ class UserModule extends BaseModule {
   var params = {
     'lifespan': lifespan,
   };
-  return sendToProvider(method: UserMethod.magic_auth_get_id_token.toShortString(), params: params).then((result) => result as String);
+  return sendToProvider(method: UserMethod.magic_auth_get_id_token.toShortString(), params: params).then((jsMsg) {
+    var relayerResponse = RelayerResponse<String>.fromJson(json.decode(jsMsg.message), (json) => json as String);
+    return relayerResponse.response.result as String;
+  });
 }
 
   /// Returns [Future] of [String], which gets current
@@ -26,22 +30,33 @@ class UserModule extends BaseModule {
       'lifespan': lifespan,
       'attachment': attachment
     };
-    return sendToProvider(method: UserMethod.magic_auth_generate_id_token.toShortString(), params: params).then((result) => result as String);
+    return sendToProvider(method: UserMethod.magic_auth_generate_id_token.toShortString(), params: params).then((jsMsg) {
+      var relayerResponse = RelayerResponse<String>.fromJson(json.decode(jsMsg.message), (json) => json as String);
+      return relayerResponse.response.result as String;
+    });
   }
 
 
   /// Returns [Future] of [bool], which denotes if user has already logged in, or not.
   Future<UserMetadata> getMetadata() async {
-
-    return sendToProvider(method: UserMethod.magic_auth_get_metadata.toShortString()).then((result) {
-      debugPrint(result.toString());
-      return UserMetadata.fromJson(json.decode(result.toString()));});
+    return sendToProvider(
+        method: UserMethod.magic_auth_get_metadata.toShortString()).then((
+        jsMsg) {
+      var relayerResponse = RelayerResponse<UserMetadata>.fromJson(
+          json.decode(jsMsg.message), (json) =>
+          UserMetadata.fromJson(json as Map<String, dynamic>));
+      debugPrint("parsed Result ,${relayerResponse.response.toString()}");
+      return relayerResponse.response.result as UserMetadata;
+    });
   }
 
   /// Returns [Future] of [bool], which denotes if user has already logged in, or not.
   Future<bool> isLoggedIn() async {
 
-    return sendToProvider(method: UserMethod.magic_auth_is_logged_in.toShortString()).then((result) => result as bool);
+    return sendToProvider(method: UserMethod.magic_auth_is_logged_in.toShortString()).then((jsMsg) {
+      var relayerResponse = RelayerResponse<bool>.fromJson(json.decode(jsMsg.message), (json) => json as bool);
+      return relayerResponse.response.result as bool;
+    });
   }
 
   /// Returns [Future] of [bool], which denotes if user has already logged in, or not.
@@ -51,12 +66,19 @@ class UserModule extends BaseModule {
       'showUI': showUI
     };
 
-    return sendToProvider(method: UserMethod.magic_auth_update_email.toShortString(), params: params).then((result) => result as bool);
+    return sendToProvider(method: UserMethod.magic_auth_update_email.toShortString(), params: params).then((jsMsg) {
+      var relayerResponse = RelayerResponse<bool>.fromJson(json.decode(jsMsg.message), (json) => json as bool);
+      return relayerResponse.response.result as bool;
+    });
   }
 
   /// Returns [Future] of [bool], which denotes if user has already logged in, or not.
   Future<bool> logout() async {
 
-    return sendToProvider(method: UserMethod.magic_auth_logout.toShortString()).then((result) => result as bool);
+    return sendToProvider(method: UserMethod.magic_auth_logout.toShortString()).then((jsMsg) {
+      var relayerResponse = RelayerResponse<bool>.fromJson(json.decode(jsMsg.message), (json) => json as bool);
+      debugPrint("parsed Result ,${relayerResponse.response.toString()}");
+      return relayerResponse.response.result as bool;
+    });
   }
 }

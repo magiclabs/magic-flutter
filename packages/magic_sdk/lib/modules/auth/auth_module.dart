@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:magic_sdk/modules/auth/auth_method.dart';
 import 'package:magic_sdk/provider/rpc_provider.dart';
+import 'package:magic_sdk/provider/types/relayer_response.dart';
 
 import '../base_module.dart';
 export 'package:magic_sdk/magic_sdk.dart';
@@ -20,6 +22,9 @@ class AuthModule extends BaseModule {
       'email': email,
       'showUI': showUI
     };
-    return sendToProvider(method: AuthMethod.magic_auth_login_with_magic_link.toShortString(), params: params).then((result) => result as String);
+    return sendToProvider(method: AuthMethod.magic_auth_login_with_magic_link.toShortString(), params: params).then((jsMsg) {
+      var relayerResponse = RelayerResponse<String>.fromJson(json.decode(jsMsg.message), (json) => json as String);
+      return relayerResponse.response.result as String;
+    });
   }
 }

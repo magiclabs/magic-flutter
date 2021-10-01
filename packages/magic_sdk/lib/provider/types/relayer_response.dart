@@ -3,20 +3,20 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'relayer_response.g.dart';
 
-@JsonSerializable()
-class RelayerResponse {
+@JsonSerializable(genericArgumentFactories: true, explicitToJson: true)
+class RelayerResponse<T> {
   String msgType;
-  RPCResponse response;
+  RPCResponse<T> response;
 
   RelayerResponse({required this.msgType, required this.response});
 
   /// A necessary factory constructor for creating a new User instance
   /// from a map. Pass the map to the generated `_$UserFromJson()` constructor.
   /// The constructor is named after the source class, in this case, User.
-  factory RelayerResponse.fromJson(Map<String, dynamic> json) => _$RelayerResponseFromJson(json);
+  factory RelayerResponse.fromJson(Map<String, dynamic> json, T Function(Object? json) fromJsonT) => _$RelayerResponseFromJson<T>(json, fromJsonT);
 
   /// `toJson` is the convention for a class to declare support for serialization
   /// to JSON. The implementation simply calls the private, generated
   /// helper method `_$UserToJson`.
-  Map<String, dynamic> toJson() => _$RelayerResponseToJson(this);
+  Map<String, dynamic> toJson(Object Function(T value) toJsonT) => _$RelayerResponseToJson(this, toJsonT);
 }
