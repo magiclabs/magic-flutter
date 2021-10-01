@@ -6,9 +6,9 @@ part 'relayer_response.g.dart';
 @JsonSerializable()
 class RelayerResponse {
   String msgType;
-  RPCResponse payload;
+  RPCResponse response;
 
-  RelayerResponse({required this.msgType, required this.payload});
+  RelayerResponse({required this.msgType, required this.response});
 
   /// A necessary factory constructor for creating a new User instance
   /// from a map. Pass the map to the generated `_$UserFromJson()` constructor.

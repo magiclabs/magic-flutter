@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:magic_sdk/modules/base_module.dart';
@@ -16,7 +17,7 @@ class UserModule extends BaseModule {
   var params = {
     'lifespan': lifespan,
   };
-  return sendToProvider(method: UserMethod.magic_auth_get_id_token.toShortString(), params: params) as Future<String>;
+  return sendToProvider(method: UserMethod.magic_auth_get_id_token.toShortString(), params: params).then((result) => result as String);
 }
 
   /// Returns [Future] of [String], which gets current
@@ -25,20 +26,22 @@ class UserModule extends BaseModule {
       'lifespan': lifespan,
       'attachment': attachment
     };
-    return sendToProvider(method: UserMethod.magic_auth_generate_id_token.toShortString(), params: params) as Future<String>;
+    return sendToProvider(method: UserMethod.magic_auth_generate_id_token.toShortString(), params: params).then((result) => result as String);
   }
 
 
   /// Returns [Future] of [bool], which denotes if user has already logged in, or not.
   Future<UserMetadata> getMetadata() async {
 
-    return sendToProvider(method: UserMethod.magic_auth_get_metadata.toShortString()) as Future<UserMetadata>;
+    return sendToProvider(method: UserMethod.magic_auth_get_metadata.toShortString()).then((result) {
+      debugPrint(result.toString());
+      return UserMetadata.fromJson(json.decode(result.toString()));});
   }
 
   /// Returns [Future] of [bool], which denotes if user has already logged in, or not.
   Future<bool> isLoggedIn() async {
 
-    return sendToProvider(method: UserMethod.magic_auth_is_logged_in.toShortString()) as Future<bool>;
+    return sendToProvider(method: UserMethod.magic_auth_is_logged_in.toShortString()).then((result) => result as bool);
   }
 
   /// Returns [Future] of [bool], which denotes if user has already logged in, or not.
@@ -48,12 +51,12 @@ class UserModule extends BaseModule {
       'showUI': showUI
     };
 
-    return sendToProvider(method: UserMethod.magic_auth_is_logged_in.toShortString(), params: params) as Future<bool>;
+    return sendToProvider(method: UserMethod.magic_auth_update_email.toShortString(), params: params).then((result) => result as bool);
   }
 
   /// Returns [Future] of [bool], which denotes if user has already logged in, or not.
   Future<bool> logout() async {
 
-    return sendToProvider(method: UserMethod.magic_auth_logout.toShortString()) as Future<bool>;
+    return sendToProvider(method: UserMethod.magic_auth_logout.toShortString()).then((result) => result as bool);
   }
 }

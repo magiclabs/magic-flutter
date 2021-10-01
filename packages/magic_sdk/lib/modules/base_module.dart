@@ -8,10 +8,10 @@ class BaseModule {
 
   BaseModule(this.provider);
 
-  Future<dynamic> sendToProvider({required String method, dynamic params}) async {
+  /// Returns <object> here to handle cases when results are dynamic
+  Future<Object> sendToProvider({required String method, dynamic params}) async {
 
     RPCRequest request = RPCRequest(method: method, params: [params]);
-    var completer = Completer();
-    return provider.send(request: request, completer: completer);
+    return provider.send(request: request, completer: Completer<Object>());
   }
 }

@@ -9,7 +9,7 @@ part of 'rpc_response.dart';
 RPCResponse _$RPCResponseFromJson(Map<String, dynamic> json) => RPCResponse()
   ..id = json['id'] as int?
   ..jsonrpc = json['jsonrpc'] as String?
-  ..result = json['result'] as String?
+  ..result = json['result']
   ..error = json['error'] == null
       ? null
       : RPCError.fromJson(json['error'] as Map<String, dynamic>);

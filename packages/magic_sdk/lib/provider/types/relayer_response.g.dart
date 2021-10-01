@@ -9,11 +9,11 @@ part of 'relayer_response.dart';
 RelayerResponse _$RelayerResponseFromJson(Map<String, dynamic> json) =>
     RelayerResponse(
       msgType: json['msgType'] as String,
-      payload: RPCResponse.fromJson(json['payload'] as Map<String, dynamic>),
+      response: RPCResponse.fromJson(json['response'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$RelayerResponseToJson(RelayerResponse instance) =>
     <String, dynamic>{
       'msgType': instance.msgType,
-      'payload': instance.payload,
+      'response': instance.response,
     };

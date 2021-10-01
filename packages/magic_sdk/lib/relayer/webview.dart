@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:magic_sdk/provider/types/message_types.dart';
 import 'package:magic_sdk/provider/types/relayer_request.dart';
-import 'package:magic_sdk/provider/types/rpc_response.dart';
+import 'package:magic_sdk/provider/types/relayer_response.dart';
 import 'package:magic_sdk/relayer/url_builder.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -48,19 +48,23 @@ class WebViewRelayer extends StatefulWidget {
     isOverlayVisible = false;
   }
 
-  void handleResponse(Map<String, dynamic> json) {
+  void handleResponse(JavascriptMessage message) {
     try {
-      var response = json['response'];
-      var id = response['id'].toInt();
+      var json = message.decode();
+
+      // parse JSON into RelayerResponse
+      var relayerResponse = RelayerResponse.fromJson(json);
+      var rpcResponse = relayerResponse.response;
+      var result = rpcResponse.result;
+      var id = rpcResponse.id;
 
       // get callbacks in the handlers map
       var completer = messageHandlers[id];
 
-      var rpcResponse = RPCResponse.fromJson(response);
-
-      // Surface Response back to the function call
-      if (rpcResponse.result != null) {
-        completer!.complete(rpcResponse.result);
+      // Surface RpcResponse back to the function call
+      if (result != null) {
+        // debugPrint("result, ${rpcResponse.result}");
+        completer!.complete(result);
       }
 
       if (rpcResponse.error != null) {
@@ -109,7 +113,7 @@ class WebViewRelayerState extends State<WebViewRelayer> {
       } else if (message.getMsgType() == IncomingMessageType.MAGIC_HANDLE_EVENT.toShortString()) {
         //Todo PromiseEvent
       } else if (message.getMsgType() == IncomingMessageType.MAGIC_HANDLE_RESPONSE.toShortString()) {
-          widget.handleResponse(message.decode());
+          widget.handleResponse(message);
       }
     }
 
@@ -124,7 +128,6 @@ class WebViewRelayerState extends State<WebViewRelayer> {
           JavascriptChannel(name: 'magicFlutter', onMessageReceived: onMessageReceived)},
         onWebViewCreated: (WebViewController w) {
           widget.webViewCtrl = w;
-          w.clearCache();
         },
         onPageFinished: (String url) {
           //TODO: events after page loading finished

@@ -7,7 +7,7 @@ part 'rpc_response.g.dart';
 class RPCResponse {
   int? id;
   String? jsonrpc;
-  String? result;
+  Object? result; // Use object here to handle dynamic
   RPCError? error;
 
   RPCResponse();

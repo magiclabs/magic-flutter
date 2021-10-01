@@ -9,21 +9,14 @@ import 'package:magic_sdk/provider/types/rpc_response.dart';
 import 'package:magic_sdk/relayer/url_builder.dart';
 import 'package:magic_sdk/relayer/webview.dart';
 
-///
-///
-///
-// this._overlay
-String foo () {
-  return '';
-}
-
+/// Rpc Provider
 class RpcProvider {
 
   final WebViewRelayer _overlay;
 
   RpcProvider(this._overlay);
 
-   Future<dynamic> send({required RPCRequest request, required Completer completer}){
+   Future<Object> send({required RPCRequest request, required Completer<Object> completer}){
 
      var msgType = OutgoingMessageType.MAGIC_HANDLE_REQUEST;
 
