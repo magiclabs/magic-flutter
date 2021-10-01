@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:magic_demo/login.dart';
 import 'package:magic_sdk/magic_sdk.dart';
 
+import '../alert.dart';
+
 class MagicPage extends StatefulWidget {
   const MagicPage({Key? key}) : super(key: key);
 
@@ -32,28 +34,28 @@ class _MagicPageState extends State<MagicPage> {
         ElevatedButton(
           onPressed: () async {
             var isLoggedIn = await magic.user.isLoggedIn();
-            debugPrint("isLoggedIn, $isLoggedIn");
+            showResult(context, "isLoggedIn, $isLoggedIn");
           },
           child: const Text('isLoggedIn'),
         ),
         ElevatedButton(
           onPressed: () async {
             var metadata = await magic.user.getMetadata();
-            debugPrint("metadata email, ${metadata.email}");
+            showResult(context, "metadata email, ${metadata.email}");
           },
           child: const Text('getMetadata'),
         ),
         ElevatedButton(
           onPressed: () async {
             var token = await magic.user.getIdToken();
-            debugPrint("token, $token");
+            showResult(context, "token, $token");
           },
           child: const Text('getIdToken'),
         ),
         ElevatedButton(
           onPressed: () async {
             var token = await magic.user.generateIdToken();
-            debugPrint("token, $token");
+            showResult(context, "token, $token");
           },
           child: const Text('generateIdToken'),
         ),
@@ -61,7 +63,7 @@ class _MagicPageState extends State<MagicPage> {
           onPressed: () async {
             var isUpdated =
                 await magic.user.updateEmail(email: "jerry@fortmatic.com");
-            debugPrint("isEmailUpdated, $isUpdated");
+            showResult(context, "isEmailUpdated, $isUpdated");
           },
           child: const Text('updateEmail'),
         ),
