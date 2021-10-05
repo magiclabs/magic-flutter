@@ -24,7 +24,7 @@ class UserModule extends BaseModule {
   });
 }
 
-  /// Returns [Future] of [String], which gets current
+  /// Returns [Future] of [String], Decentralized Id Token with optional serialized data
   Future<String> generateIdToken({int lifespan = 900, String attachment = 'none'}) async {
     var params = {
       'lifespan': lifespan,
@@ -37,7 +37,7 @@ class UserModule extends BaseModule {
   }
 
 
-  /// Returns [Future] of [bool], which denotes if user has already logged in, or not.
+  /// Returns [Future] of [UserMetadata], Retrieves information for the authenticated user.
   Future<UserMetadata> getMetadata() async {
     return sendToProvider(
         method: UserMethod.magic_auth_get_metadata.toShortString()).then((
@@ -45,7 +45,6 @@ class UserModule extends BaseModule {
       var relayerResponse = RelayerResponse<UserMetadata>.fromJson(
           json.decode(jsMsg.message), (json) =>
           UserMetadata.fromJson(json as Map<String, dynamic>));
-      debugPrint("parsed Result ,${relayerResponse.response.toString()}");
       return relayerResponse.response.result as UserMetadata;
     });
   }
@@ -59,7 +58,8 @@ class UserModule extends BaseModule {
     });
   }
 
-  /// Returns [Future] of [bool], which denotes if user has already logged in, or not.
+  /// Returns [Future] of [bool], Initiates the update email flow that
+  /// allows a user to change their email address and returns if the update is successful
   Future<bool> updateEmail({required String email, bool showUI = true}) async {
     var params = {
       'email': email,
@@ -72,12 +72,11 @@ class UserModule extends BaseModule {
     });
   }
 
-  /// Returns [Future] of [bool], which denotes if user has already logged in, or not.
+  /// Returns [Future] of [bool], Logs out the currently authenticated Magic user
   Future<bool> logout() async {
 
     return sendToProvider(method: UserMethod.magic_auth_logout.toShortString()).then((jsMsg) {
       var relayerResponse = RelayerResponse<bool>.fromJson(json.decode(jsMsg.message), (json) => json as bool);
-      debugPrint("parsed Result ,${relayerResponse.response.toString()}");
       return relayerResponse.response.result as bool;
     });
   }
