@@ -6,11 +6,11 @@ part of 'rpc_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-RPCResponse<T> _$RPCResponseFromJson<T>(
+MagicRPCResponse<T> _$MagicRPCResponseFromJson<T>(
   Map<String, dynamic> json,
   T Function(Object? json) fromJsonT,
 ) =>
-    RPCResponse<T>(
+    MagicRPCResponse<T>(
       id: json['id'] as int,
       jsonrpc: json['jsonrpc'] as String,
     )
@@ -19,8 +19,8 @@ RPCResponse<T> _$RPCResponseFromJson<T>(
           ? null
           : RPCError.fromJson(json['error'] as Map<String, dynamic>);
 
-Map<String, dynamic> _$RPCResponseToJson<T>(
-  RPCResponse<T> instance,
+Map<String, dynamic> _$MagicRPCResponseToJson<T>(
+  MagicRPCResponse<T> instance,
   Object? Function(T value) toJsonT,
 ) =>
     <String, dynamic>{

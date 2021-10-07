@@ -6,7 +6,7 @@ part 'relayer_response.g.dart';
 @JsonSerializable(genericArgumentFactories: true, explicitToJson: true)
 class RelayerResponse<T> {
   String msgType;
-  RPCResponse<T> response;
+  MagicRPCResponse<T> response;
 
   RelayerResponse({required this.msgType, required this.response});
 
