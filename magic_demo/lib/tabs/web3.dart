@@ -1,8 +1,12 @@
+import 'dart:convert';
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:magic_demo/login.dart';
 import 'package:magic_sdk/magic_sdk.dart';
 import 'package:magic_sdk/modules/web3/magic_credential.dart';
 import 'package:web3dart/web3dart.dart';
+import 'package:web3dart/crypto.dart';
 
 import '../alert.dart';
 
@@ -77,11 +81,12 @@ class _Web3PageState extends State<Web3Page> {
             ),
             ElevatedButton(
               onPressed: () async {
-                var isUpdated =
-                await magic.user.updateEmail(email: "jerry@fortmatic.com");
-                showResult(context, "isEmailUpdated, $isUpdated");
+                List<int> list = utf8.encode("hello world");
+                Uint8List payload = Uint8List.fromList(list);
+                var decode = await credential.signPersonalMessage(payload);
+                showResult(context, "signPersonalMessage, ${bytesToHex(decode)}");
               },
-              child: const Text('updateEmail'),
+              child: const Text('personal sign'),
             ),
             ElevatedButton(
               onPressed: () async {

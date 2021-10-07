@@ -22,6 +22,11 @@ class MagicCredential extends CredentialsWithKnownAddress implements CustomTrans
     throw UnimplementedError();
   }
 
+  @override
+  Future<Uint8List> signPersonalMessage(Uint8List payload, {int? chainId}) {
+    return _makeRPCCall<String>('eth_sign', [address.hex, _bytesToData(payload)]).then(_responseToBytes);
+  }
+
   Future<EthereumAddress> getAccount() {
     return _makeRPCCall<List<dynamic>>('eth_accounts', []).then((list) {
       address = EthereumAddress.fromHex(list.first);
