@@ -1,16 +1,15 @@
 import 'dart:math';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:web3dart/json_rpc.dart';
 
 part 'rpc_response.g.dart';
 
 @JsonSerializable(genericArgumentFactories: true, explicitToJson: true)
-class MagicRPCResponse<T> {
-  int id;
+class MagicRPCResponse<T> extends RPCResponse{
   String jsonrpc;
-  T? result;
   RPCError? error;
 
-  MagicRPCResponse({required this.id, required this.jsonrpc});
+  MagicRPCResponse({id, result, required this.jsonrpc}): super(id, result);
 
   factory MagicRPCResponse.fromJson(Map<String, dynamic> json, T Function(Object? json) fromJsonT) => _$MagicRPCResponseFromJson<T>(json, fromJsonT);
 

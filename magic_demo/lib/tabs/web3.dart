@@ -31,15 +31,13 @@ class _Web3PageState extends State<Web3Page> {
 
   final myController = TextEditingController(text: 'jerry@magic.link');
 
+  // @override
+  // Future<void> initState() {
+  //   super.initState();
+  // }
+
   @override
   Widget build(BuildContext context) {
-
-    @override
-    initState(){
-      super.initState();
-      var account = credential.getAccount();
-      debugPrint(account.toString());
-    }
 
     return Scaffold(
       body: Center(
@@ -47,31 +45,35 @@ class _Web3PageState extends State<Web3Page> {
             ElevatedButton(
               onPressed: () async {
                 var cred = await credential.getAccount();
-                debugPrint(cred.toString());
-                // client.sendTransaction(cred, transaction);
+                showResult(context, "account, ${cred.hex}");
               },
               child: const Text('getAccount'),
             ),
             ElevatedButton(
               onPressed: () async {
-                var metadata = await magic.user.getMetadata();
-                showResult(context, "metadata email, ${metadata.email}");
+                var hash = await client.sendTransaction(credential, Transaction(
+                  to: EthereumAddress.fromHex('0x01568bf1c1699bb9d58fac67f3a487b28ab4ab2d'),
+                  gasPrice: EtherAmount.inWei(BigInt.two),
+                  maxGas: 100000,
+                  value: EtherAmount.fromUnitAndValue(EtherUnit.gwei, 2),
+                ),);
+                showResult(context, "transaction, $hash");
               },
               child: const Text('sendTransaction'),
             ),
             ElevatedButton(
               onPressed: () async {
-                var token = await magic.user.getIdToken();
-                showResult(context, "token, $token");
+                var balance = await client.getBalance(credential.address);
+                showResult(context, "balance, ${balance.toString()}");
               },
-              child: const Text('getIdToken'),
+              child: const Text('getBalance'),
             ),
             ElevatedButton(
               onPressed: () async {
-                var token = await magic.user.generateIdToken();
-                showResult(context, "token, $token");
+                var id = await client.getNetworkId();
+                showResult(context, "network id, $id");
               },
-              child: const Text('generateIdToken'),
+              child: const Text('network Id'),
             ),
             ElevatedButton(
               onPressed: () async {
