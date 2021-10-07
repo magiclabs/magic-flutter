@@ -44,7 +44,5 @@ class RpcProvider implements RpcService {
       return relayerResponse.response as RPCResponse;
     });
   }
-
-
 }
 

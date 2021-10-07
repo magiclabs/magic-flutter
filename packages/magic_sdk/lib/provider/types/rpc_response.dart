@@ -12,9 +12,9 @@ class MagicRPCResponse<T> {
 
   MagicRPCResponse({required this.id, required this.jsonrpc});
 
-  factory MagicRPCResponse.fromJson(Map<String, dynamic> json, T Function(Object? json) fromJsonT) => _$RPCResponseFromJson<T>(json, fromJsonT);
+  factory MagicRPCResponse.fromJson(Map<String, dynamic> json, T Function(Object? json) fromJsonT) => _$MagicRPCResponseFromJson<T>(json, fromJsonT);
 
-  Map<String, dynamic> toJson(Object? Function(T value) toJsonT) => _$RPCResponseToJson(this, toJsonT);
+  Map<String, dynamic> toJson(Object? Function(T value) toJsonT) => _$MagicRPCResponseToJson(this, toJsonT);
 }
 
 @JsonSerializable()
