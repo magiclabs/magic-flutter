@@ -18,15 +18,35 @@ class MagicCredential extends CredentialsWithKnownAddress implements CustomTrans
 
   @override
   Future<MsgSignature> signToSignature(Uint8List payload, {int? chainId}) {
-    // TODO: implement signToSignature
-    throw UnimplementedError();
+    throw UnsupportedError('Please use "MagicCredential.ethSign" method');
   }
 
   @override
   Future<Uint8List> signPersonalMessage(Uint8List payload, {int? chainId}) {
-    return _makeRPCCall<String>('eth_sign', [address.hex, _bytesToData(payload)]).then(_responseToBytes);
+    throw UnsupportedError('Please use "MagicCredential.personalSign" method');
   }
 
+  /// Personal Sign
+  Future<String> personalSign({required Uint8List payload}) {
+    return _makeRPCCall<String>('personal_sign', [_bytesToData(payload), address.hex]);
+  }
+
+  /// Eth Signr
+  Future<String> ethSign({required Uint8List payload}) {
+    return _makeRPCCall<String>('eth_sign', [address.hex, _bytesToData(payload)]);
+  }
+
+  /// SignTypedDataV1
+  Future<String> signTypedDataLegacy({required Map payload}) {
+    return _makeRPCCall<String>('eth_signTypedData', [[payload]]);
+  }
+
+  /// SignTypedDataV3
+  Future<String> signTypedData({required Map payload}) {
+    return _makeRPCCall<String>('eth_signTypedData_v3', [address.hex, payload]);
+  }
+
+  /// Get account needs to be called to initiate account field.
   Future<EthereumAddress> getAccount() {
     return _makeRPCCall<List<dynamic>>('eth_accounts', []).then((list) {
       address = EthereumAddress.fromHex(list.first);
@@ -34,17 +54,7 @@ class MagicCredential extends CredentialsWithKnownAddress implements CustomTrans
     });
   }
 
-  Future<T> _makeRPCCall<T>(String function, [List<dynamic>? params]) async {
-    try {
-      final data = await provider.call(function, params);
-      if (data is Error || data is Exception) throw data;
-
-      return data.result as T;
-    } catch (e) {
-      rethrow;
-    }
-  }
-
+  /// SendTransaction
   @override
   Future<String> sendTransaction(Transaction transaction) {
     final param = {
@@ -57,6 +67,18 @@ class MagicCredential extends CredentialsWithKnownAddress implements CustomTrans
     };
 
     return _makeRPCCall<String>('eth_sendTransaction', [param]);
+  }
+
+  /// Provider call wrapper to parse result
+  Future<T> _makeRPCCall<T>(String function, [List<dynamic>? params]) async {
+    try {
+      final data = await provider.call(function, params);
+      if (data is Error || data is Exception) throw data;
+
+      return data.result as T;
+    } catch (e) {
+      rethrow;
+    }
   }
 }
 
