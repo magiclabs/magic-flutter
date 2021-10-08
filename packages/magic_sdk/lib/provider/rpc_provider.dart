@@ -19,7 +19,7 @@ class RpcProvider implements RpcService {
 
   RpcProvider(this._overlay);
 
-   Future<JavascriptMessage> send({required RPCRequest request, required Completer<JavascriptMessage> completer}){
+   Future<JavascriptMessage> send({required MagicRPCRequest request, required Completer<JavascriptMessage> completer}){
 
      var msgType = OutgoingMessageType.MAGIC_HANDLE_REQUEST;
 
@@ -36,7 +36,7 @@ class RpcProvider implements RpcService {
 
     params ??= [];
 
-    var request = RPCRequest(method: function, params: params);
+    var request = MagicRPCRequest(method: function, params: params);
 
     /* Send the RPCRequest to Magic Relayer and decode it by using RPCResponse from web3dart */
     return send(request: request, completer: Completer<JavascriptMessage>()).then((jsMsg) {

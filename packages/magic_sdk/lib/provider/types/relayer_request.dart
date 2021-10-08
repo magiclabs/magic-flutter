@@ -6,7 +6,7 @@ part 'relayer_request.g.dart';
 @JsonSerializable(explicitToJson: true)
 class RelayerRequest {
   String msgType;
-  RPCRequest payload;
+  MagicRPCRequest payload;
 
   RelayerRequest({required this.msgType, required this.payload});
 
