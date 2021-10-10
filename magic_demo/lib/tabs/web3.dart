@@ -23,8 +23,6 @@ class _Web3PageState extends State<Web3Page> {
   final client = Web3Client.custom(Magic.instance.provider);
   final credential = MagicCredential(Magic.instance.provider);
 
-  final myController = TextEditingController(text: 'jerry@magic.link');
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

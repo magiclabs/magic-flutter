@@ -31,7 +31,7 @@ class MagicCredential extends CredentialsWithKnownAddress implements CustomTrans
     return _makeRPCCall<String>('personal_sign', [_bytesToData(payload), address.hex]);
   }
 
-  /// Eth Signr
+  /// Eth Sign
   Future<String> ethSign({required Uint8List payload}) {
     return _makeRPCCall<String>('eth_sign', [address.hex, _bytesToData(payload)]);
   }
