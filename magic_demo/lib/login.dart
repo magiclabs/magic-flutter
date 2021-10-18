@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:magic_demo/tabs/home.dart';
+import 'package:magic_ext_oauth/oauth_configuration.dart';
 import 'package:magic_sdk/magic_sdk.dart';
+import 'package:magic_ext_oauth/magic_ext_oauth.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -67,8 +69,9 @@ class _LoginPageState extends State<LoginPage> {
             style: ButtonStyle(
               foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
             ),
-            onPressed: () {
-              debugPrint('123');
+            onPressed: () async {
+              var configuration = OAuthConfiguration(provider: OAuthProvider.GOOGLE, redirectURI: 'magic_demo://');
+              var token = await magic.oauth.loginWithPopup(configuration);
             },
             child: const Text('Google Login'),
           ),
