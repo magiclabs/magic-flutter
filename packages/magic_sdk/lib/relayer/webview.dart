@@ -56,7 +56,7 @@ class WebViewRelayer extends StatefulWidget {
 
       // parse JSON into General RelayerResponse to fetch id first, result will handled in the function interface
       RelayerResponse relayerResponse = RelayerResponse<dynamic>.fromJson(json, (json) => json as Object);
-      RPCResponse rpcResponse = relayerResponse.response;
+      MagicRPCResponse rpcResponse = relayerResponse.response;
 
       var result = rpcResponse.result;
       var id = rpcResponse.id;

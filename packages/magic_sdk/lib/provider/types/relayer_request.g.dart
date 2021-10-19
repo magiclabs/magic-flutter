@@ -9,7 +9,8 @@ part of 'relayer_request.dart';
 RelayerRequest _$RelayerRequestFromJson(Map<String, dynamic> json) =>
     RelayerRequest(
       msgType: json['msgType'] as String,
-      payload: RPCRequest.fromJson(json['payload'] as Map<String, dynamic>),
+      payload:
+          MagicRPCRequest.fromJson(json['payload'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$RelayerRequestToJson(RelayerRequest instance) =>

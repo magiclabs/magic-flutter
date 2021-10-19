@@ -6,41 +6,28 @@ part of 'rpc_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-RPCResponse<T> _$RPCResponseFromJson<T>(
+MagicRPCResponse<T> _$MagicRPCResponseFromJson<T>(
   Map<String, dynamic> json,
   T Function(Object? json) fromJsonT,
 ) =>
-    RPCResponse<T>(
-      id: json['id'] as int,
+    MagicRPCResponse<T>(
+      id: json['id'],
+      result: json['result'],
       jsonrpc: json['jsonrpc'] as String,
-    )
-      ..result = _$nullableGenericFromJson(json['result'], fromJsonT)
-      ..error = json['error'] == null
-          ? null
-          : RPCError.fromJson(json['error'] as Map<String, dynamic>);
+    )..error = json['error'] == null
+        ? null
+        : RPCError.fromJson(json['error'] as Map<String, dynamic>);
 
-Map<String, dynamic> _$RPCResponseToJson<T>(
-  RPCResponse<T> instance,
+Map<String, dynamic> _$MagicRPCResponseToJson<T>(
+  MagicRPCResponse<T> instance,
   Object? Function(T value) toJsonT,
 ) =>
     <String, dynamic>{
       'id': instance.id,
+      'result': instance.result,
       'jsonrpc': instance.jsonrpc,
-      'result': _$nullableGenericToJson(instance.result, toJsonT),
       'error': instance.error?.toJson(),
     };
-
-T? _$nullableGenericFromJson<T>(
-  Object? input,
-  T Function(Object? json) fromJson,
-) =>
-    input == null ? null : fromJson(input);
-
-Object? _$nullableGenericToJson<T>(
-  T? input,
-  Object? Function(T value) toJson,
-) =>
-    input == null ? null : toJson(input);
 
 RPCError _$RPCErrorFromJson(Map<String, dynamic> json) => RPCError()
   ..code = json['code'] as int?

@@ -14,7 +14,7 @@ class BaseModule {
   /// let the type in interface call to deserialize
   Future<JavascriptMessage> sendToProvider({required String method, dynamic params}) async {
 
-    RPCRequest request = RPCRequest(method: method, params: [params]);
+    MagicRPCRequest request = MagicRPCRequest(method: method, params: [params]);
     return provider.send(request: request, completer: Completer<JavascriptMessage>());
   }
 }
