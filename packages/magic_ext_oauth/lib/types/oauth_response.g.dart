@@ -8,14 +8,18 @@ part of 'oauth_response.dart';
 
 OAuthResponse _$OAuthResponseFromJson(Map<String, dynamic> json) =>
     OAuthResponse(
-      OAuthPartialResult.fromJson(json['oauth'] as Map<String, dynamic>),
-      MagicPartialResult.fromJson(json['magic'] as Map<String, dynamic>),
+      json['oauth'] == null
+          ? null
+          : OAuthPartialResult.fromJson(json['oauth'] as Map<String, dynamic>),
+      json['magic'] == null
+          ? null
+          : MagicPartialResult.fromJson(json['magic'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$OAuthResponseToJson(OAuthResponse instance) =>
     <String, dynamic>{
-      'oauth': instance.oauth.toJson(),
-      'magic': instance.magic.toJson(),
+      'oauth': instance.oauth?.toJson(),
+      'magic': instance.magic?.toJson(),
     };
 
 OAuthPartialResult _$OAuthPartialResultFromJson(Map<String, dynamic> json) =>

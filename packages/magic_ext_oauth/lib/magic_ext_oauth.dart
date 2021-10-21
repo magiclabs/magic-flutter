@@ -62,8 +62,6 @@ class OAuthExtension extends BaseModule {
       uri.queryParameters.addAll({'login_hint': configuration.loginHint as String});
     }
 
-    debugPrint(uri.build().toString());
-
     // clean callbackUrlScheme to make sure there's no ':' or '//'
     var redirectURI = configuration.redirectURI.substring(0, configuration.redirectURI.indexOf(':'));
 
@@ -73,7 +71,6 @@ class OAuthExtension extends BaseModule {
   /// Parse redirect results
   Future<OAuthResponse> _parseRedirectResult(String successResult, OAuthChallenge challenge) async {
     Uri successUri = Uri.parse(successResult);
-    debugPrint(      "?${successUri.query}",);
 
     return await sendToProvider(method: OAuthMethod.magic_oauth_parse_redirect_result.toShortString(), params: [
       "?${successUri.query}",

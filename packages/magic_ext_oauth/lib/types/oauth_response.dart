@@ -7,8 +7,8 @@ part 'oauth_response.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class OAuthResponse {
-  OAuthPartialResult oauth;
-  MagicPartialResult magic;
+  OAuthPartialResult? oauth;
+  MagicPartialResult? magic;
 
   OAuthResponse(this.oauth, this.magic);
 
