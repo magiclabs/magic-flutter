@@ -98,7 +98,7 @@ class WebViewRelayerState extends State<WebViewRelayer> {
 
     void onMessageReceived(JavascriptMessage message) {
 
-      debugPrint("Received message, ${message.message}");
+      // debugPrint("Received message, ${message.message}");
 
       if(message.getMsgType() == IncomingMessageType.MAGIC_OVERLAY_READY.toShortString()) {
         widget._overlayReady = true;

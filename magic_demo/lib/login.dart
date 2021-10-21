@@ -4,6 +4,8 @@ import 'package:magic_ext_oauth/oauth_configuration.dart';
 import 'package:magic_sdk/magic_sdk.dart';
 import 'package:magic_ext_oauth/magic_ext_oauth.dart';
 
+import 'alert.dart';
+
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
@@ -59,9 +61,12 @@ class _LoginPageState extends State<LoginPage> {
             onPressed: () async {
               var token =
                   await magic.auth.loginWithMagicLink(email: myController.text);
-              debugPrint("token, $token");
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const HomePage()));
+              showResult(context, 'token, $token');
+
+              if (token.isNotEmpty) {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const HomePage()));
+              }
             },
             child: const Text('Login With Magic Link'),
           ),
@@ -77,7 +82,7 @@ class _LoginPageState extends State<LoginPage> {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => const HomePage()));
               }
-              debugPrint('publicAddress, ${token.magic.userMetadata.publicAddress}');
+              showResult(context, 'publicAddress, ${token.magic.userMetadata.publicAddress}');
             },
             child: const Text('Github Login'),
           ),
