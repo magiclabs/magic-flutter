@@ -63,7 +63,9 @@ class OAuthExtension extends BaseModule {
     }
 
     // clean callbackUrlScheme to make sure there's no ':' or '//'
-    var redirectURI = configuration.redirectURI.substring(0, configuration.redirectURI.indexOf(':'));
+    var index = configuration.redirectURI.indexOf(':');
+
+    var redirectURI = index != -1 ? configuration.redirectURI.substring(0, index) : configuration.redirectURI;
 
     return await FlutterWebAuth.authenticate(url: uri.build().toString(), callbackUrlScheme: redirectURI);
   }
