@@ -54,7 +54,7 @@ class WebViewRelayer extends StatefulWidget {
       var json = message.decode();
 
       // parse JSON into General RelayerResponse to fetch id first, result will handled in the function interface
-      RelayerResponse relayerResponse = RelayerResponse<dynamic>.fromJson(json, (json) => json as Object);
+      RelayerResponse relayerResponse = RelayerResponse<dynamic>.fromJson(json, (result) => result);
       MagicRPCResponse rpcResponse = relayerResponse.response;
 
       var result = rpcResponse.result;
@@ -63,7 +63,8 @@ class WebViewRelayer extends StatefulWidget {
       // get callbacks in the handlers map
       var completer = _messageHandlers[id];
 
-      // Surface the Raw JavascriptMessage back to the function call
+      // Surface the Raw JavascriptMessage back to the function call so it can converted back to Result type
+      // Only decode when result is not null, so the result is not null
       if (result != null) {
         completer!.complete(message);
       }
@@ -73,6 +74,7 @@ class WebViewRelayer extends StatefulWidget {
       }
 
     } catch (err) {
+      //Todo Add internal error collector
       debugPrint("parse Error ${err.toString()}");
     }
   }
@@ -130,13 +132,11 @@ class WebViewRelayerState extends State<WebViewRelayer> {
         onWebViewCreated: (WebViewController w) {
           widget.webViewCtrl = w;
         },
-        onPageFinished: (String url) {
-          //TODO: events after page loading finished
-        })
-    );
+    ));
   }
 }
 
+/// Extended utilities to help to decode JS Message
 extension MessageType on JavascriptMessage {
   Map<String, dynamic> decode() {
     return json.decode(message);

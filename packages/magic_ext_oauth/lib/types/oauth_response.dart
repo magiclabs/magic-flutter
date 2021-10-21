@@ -19,11 +19,11 @@ class OAuthResponse {
 
 @JsonSerializable(explicitToJson: true)
 class OAuthPartialResult {
-  late String provider;
-  late List<String> scope;
-  late String accessToken;
-  late String userHandle;
-  late OpenIDConnectProfile userInfo;
+  String? provider;
+  List<String>? scope;
+  String? accessToken;
+  String? userHandle;
+  OpenIDConnectProfile? userInfo;
 
   OAuthPartialResult(this.provider, this.scope, this.accessToken, this.userHandle, this.userInfo);
 
@@ -34,8 +34,8 @@ class OAuthPartialResult {
 
 @JsonSerializable(explicitToJson: true)
 class MagicPartialResult {
-  late String idToken;
-  late UserMetadata userMetadata;
+  String? idToken;
+  UserMetadata? userMetadata;
 
   MagicPartialResult(this.idToken, this.userMetadata);
 
