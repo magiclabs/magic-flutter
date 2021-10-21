@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
-import 'package:magic_sdk/modules/user/user_response.dart';
 import 'package:magic_sdk/provider/types/message_types.dart';
 import 'package:magic_sdk/provider/types/relayer_request.dart';
 import 'package:magic_sdk/provider/types/relayer_response.dart';
@@ -37,7 +36,7 @@ class WebViewRelayer extends StatefulWidget {
 
       webViewCtrl.evaluateJavascript("window.dispatchEvent(new MessageEvent('message', $jsonString));");
 
-      // Recursive call till queue is Empty
+      // Recursively dequeue till queue is Empty
       _dequeue();
     }
   }
@@ -99,7 +98,7 @@ class WebViewRelayerState extends State<WebViewRelayer> {
 
     void onMessageReceived(JavascriptMessage message) {
 
-      // debugPrint("Received message, ${message.message}");
+      debugPrint("Received message, ${message.message}");
 
       if(message.getMsgType() == IncomingMessageType.MAGIC_OVERLAY_READY.toShortString()) {
         widget._overlayReady = true;

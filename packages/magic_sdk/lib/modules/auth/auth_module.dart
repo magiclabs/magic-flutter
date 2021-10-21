@@ -22,9 +22,9 @@ class AuthModule extends BaseModule {
       'email': email,
       'showUI': showUI
     };
-    return sendToProvider(method: AuthMethod.magic_auth_login_with_magic_link.toShortString(), params: params).then((jsMsg) {
+    return sendToProvider(method: AuthMethod.magic_auth_login_with_magic_link.toShortString(), params: [params]).then((jsMsg) {
       var relayerResponse = RelayerResponse<String>.fromJson(json.decode(jsMsg.message), (json) => json as String);
-      return relayerResponse.response.result as String;
+      return relayerResponse.response.result;
     });
   }
 }

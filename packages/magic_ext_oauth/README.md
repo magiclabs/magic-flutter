@@ -1,39 +1,66 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
-
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+Magic empowers developers to protect their users via an innovative, passwordless authentication flow without the UX compromises that burden traditional OAuth implementations.
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+This is your entry-point to secure, passwordless authentication for your iOS or Android-based Flutter app.
 
-## Getting started
+## Installation
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+Add `magic_sdk` to your `pubspec.yaml`:
 
-## Usage
+```yaml
+dependencies:
+  flutter:
+    sdk: flutter
+  magic_sdk: ^0.1.0
+```
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
+Run the following command to install dependencies
+
+```text
+$ dart pub get
+```
+
+## Create an SDK Instance
+
+In `main.dart`, instantiate Magic with your publishable key
 
 ```dart
-const like = 'sample';
+
+void main() {
+  runApp(const MyApp());
+
+  Magic.instance = Magic("YOUR_PUBLISHABLE_KEY");
+}
+```
+
+Use `Stack` in the top level and add `Magic.instance.relayer` to the children of Stack to ensure the best performance
+
+```dart
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        home: Stack(children: [ // Use Stack here to make sure
+          MaterialApp(
+            title: 'Magic Demo',
+            home: const LoginPage(),
+          ),
+          Magic.instance.relayer // Insert relayer here
+        ]));
+  }
+}
+```
+
+Authenticate your first user!
+
+```dart
+var token = await magic.auth.loginWithMagicLink(email: textController.text);
 ```
 
 ## Additional information
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+For more detail, please check the [Magic Link Flutter doc](https://magic.link/docs/client-sdk/flutter/get-started)

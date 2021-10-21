@@ -1,11 +1,18 @@
+import 'dart:convert';
+
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_web_auth/flutter_web_auth.dart';
+import 'package:magic_ext_oauth/types/oauth_method.dart';
+import 'package:magic_ext_oauth/types/oauth_response.dart';
 import 'package:magic_sdk/modules/auth/auth_module.dart';
 import 'package:magic_sdk/modules/base_module.dart';
 import 'package:magic_sdk/modules/user/user_module.dart';
 import 'package:magic_sdk/provider/rpc_provider.dart';
+import 'package:magic_sdk/provider/types/relayer_response.dart';
 import 'package:magic_sdk/relayer/url_builder.dart';
 import 'package:uri/uri.dart';
 
-import 'oauth_challenge.dart';
+import 'utils/oauth_challenge.dart';
 import 'oauth_configuration.dart';
 export 'package:magic_sdk/magic_sdk.dart';
 
@@ -19,18 +26,25 @@ class OAuthExtension extends BaseModule {
   // // See https://github.com/flutter/flutter/issues/52267 for more details.
   // Magic._();
 
-  loginWithPopup(OAuthConfiguration configuration) {
+  Future<OAuthResponse> loginWithPopup(OAuthConfiguration configuration) async {
     OAuthChallenge oauthChallenge = OAuthChallenge();
+
+    // Create Auth Session
+    String successUri = await _createAuthenticationSession(oauthChallenge: oauthChallenge, configuration: configuration);
+
+    // Parse Redirect Result
+    return _parseRedirectResult(successUri, oauthChallenge);
+  }
+
+  /// Create Authentication Session to process social login request
+  Future<String> _createAuthenticationSession ({required OAuthChallenge oauthChallenge, required OAuthConfiguration configuration}) async {
 
     var uri = UriBuilder();
     uri.scheme = 'https';
     uri.host = 'auth.magic.link';
+    uri.port = 443;
 
-    // uri.scheme = 'http';
-    // uri.host = '192.168.0.106';
-    // uri.port = '3014';
-
-    uri.path = '/v1/oauth2/${configuration.provider.toShortString()}';
+    uri.path = '/v1/oauth2/${configuration.provider.toShortString()}/start';
 
     uri.queryParameters = {
       'magic_api_key': URLBuilder.instance.apiKey,
@@ -48,7 +62,28 @@ class OAuthExtension extends BaseModule {
       uri.queryParameters.addAll({'login_hint': configuration.loginHint as String});
     }
 
+    debugPrint(uri.build().toString());
 
+    // clean callbackUrlScheme to make sure there's no ':' or '//'
+    var redirectURI = configuration.redirectURI.substring(0, configuration.redirectURI.indexOf(':'));
+
+    return await FlutterWebAuth.authenticate(url: uri.build().toString(), callbackUrlScheme: redirectURI);
+  }
+
+  /// Parse redirect results
+  Future<OAuthResponse> _parseRedirectResult(String successResult, OAuthChallenge challenge) async {
+    Uri successUri = Uri.parse(successResult);
+    debugPrint(      "?${successUri.query}",);
+
+    return await sendToProvider(method: OAuthMethod.magic_oauth_parse_redirect_result.toShortString(), params: [
+      "?${successUri.query}",
+      challenge.verifier,
+      challenge.state
+    ]).then((jsMsg) {
+      var relayerResponse = RelayerResponse<OAuthResponse>.fromJson(json.decode(jsMsg.message), (result) =>
+          OAuthResponse.fromJson(result as Map<String, dynamic>));
+      return relayerResponse.response.result;
+    });
   }
 }
 
