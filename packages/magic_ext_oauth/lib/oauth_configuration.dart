@@ -1,6 +1,6 @@
 class OAuthConfiguration {
-  late OAuthProvider provider;
-  late String redirectURI;
+  OAuthProvider provider;
+  String redirectURI;
   List<String>? scope;
   String? loginHint;
 
