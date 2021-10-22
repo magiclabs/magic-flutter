@@ -12,7 +12,7 @@ Add `magic_sdk` to your `pubspec.yaml`:
 dependencies:
   flutter:
     sdk: flutter
-  magic_sdk: ^0.1.0
+  magic_sdk: ^0.3.0
 ```
 
 Run the following command to install dependencies
@@ -63,4 +63,4 @@ var token = await magic.auth.loginWithMagicLink(email: textController.text);
 
 ## Additional information
 
-For more detail, please check the [Magic Link Flutter doc](https://magic.link/docs/client-sdk/flutter/get-started)
+For more detail, please check the [Magic Link Flutter doc](https://magic.link/docs/login-methods/email/integration/flutter)

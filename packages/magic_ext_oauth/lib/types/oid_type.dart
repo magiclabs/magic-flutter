@@ -67,14 +67,8 @@ class OIDAddress {
   String? postalCode;
   String? country;
 
-  OIDAddress(
-      this.formatted,
-      this.streetAddress,
-      this.locality,
-      this.region,
-      this.postalCode,
-      this.country
-      );
+  OIDAddress(this.formatted, this.streetAddress, this.locality, this.region,
+      this.postalCode, this.country);
 
   factory OIDAddress.fromJson(Map<String, dynamic> json) =>
       _$OIDAddressFromJson(json);

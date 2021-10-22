@@ -32,7 +32,7 @@ class WebViewRelayer extends StatefulWidget {
 
       String jsonString = json.encode({"data": message});
 
-      // debugPrint("Send Message $jsonString");
+      debugPrint("Send Message ===> \n $jsonString");
 
       webViewCtrl.evaluateJavascript("window.dispatchEvent(new MessageEvent('message', $jsonString));");
 
@@ -100,7 +100,7 @@ class WebViewRelayerState extends State<WebViewRelayer> {
 
     void onMessageReceived(JavascriptMessage message) {
 
-      // debugPrint("Received message, ${message.message}");
+      debugPrint("Received message <=== \n ${message.message}");
 
       if(message.getMsgType() == IncomingMessageType.MAGIC_OVERLAY_READY.toShortString()) {
         widget._overlayReady = true;

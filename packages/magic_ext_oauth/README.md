@@ -12,7 +12,8 @@ Add `magic_sdk` to your `pubspec.yaml`:
 dependencies:
   flutter:
     sdk: flutter
-  magic_sdk: ^0.1.0
+  magic_sdk: ^0.3.0
+  magic_ext_oauth: ^0.1.0
 ```
 
 Run the following command to install dependencies
@@ -55,12 +56,13 @@ class MyApp extends StatelessWidget {
 }
 ```
 
-Authenticate your first user!
+Authenticate your first user via OAuth!
 
 ```dart
-var token = await magic.auth.loginWithMagicLink(email: textController.text);
+var configuration = OAuthConfiguration(provider: OAuthProvider.GITHUB, redirectURI: 'YOUR_APP_SCHEME://');
+var result = await magic.oauth.loginWithPopup(configuration);
 ```
 
 ## Additional information
 
-For more detail, please check the [Magic Link Flutter doc](https://magic.link/docs/client-sdk/flutter/get-started)
+For more detail, please check the [Magic Link Flutter doc](https://magic.link/docs/login-methods/email/integration/flutter)

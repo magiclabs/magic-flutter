@@ -5,6 +5,7 @@ import 'package:magic_sdk/relayer/locale.dart';
 
 class URLBuilder {
   final String _host = "https://box.magic.link";
+  // final String _host = "http://192.168.0.148:3016";
 
   static late URLBuilder instance;
 
