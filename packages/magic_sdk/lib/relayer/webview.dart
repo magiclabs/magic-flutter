@@ -1,14 +1,15 @@
 import 'dart:async';
 import 'dart:io';
 import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
-import 'package:magic_sdk/modules/user/user_response.dart';
-import 'package:magic_sdk/provider/types/message_types.dart';
-import 'package:magic_sdk/provider/types/relayer_request.dart';
-import 'package:magic_sdk/provider/types/relayer_response.dart';
-import 'package:magic_sdk/provider/types/rpc_response.dart';
-import 'package:magic_sdk/relayer/url_builder.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+
+import '../../provider/types/message_types.dart';
+import '../../provider/types/relayer_request.dart';
+import '../../provider/types/relayer_response.dart';
+import '../../provider/types/rpc_response.dart';
+import '../../relayer/url_builder.dart';
 
 class WebViewRelayer extends StatefulWidget {
 
@@ -33,11 +34,11 @@ class WebViewRelayer extends StatefulWidget {
 
       String jsonString = json.encode({"data": message});
 
-      // debugPrint("Send Message $jsonString");
+      // debugPrint("Send Message ===> \n $jsonString");
 
       webViewCtrl.evaluateJavascript("window.dispatchEvent(new MessageEvent('message', $jsonString));");
 
-      // Recursive call till queue is Empty
+      // Recursively dequeue till queue is Empty
       _dequeue();
     }
   }
@@ -55,7 +56,7 @@ class WebViewRelayer extends StatefulWidget {
       var json = message.decode();
 
       // parse JSON into General RelayerResponse to fetch id first, result will handled in the function interface
-      RelayerResponse relayerResponse = RelayerResponse<dynamic>.fromJson(json, (json) => json as Object);
+      RelayerResponse relayerResponse = RelayerResponse<dynamic>.fromJson(json, (result) => result);
       MagicRPCResponse rpcResponse = relayerResponse.response;
 
       var result = rpcResponse.result;
@@ -64,7 +65,8 @@ class WebViewRelayer extends StatefulWidget {
       // get callbacks in the handlers map
       var completer = _messageHandlers[id];
 
-      // Surface the Raw JavascriptMessage back to the function call
+      // Surface the Raw JavascriptMessage back to the function call so it can converted back to Result type
+      // Only decode when result is not null, so the result is not null
       if (result != null) {
         completer!.complete(message);
       }
@@ -74,6 +76,7 @@ class WebViewRelayer extends StatefulWidget {
       }
 
     } catch (err) {
+      //Todo Add internal error collector
       debugPrint("parse Error ${err.toString()}");
     }
   }
@@ -99,7 +102,7 @@ class WebViewRelayerState extends State<WebViewRelayer> {
 
     void onMessageReceived(JavascriptMessage message) {
 
-      // debugPrint("Received message, ${message.message}");
+      // debugPrint("Received message <=== \n ${message.message}");
 
       if(message.getMsgType() == IncomingMessageType.MAGIC_OVERLAY_READY.toShortString()) {
         widget._overlayReady = true;
@@ -131,13 +134,11 @@ class WebViewRelayerState extends State<WebViewRelayer> {
         onWebViewCreated: (WebViewController w) {
           widget.webViewCtrl = w;
         },
-        onPageFinished: (String url) {
-          //TODO: events after page loading finished
-        })
-    );
+    ));
   }
 }
 
+/// Extended utilities to help to decode JS Message
 extension MessageType on JavascriptMessage {
   Map<String, dynamic> decode() {
     return json.decode(message);

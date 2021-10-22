@@ -1,0 +1,24 @@
+name: magic_ext_oauth
+description: A new Flutter package project.
+version: 0.0.1
+homepage: https://magic.link
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  magic_sdk: ^0.3.0
+  uri: 1.0.0
+  flutter_web_auth: 0.3.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^1.0.0
+  build_runner: ^2.1.2
+  json_serializable: ^5.0.1
+
+flutter:

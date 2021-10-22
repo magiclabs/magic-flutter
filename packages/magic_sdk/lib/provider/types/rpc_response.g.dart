@@ -12,7 +12,7 @@ MagicRPCResponse<T> _$MagicRPCResponseFromJson<T>(
 ) =>
     MagicRPCResponse<T>(
       id: json['id'],
-      result: json['result'],
+      result: fromJsonT(json['result']),
       jsonrpc: json['jsonrpc'] as String,
     )..error = json['error'] == null
         ? null
@@ -24,9 +24,9 @@ Map<String, dynamic> _$MagicRPCResponseToJson<T>(
 ) =>
     <String, dynamic>{
       'id': instance.id,
-      'result': instance.result,
       'jsonrpc': instance.jsonrpc,
       'error': instance.error?.toJson(),
+      'result': toJsonT(instance.result),
     };
 
 RPCError _$RPCErrorFromJson(Map<String, dynamic> json) => RPCError()

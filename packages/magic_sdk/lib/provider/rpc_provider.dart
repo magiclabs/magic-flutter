@@ -1,14 +1,13 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
-import 'package:magic_sdk/provider/types/message_types.dart';
-import 'package:magic_sdk/provider/types/relayer_request.dart';
-import 'package:magic_sdk/provider/types/relayer_response.dart';
-import 'package:magic_sdk/provider/types/rpc_request.dart';
-import 'package:magic_sdk/provider/types/rpc_response.dart';
-import 'package:magic_sdk/relayer/url_builder.dart';
-import 'package:magic_sdk/relayer/webview.dart';
+import '../../provider/types/message_types.dart';
+import '../../provider/types/relayer_request.dart';
+import '../../provider/types/relayer_response.dart';
+import '../../provider/types/rpc_request.dart';
+import '../../relayer/url_builder.dart';
+import '../../relayer/webview.dart';
+
 import 'package:web3dart/json_rpc.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -19,6 +18,7 @@ class RpcProvider implements RpcService {
 
   RpcProvider(this._overlay);
 
+  /// Sending message to relayer
    Future<JavascriptMessage> send({required MagicRPCRequest request, required Completer<JavascriptMessage> completer}){
 
      var msgType = OutgoingMessageType.MAGIC_HANDLE_REQUEST;
@@ -41,7 +41,7 @@ class RpcProvider implements RpcService {
     /* Send the RPCRequest to Magic Relayer and decode it by using RPCResponse from web3dart */
     return send(request: request, completer: Completer<JavascriptMessage>()).then((jsMsg) {
       var relayerResponse = RelayerResponse<dynamic>.fromJson(json.decode(jsMsg.message), (json) => json as dynamic);
-      return relayerResponse.response as RPCResponse;
+      return relayerResponse.response;
     });
   }
 }

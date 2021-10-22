@@ -1,13 +1,11 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
-import 'package:magic_sdk/modules/base_module.dart';
-import 'package:magic_sdk/modules/user/user_method.dart';
-import 'package:magic_sdk/modules/user/user_response.dart';
-import 'package:magic_sdk/provider/rpc_provider.dart';
-import 'package:magic_sdk/provider/types/relayer_response.dart';
-export 'package:magic_sdk/magic_sdk.dart';
+import '../../modules/base_module.dart';
+import '../../modules/user/user_method.dart';
+import '../../modules/user/user_response_type.dart';
+import '../../provider/rpc_provider.dart';
+import '../../provider/types/relayer_response.dart';
 
 class UserModule extends BaseModule {
   UserModule(RpcProvider provider) : super(provider);
@@ -18,9 +16,9 @@ class UserModule extends BaseModule {
   var params = {
     'lifespan': lifespan,
   };
-  return sendToProvider(method: UserMethod.magic_auth_get_id_token.toShortString(), params: params).then((jsMsg) {
+  return sendToProvider(method: UserMethod.magic_auth_get_id_token.toShortString(), params: [params]).then((jsMsg) {
     var relayerResponse = RelayerResponse<String>.fromJson(json.decode(jsMsg.message), (json) => json as String);
-    return relayerResponse.response.result as String;
+    return relayerResponse.response.result;
   });
 }
 
@@ -30,9 +28,9 @@ class UserModule extends BaseModule {
       'lifespan': lifespan,
       'attachment': attachment
     };
-    return sendToProvider(method: UserMethod.magic_auth_generate_id_token.toShortString(), params: params).then((jsMsg) {
+    return sendToProvider(method: UserMethod.magic_auth_generate_id_token.toShortString(), params: [params]).then((jsMsg) {
       var relayerResponse = RelayerResponse<String>.fromJson(json.decode(jsMsg.message), (json) => json as String);
-      return relayerResponse.response.result as String;
+      return relayerResponse.response.result;
     });
   }
 
@@ -45,7 +43,7 @@ class UserModule extends BaseModule {
       var relayerResponse = RelayerResponse<UserMetadata>.fromJson(
           json.decode(jsMsg.message), (json) =>
           UserMetadata.fromJson(json as Map<String, dynamic>));
-      return relayerResponse.response.result as UserMetadata;
+      return relayerResponse.response.result;
     });
   }
 
@@ -54,7 +52,7 @@ class UserModule extends BaseModule {
 
     return sendToProvider(method: UserMethod.magic_auth_is_logged_in.toShortString()).then((jsMsg) {
       var relayerResponse = RelayerResponse<bool>.fromJson(json.decode(jsMsg.message), (json) => json as bool);
-      return relayerResponse.response.result as bool;
+      return relayerResponse.response.result;
     });
   }
 
@@ -66,9 +64,9 @@ class UserModule extends BaseModule {
       'showUI': showUI
     };
 
-    return sendToProvider(method: UserMethod.magic_auth_update_email.toShortString(), params: params).then((jsMsg) {
+    return sendToProvider(method: UserMethod.magic_auth_update_email.toShortString(), params: [params]).then((jsMsg) {
       var relayerResponse = RelayerResponse<bool>.fromJson(json.decode(jsMsg.message), (json) => json as bool);
-      return relayerResponse.response.result as bool;
+      return relayerResponse.response.result;
     });
   }
 
@@ -77,7 +75,7 @@ class UserModule extends BaseModule {
 
     return sendToProvider(method: UserMethod.magic_auth_logout.toShortString()).then((jsMsg) {
       var relayerResponse = RelayerResponse<bool>.fromJson(json.decode(jsMsg.message), (json) => json as bool);
-      return relayerResponse.response.result as bool;
+      return relayerResponse.response.result;
     });
   }
 }

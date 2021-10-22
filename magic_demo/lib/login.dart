@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:magic_demo/tabs/home.dart';
+
 import 'package:magic_sdk/magic_sdk.dart';
+import 'package:magic_ext_oauth/magic_ext_oauth.dart';
+
+import 'alert.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -57,9 +61,12 @@ class _LoginPageState extends State<LoginPage> {
             onPressed: () async {
               var token =
                   await magic.auth.loginWithMagicLink(email: myController.text);
-              debugPrint("token, $token");
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const HomePage()));
+              showResult(context, 'token, $token');
+
+              if (token.isNotEmpty) {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const HomePage()));
+              }
             },
             child: const Text('Login With Magic Link'),
           ),
@@ -67,10 +74,17 @@ class _LoginPageState extends State<LoginPage> {
             style: ButtonStyle(
               foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
             ),
-            onPressed: () {
-              debugPrint('123');
+            onPressed: () async {
+              var configuration = OAuthConfiguration(provider: OAuthProvider.GITHUB, redirectURI: 'link.magic.demo://');
+              var result = await magic.oauth.loginWithPopup(configuration);
+
+              if (result.magic!.userMetadata!.email != null) {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const HomePage()));
+              }
+              showResult(context, 'publicAddress, ${result.magic!.userMetadata!.publicAddress}');
             },
-            child: const Text('Google Login'),
+            child: const Text('Github Login'),
           ),
         ])));
   }

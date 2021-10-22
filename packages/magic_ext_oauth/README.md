@@ -13,6 +13,7 @@ dependencies:
   flutter:
     sdk: flutter
   magic_sdk: ^0.3.0
+  magic_ext_oauth: ^0.1.0
 ```
 
 Run the following command to install dependencies
@@ -55,10 +56,13 @@ class MyApp extends StatelessWidget {
 }
 ```
 
-Authenticate your first user!
+Authenticate your first user via OAuth!
 
 ```dart
-var token = await magic.auth.loginWithMagicLink(email: textController.text);
+import 
+
+var configuration = OAuthConfiguration(provider: OAuthProvider.GITHUB, redirectURI: 'YOUR_APP_SCHEME://');
+var result = await magic.oauth.loginWithPopup(configuration);
 ```
 
 ## Additional information

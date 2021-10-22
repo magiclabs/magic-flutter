@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'user_response.g.dart';
+part 'user_response_type.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class UserMetadata {

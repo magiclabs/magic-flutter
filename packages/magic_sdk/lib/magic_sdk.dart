@@ -1,11 +1,13 @@
-import 'package:magic_sdk/modules/auth/auth_module.dart';
-import 'package:magic_sdk/modules/user/user_module.dart';
-import 'package:magic_sdk/modules/web3/eth_network.dart';
-import 'package:magic_sdk/provider/rpc_provider.dart';
-import 'package:magic_sdk/relayer/locale.dart';
-import 'package:magic_sdk/relayer/url_builder.dart';
-import 'package:magic_sdk/relayer/webview.dart';
+import 'modules/auth/auth_module.dart';
+import 'modules/user/user_module.dart';
+import 'modules/web3/eth_network.dart';
+import 'provider/rpc_provider.dart';
+import 'relayer/locale.dart';
+import 'relayer/url_builder.dart';
+import 'relayer/webview.dart';
+
 export 'package:magic_sdk/magic_sdk.dart';
+export 'modules/web3/magic_credential.dart';
 
 /// The entry point for accessing Magic SDK.
 class Magic {

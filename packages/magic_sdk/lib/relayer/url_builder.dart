@@ -1,11 +1,10 @@
 import 'dart:convert';
-import 'package:flutter/cupertino.dart';
-import 'package:magic_sdk/modules/web3/eth_network.dart';
-import 'package:magic_sdk/relayer/locale.dart';
+
+import '../../modules/web3/eth_network.dart';
+import '../../relayer/locale.dart';
 
 class URLBuilder {
   final String _host = "https://box.magic.link";
-  // final String _host = "http://192.168.31.215:3016";
 
   static late URLBuilder instance;
 

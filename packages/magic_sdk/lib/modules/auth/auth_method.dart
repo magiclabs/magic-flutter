@@ -1,3 +1,4 @@
+/// Auth Method
 enum AuthMethod {
   magic_auth_login_with_magic_link
 }

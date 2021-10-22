@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:web3dart/json_rpc.dart';
 
@@ -9,7 +8,14 @@ class MagicRPCResponse<T> extends RPCResponse{
   String jsonrpc;
   RPCError? error;
 
-  MagicRPCResponse({id, result, required this.jsonrpc}): super(id, result);
+  // Overriding the result type
+  // The inherited type from web3dart is dynamic. However, offering a definite
+  // type is a better experience to the developer who can access this field
+  // with field suggestions.
+  @override
+  T result;
+
+  MagicRPCResponse({id, required this.result, required this.jsonrpc}): super(id, result);
 
   factory MagicRPCResponse.fromJson(Map<String, dynamic> json, T Function(Object? json) fromJsonT) => _$MagicRPCResponseFromJson<T>(json, fromJsonT);
 
