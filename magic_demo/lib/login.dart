@@ -75,14 +75,14 @@ class _LoginPageState extends State<LoginPage> {
               foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
             ),
             onPressed: () async {
-              var configuration = OAuthConfiguration(provider: OAuthProvider.GITHUB, redirectURI: 'magicdemo://');
+              var configuration = OAuthConfiguration(provider: OAuthProvider.GITHUB, redirectURI: 'link.magic.demo://');
               var token = await magic.oauth.loginWithPopup(configuration);
 
-              if (token.magic.userMetadata.email != null) {
+              if (token.magic!.userMetadata!.email != null) {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => const HomePage()));
               }
-              showResult(context, 'publicAddress, ${token.magic.userMetadata.publicAddress}');
+              showResult(context, 'publicAddress, ${token.magic!.userMetadata!.publicAddress}');
             },
             child: const Text('Github Login'),
           ),
