@@ -59,6 +59,8 @@ class MyApp extends StatelessWidget {
 Authenticate your first user via OAuth!
 
 ```dart
+import 
+
 var configuration = OAuthConfiguration(provider: OAuthProvider.GITHUB, redirectURI: 'YOUR_APP_SCHEME://');
 var result = await magic.oauth.loginWithPopup(configuration);
 ```

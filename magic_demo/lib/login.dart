@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:magic_demo/tabs/home.dart';
-import 'package:magic_ext_oauth/oauth_configuration.dart';
+
 import 'package:magic_sdk/magic_sdk.dart';
 import 'package:magic_ext_oauth/magic_ext_oauth.dart';
 

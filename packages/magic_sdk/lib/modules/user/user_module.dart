@@ -1,13 +1,11 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
-import 'package:magic_sdk/modules/base_module.dart';
-import 'package:magic_sdk/modules/user/user_method.dart';
-import 'package:magic_sdk/modules/user/user_response_type.dart';
-import 'package:magic_sdk/provider/rpc_provider.dart';
-import 'package:magic_sdk/provider/types/relayer_response.dart';
-export 'package:magic_sdk/magic_sdk.dart';
+import '../../modules/base_module.dart';
+import '../../modules/user/user_method.dart';
+import '../../modules/user/user_response_type.dart';
+import '../../provider/rpc_provider.dart';
+import '../../provider/types/relayer_response.dart';
 
 class UserModule extends BaseModule {
   UserModule(RpcProvider provider) : super(provider);

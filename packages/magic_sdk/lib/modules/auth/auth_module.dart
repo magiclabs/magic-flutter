@@ -1,12 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:magic_sdk/modules/auth/auth_method.dart';
-import 'package:magic_sdk/provider/rpc_provider.dart';
-import 'package:magic_sdk/provider/types/relayer_response.dart';
-
+import '../../modules/auth/auth_method.dart';
+import '../../provider/rpc_provider.dart';
+import '../../provider/types/relayer_response.dart';
 import '../base_module.dart';
-export 'package:magic_sdk/magic_sdk.dart';
 
 /// Allows users to login with magic link.
 /// pass `email`, and `showUI` to true to show out of the box loading UI,

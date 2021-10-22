@@ -2,11 +2,8 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:magic_demo/login.dart';
 import 'package:magic_sdk/magic_sdk.dart';
-import 'package:magic_sdk/modules/web3/magic_credential.dart';
 import 'package:web3dart/web3dart.dart';
-import 'package:web3dart/crypto.dart';
 
 import '../alert.dart';
 

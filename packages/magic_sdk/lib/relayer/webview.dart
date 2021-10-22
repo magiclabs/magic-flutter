@@ -1,13 +1,15 @@
 import 'dart:async';
 import 'dart:io';
 import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
-import 'package:magic_sdk/provider/types/message_types.dart';
-import 'package:magic_sdk/provider/types/relayer_request.dart';
-import 'package:magic_sdk/provider/types/relayer_response.dart';
-import 'package:magic_sdk/provider/types/rpc_response.dart';
-import 'package:magic_sdk/relayer/url_builder.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+
+import '../../provider/types/message_types.dart';
+import '../../provider/types/relayer_request.dart';
+import '../../provider/types/relayer_response.dart';
+import '../../provider/types/rpc_response.dart';
+import '../../relayer/url_builder.dart';
 
 class WebViewRelayer extends StatefulWidget {
 
@@ -32,7 +34,7 @@ class WebViewRelayer extends StatefulWidget {
 
       String jsonString = json.encode({"data": message});
 
-      debugPrint("Send Message ===> \n $jsonString");
+      // debugPrint("Send Message ===> \n $jsonString");
 
       webViewCtrl.evaluateJavascript("window.dispatchEvent(new MessageEvent('message', $jsonString));");
 
@@ -100,7 +102,7 @@ class WebViewRelayerState extends State<WebViewRelayer> {
 
     void onMessageReceived(JavascriptMessage message) {
 
-      debugPrint("Received message <=== \n ${message.message}");
+      // debugPrint("Received message <=== \n ${message.message}");
 
       if(message.getMsgType() == IncomingMessageType.MAGIC_OVERLAY_READY.toShortString()) {
         widget._overlayReady = true;

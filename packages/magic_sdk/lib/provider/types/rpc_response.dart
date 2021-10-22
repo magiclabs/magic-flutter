@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:web3dart/json_rpc.dart';
 

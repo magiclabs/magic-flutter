@@ -1,8 +1,8 @@
 import 'dart:async';
-
-import 'package:magic_sdk/provider/rpc_provider.dart';
-import 'package:magic_sdk/provider/types/rpc_request.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+
+import '../../provider/rpc_provider.dart';
+import '../../provider/types/rpc_request.dart';
 
 class BaseModule {
   late RpcProvider provider;

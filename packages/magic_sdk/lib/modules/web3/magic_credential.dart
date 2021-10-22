@@ -1,10 +1,9 @@
 import 'dart:typed_data';
 
-import 'package:flutter/cupertino.dart';
-import 'package:magic_sdk/provider/rpc_provider.dart';
+import '../../provider/rpc_provider.dart';
+
 import 'package:web3dart/credentials.dart';
 import 'package:web3dart/crypto.dart';
-import 'package:web3dart/src/crypto/secp256k1.dart';
 import 'package:web3dart/web3dart.dart';
 
 class MagicCredential extends CredentialsWithKnownAddress implements CustomTransactionSender {

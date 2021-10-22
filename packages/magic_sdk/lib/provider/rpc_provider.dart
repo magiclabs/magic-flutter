@@ -1,12 +1,13 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:magic_sdk/provider/types/message_types.dart';
-import 'package:magic_sdk/provider/types/relayer_request.dart';
-import 'package:magic_sdk/provider/types/relayer_response.dart';
-import 'package:magic_sdk/provider/types/rpc_request.dart';
-import 'package:magic_sdk/relayer/url_builder.dart';
-import 'package:magic_sdk/relayer/webview.dart';
+import '../../provider/types/message_types.dart';
+import '../../provider/types/relayer_request.dart';
+import '../../provider/types/relayer_response.dart';
+import '../../provider/types/rpc_request.dart';
+import '../../relayer/url_builder.dart';
+import '../../relayer/webview.dart';
+
 import 'package:web3dart/json_rpc.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 

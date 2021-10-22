@@ -1,3 +1,2 @@
-import 'package:magic_sdk/provider/rpc_provider.dart';
-
+/// Leave as placeholder
 class BaseConfiguration {}

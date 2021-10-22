@@ -1,19 +1,21 @@
 import 'dart:convert';
 
 import 'package:flutter_web_auth/flutter_web_auth.dart';
-import 'package:magic_sdk/modules/auth/auth_module.dart';
+import 'package:uri/uri.dart';
+
+import 'package:magic_sdk/magic_sdk.dart';
 import 'package:magic_sdk/modules/base_module.dart';
-import 'package:magic_sdk/modules/user/user_module.dart';
 import 'package:magic_sdk/provider/rpc_provider.dart';
 import 'package:magic_sdk/provider/types/relayer_response.dart';
 import 'package:magic_sdk/relayer/url_builder.dart';
-export 'package:magic_sdk/magic_sdk.dart';
-import 'package:uri/uri.dart';
 
 import 'types/oauth_method.dart';
 import 'types/oauth_response.dart';
 import 'utils/oauth_challenge.dart';
 import 'oauth_configuration.dart';
+
+export 'package:magic_ext_oauth/magic_ext_oauth.dart';
+export 'package:magic_ext_oauth/oauth_configuration.dart';
 
 /// The entry point for accessing Magic SDK.
 class OAuthExtension extends BaseModule {
