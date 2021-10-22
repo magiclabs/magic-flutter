@@ -149,7 +149,7 @@ packages:
     source: hosted
     version: "3.0.1"
   crypto:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: crypto
       url: "https://pub.dartlang.org"
@@ -264,7 +264,7 @@ packages:
     source: hosted
     version: "0.6.3"
   json_annotation:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: json_annotation
       url: "https://pub.dartlang.org"
@@ -301,10 +301,10 @@ packages:
   magic_sdk:
     dependency: "direct main"
     description:
-      path: "../magic_sdk"
-      relative: true
-    source: path
-    version: "0.2.0"
+      name: magic_sdk
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.0"
   matcher:
     dependency: transitive
     description:
