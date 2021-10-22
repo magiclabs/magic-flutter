@@ -43,10 +43,6 @@ class OAuthExtension extends BaseModule {
     uri.host = 'auth.magic.link';
     uri.port = 443;
 
-    // uri.scheme = 'http';
-    // uri.host = '192.168.0.148';
-    // uri.port = 3014;
-
     uri.path = '/v1/oauth2/${configuration.provider.toShortString()}/start';
 
     uri.queryParameters = {
