@@ -4,7 +4,6 @@ import 'package:flutter_web_auth/flutter_web_auth.dart';
 import 'package:magic_sdk/magic_sdk.dart';
 import 'package:magic_sdk/modules/base_module.dart';
 import 'package:magic_sdk/provider/rpc_provider.dart';
-import 'package:magic_sdk/provider/types/message_types.dart';
 import 'package:magic_sdk/provider/types/relayer_response.dart';
 import 'package:magic_sdk/relayer/url_builder.dart';
 import 'package:uri/uri.dart';
