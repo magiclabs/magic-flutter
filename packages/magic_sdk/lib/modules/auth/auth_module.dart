@@ -1,10 +1,12 @@
 import 'dart:async';
 import 'dart:convert';
 
-import '../../modules/auth/auth_method.dart';
+import '../../magic_sdk.dart';
 import '../../provider/rpc_provider.dart';
 import '../../provider/types/relayer_response.dart';
 import '../base_module.dart';
+
+part 'auth_method.dart';
 
 /// Allows users to login with magic link.
 /// pass `email`, and `showUI` to true to show out of the box loading UI,
@@ -25,4 +27,8 @@ class AuthModule extends BaseModule {
       return relayerResponse.response.result;
     });
   }
+}
+
+extension MagicAuthModule on Magic {
+  AuthModule get auth => AuthModule(provider);
 }

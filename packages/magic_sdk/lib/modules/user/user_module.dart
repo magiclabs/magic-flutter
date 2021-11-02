@@ -1,12 +1,15 @@
 import 'dart:async';
 import 'dart:convert';
 
+import '../../magic_sdk.dart';
 import '../../modules/base_module.dart';
-import '../../modules/user/user_method.dart';
 import '../../modules/user/user_response_type.dart';
 import '../../provider/rpc_provider.dart';
 import '../../provider/types/relayer_response.dart';
 
+part 'user_method.dart';
+
+/// User Module includes user authentication apis
 class UserModule extends BaseModule {
   UserModule(RpcProvider provider) : super(provider);
 
@@ -78,4 +81,9 @@ class UserModule extends BaseModule {
       return relayerResponse.response.result;
     });
   }
+}
+
+
+extension MagicUserModule on Magic {
+  UserModule get auth => UserModule(provider);
 }

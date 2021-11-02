@@ -29,10 +29,17 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  magic_sdk:
-    path: ../packages/magic_sdk/
-  magic_ext_oauth:
-    path: ../packages/magic_ext_oauth/
+
+
+  # Live imports
+  magic_sdk: ^0.3.0
+  magic_ext_oauth: ^0.1.0
+
+  # Local imports
+  #  magic_sdk:
+  #    path: ../packages/magic_sdk/
+  #  magic_ext_oauth:
+  #    path: ../packages/magic_ext_oauth/
 
 
   # The following adds the Cupertino Icons font to your application.

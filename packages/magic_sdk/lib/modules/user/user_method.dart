@@ -1,3 +1,5 @@
+part of "user_module.dart";
+
 enum UserMethod {
   magic_auth_get_id_token,
   magic_auth_generate_id_token,

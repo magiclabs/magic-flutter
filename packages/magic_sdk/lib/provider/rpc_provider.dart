@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 
-import '../../provider/types/message_types.dart';
 import '../../provider/types/relayer_request.dart';
 import '../../provider/types/relayer_response.dart';
 import '../../provider/types/rpc_request.dart';
@@ -10,6 +9,8 @@ import '../../relayer/webview.dart';
 
 import 'package:web3dart/json_rpc.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+
+part 'types/outbound_message.dart';
 
 /// Rpc Provider
 class RpcProvider implements RpcService {
@@ -21,7 +22,7 @@ class RpcProvider implements RpcService {
   /// Sending message to relayer
    Future<JavascriptMessage> send({required MagicRPCRequest request, required Completer<JavascriptMessage> completer}){
 
-     var msgType = OutgoingMessageType.MAGIC_HANDLE_REQUEST;
+     var msgType = OutboundMessageType.MAGIC_HANDLE_REQUEST;
 
      var relayerRequest = RelayerRequest(msgType: '${msgType.toString().split('.').last}-${URLBuilder.instance.encodedParams}', payload: request);
 

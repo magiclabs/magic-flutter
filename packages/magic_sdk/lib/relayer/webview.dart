@@ -5,11 +5,12 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-import '../../provider/types/message_types.dart';
 import '../../provider/types/relayer_request.dart';
 import '../../provider/types/relayer_response.dart';
 import '../../provider/types/rpc_response.dart';
 import '../../relayer/url_builder.dart';
+
+part '../provider/types/inbound_message.dart';
 
 class WebViewRelayer extends StatefulWidget {
 
@@ -104,20 +105,20 @@ class WebViewRelayerState extends State<WebViewRelayer> {
 
       // debugPrint("Received message <=== \n ${message.message}");
 
-      if(message.getMsgType() == IncomingMessageType.MAGIC_OVERLAY_READY.toShortString()) {
+      if(message.getMsgType() == InboundMessageType.MAGIC_OVERLAY_READY.toShortString()) {
         widget._overlayReady = true;
         widget._dequeue();
-      } else if (message.getMsgType() == IncomingMessageType.MAGIC_SHOW_OVERLAY.toShortString()){
+      } else if (message.getMsgType() == InboundMessageType.MAGIC_SHOW_OVERLAY.toShortString()){
         setState((){ // setState can only be accessed in this context
           widget._isOverlayVisible = true;
         });
-      } else if (message.getMsgType() == IncomingMessageType.MAGIC_HIDE_OVERLAY.toShortString()){
+      } else if (message.getMsgType() == InboundMessageType.MAGIC_HIDE_OVERLAY.toShortString()){
         setState(() {
           widget._isOverlayVisible = false;
         });
-      } else if (message.getMsgType() == IncomingMessageType.MAGIC_HANDLE_EVENT.toShortString()) {
+      } else if (message.getMsgType() == InboundMessageType.MAGIC_HANDLE_EVENT.toShortString()) {
         //Todo PromiseEvent
-      } else if (message.getMsgType() == IncomingMessageType.MAGIC_HANDLE_RESPONSE.toShortString()) {
+      } else if (message.getMsgType() == InboundMessageType.MAGIC_HANDLE_RESPONSE.toShortString()) {
           widget.handleResponse(message);
       }
     }
