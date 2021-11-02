@@ -11,7 +11,6 @@ export 'modules/web3/magic_credential.dart';
 
 /// The entry point for accessing Magic SDK.
 class Magic {
-
   /// Singleton proerty that can be accessed anywhere
   static late Magic instance;
 
@@ -21,24 +20,20 @@ class Magic {
   /// Expose this property to display Webview
   WebViewRelayer relayer = WebViewRelayer();
 
-  /// Initializes a new Magic SDK instance using the given [publisherKey],
-  ///
-  /// for custom node configuration provide chain id[String] and rpc url[String]
-  ///
-  /// On initializing successfully, it will return `true`.
-  ///
-
+  /// Initializes a new Magic SDK instance using the given [publishableKey],
   Magic(String apiKey, {MagicLocale locale = MagicLocale.en_US}) {
     URLBuilder.instance = URLBuilder(apiKey, locale);
     provider = RpcProvider(relayer);
   }
 
+  ///Initializes a new Magic SDK instance using the given [publishableKey] and ETG network,
   Magic.eth(String apiKey,
       {required EthNetwork network, MagicLocale locale = MagicLocale.en_US}) {
     URLBuilder.instance = URLBuilder.eth(apiKey, network, locale);
     provider = RpcProvider(relayer);
   }
 
+  /// for custom node configuration provide chain id[String] and rpc url[String
   Magic.custom(String apiKey,
       {required String rpcUrl,
       int? chainId,
