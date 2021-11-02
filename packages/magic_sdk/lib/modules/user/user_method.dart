@@ -9,7 +9,7 @@ enum UserMethod {
   magic_auth_logout
 }
 
-extension ParseAuthMethodToString on UserMethod {
+extension ParseUserMethodToString on UserMethod {
   String toShortString() {
     return toString().split('.').last;
   }

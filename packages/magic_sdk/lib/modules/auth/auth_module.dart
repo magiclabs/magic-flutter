@@ -29,6 +29,4 @@ class AuthModule extends BaseModule {
   }
 }
 
-extension MagicAuthModule on Magic {
-  AuthModule get auth => AuthModule(provider);
-}
+

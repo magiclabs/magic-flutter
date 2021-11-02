@@ -245,16 +245,16 @@ packages:
   magic_ext_oauth:
     dependency: "direct main"
     description:
-      name: magic_ext_oauth
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "../packages/magic_ext_oauth"
+      relative: true
+    source: path
     version: "0.1.0"
   magic_sdk:
     dependency: "direct main"
     description:
-      name: magic_sdk
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "../packages/magic_sdk"
+      relative: true
+    source: path
     version: "0.3.0"
   matcher:
     dependency: transitive

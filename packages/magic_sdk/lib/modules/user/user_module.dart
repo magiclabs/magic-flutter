@@ -83,7 +83,3 @@ class UserModule extends BaseModule {
   }
 }
 
-
-extension MagicUserModule on Magic {
-  UserModule get auth => UserModule(provider);
-}

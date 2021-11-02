@@ -47,3 +47,9 @@ class Magic {
     provider = RpcProvider(relayer);
   }
 }
+
+/// Append basic modules on runtime
+extension MagicBaseModule on Magic {
+  AuthModule get auth => AuthModule(provider);
+  UserModule get user => UserModule(provider);
+}
