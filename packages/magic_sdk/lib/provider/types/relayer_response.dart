@@ -13,10 +13,13 @@ class RelayerResponse<T> {
   /// A necessary factory constructor for creating a new User instance
   /// from a map. Pass the map to the generated `_$UserFromJson()` constructor.
   /// The constructor is named after the source class, in this case, User.
-  factory RelayerResponse.fromJson(Map<String, dynamic> json, T Function(Object? json) fromJsonT) => _$RelayerResponseFromJson<T>(json, fromJsonT);
+  factory RelayerResponse.fromJson(
+          Map<String, dynamic> json, T Function(Object? json) fromJsonT) =>
+      _$RelayerResponseFromJson<T>(json, fromJsonT);
 
   /// `toJson` is the convention for a class to declare support for serialization
   /// to JSON. The implementation simply calls the private, generated
   /// helper method `_$UserToJson`.
-  Map<String, dynamic> toJson(Object Function(T value) toJsonT) => _$RelayerResponseToJson(this, toJsonT);
+  Map<String, dynamic> toJson(Object Function(T value) toJsonT) =>
+      _$RelayerResponseToJson(this, toJsonT);
 }

@@ -6,14 +6,14 @@ class Loader {
   ValueNotifier<String> loaderTextNotifier = ValueNotifier('error message');
 
   void showLoader() {
-  loaderShowingNotifier.value = true;
+    loaderShowingNotifier.value = true;
   }
 
   void hideLoader() {
-  loaderShowingNotifier.value = false;
+    loaderShowingNotifier.value = false;
   }
 
   void setText({required String errorMessage}) {
-  loaderTextNotifier.value = errorMessage;
+    loaderTextNotifier.value = errorMessage;
   }
 }

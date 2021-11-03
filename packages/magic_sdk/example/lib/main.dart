@@ -23,8 +23,8 @@ class _LoginPageState extends State<LoginPage> {
     future.then((isLoggedIn) {
       if (isLoggedIn) {
         /// Navigate to home page
-      //   Navigator.push(context,
-      //       MaterialPageRoute(builder: (context) => const HomePage()));
+        //   Navigator.push(context,
+        //       MaterialPageRoute(builder: (context) => const HomePage()));
       }
     });
   }
@@ -37,39 +37,40 @@ class _LoginPageState extends State<LoginPage> {
           automaticallyImplyLeading: false,
         ),
         body: Center(
-            child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 32.0),
-                child: TextFormField(
-                  controller: myController,
-                  decoration: const InputDecoration(
-                    hintText: 'Enter your email',
-                  ),
-                  validator: (String? value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your email';
-                    }
-                    return null;
-                  },
-                ),
+            child:
+                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32.0),
+            child: TextFormField(
+              controller: myController,
+              decoration: const InputDecoration(
+                hintText: 'Enter your email',
               ),
-              TextButton(
-                style: ButtonStyle(
-                  foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
-                ),
-                onPressed: () async {
-                  var token =
+              validator: (String? value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter your email';
+                }
+                return null;
+              },
+            ),
+          ),
+          TextButton(
+            style: ButtonStyle(
+              foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+            ),
+            onPressed: () async {
+              var token =
                   await magic.auth.loginWithMagicLink(email: myController.text);
-                  debugPrint('token, $token');
+              debugPrint('token, $token');
 
-                  if (token.isNotEmpty) {
-                    /// Navigate to home page
-                    // Navigator.push(context,
-                    //     MaterialPageRoute(builder: (context) => const HomePage()));
-                  }
-                },
-                child: const Text('Login With Magic Link'),
-              ),
-            ])));
+              if (token.isNotEmpty) {
+                /// Navigate to home page
+                // Navigator.push(context,
+                //     MaterialPageRoute(builder: (context) => const HomePage()));
+              }
+            },
+            child: const Text('Login With Magic Link'),
+          ),
+        ])));
   }
 }

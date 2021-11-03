@@ -38,39 +38,43 @@ class _LoginPageState extends State<LoginPage> {
           automaticallyImplyLeading: false,
         ),
         body: Center(
-            child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 32.0),
-                child: TextFormField(
-                  controller: myController,
-                  decoration: const InputDecoration(
-                    hintText: 'Enter your email',
-                  ),
-                  validator: (String? value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your email';
-                    }
-                    return null;
-                  },
-                ),
+            child:
+                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32.0),
+            child: TextFormField(
+              controller: myController,
+              decoration: const InputDecoration(
+                hintText: 'Enter your email',
               ),
-              TextButton(
-                style: ButtonStyle(
-                  foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
-                ),
-                onPressed: () async {
-                  var configuration = OAuthConfiguration(provider: OAuthProvider.GITHUB, redirectURI: 'link.magic.demo://');
-                  var result = await magic.oauth.loginWithPopup(configuration);
+              validator: (String? value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter your email';
+                }
+                return null;
+              },
+            ),
+          ),
+          TextButton(
+            style: ButtonStyle(
+              foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+            ),
+            onPressed: () async {
+              var configuration = OAuthConfiguration(
+                  provider: OAuthProvider.GITHUB,
+                  redirectURI: 'link.magic.demo://');
+              var result = await magic.oauth.loginWithPopup(configuration);
 
-                  if (result.magic!.userMetadata!.email != null) {
-                    /// Navigate to a new page
-                    // Navigator.push(context,
-                    //     MaterialPageRoute(builder: (context) => const HomePage()));
-                  }
-                  debugPrint('publicAddress, ${result.magic!.userMetadata!.publicAddress}');
-                },
-                child: const Text('Github Login'),
-              ),
-            ])));
+              if (result.magic!.userMetadata!.email != null) {
+                /// Navigate to a new page
+                // Navigator.push(context,
+                //     MaterialPageRoute(builder: (context) => const HomePage()));
+              }
+              debugPrint(
+                  'publicAddress, ${result.magic!.userMetadata!.publicAddress}');
+            },
+            child: const Text('Github Login'),
+          ),
+        ])));
   }
 }
