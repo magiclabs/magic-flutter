@@ -11,52 +11,40 @@ export 'modules/web3/magic_credential.dart';
 
 /// The entry point for accessing Magic SDK.
 class Magic {
-
-  // // Disables the platform override in order to use a manually registered
-  // // See https://github.com/flutter/flutter/issues/52267 for more details.
-  // Magic._();
-
-  /// Internal Property
-  // String? _publishableKey;
-
+  /// Singleton proerty that can be accessed anywhere
   static late Magic instance;
 
-  /// External Property
-  late UserModule user;
-  late AuthModule auth;
+  /// rpcProvider that bounds to the instance
   late RpcProvider provider;
 
   /// Expose this property to display Webview
   WebViewRelayer relayer = WebViewRelayer();
 
-  /// Initializes a new Magic SDK instance using the given [publisherKey],
-  ///
-  /// for custom node configuration provide chain id[String] and rpc url[String]
-  ///
-  /// On initializing successfully, it will return `true`.
-  ///
-
+  /// Initializes a new Magic SDK instance using the given [publishableKey],
   Magic(String apiKey, {MagicLocale locale = MagicLocale.en_US}) {
     URLBuilder.instance = URLBuilder(apiKey, locale);
     provider = RpcProvider(relayer);
-
-    auth = AuthModule(provider);
-    user = UserModule(provider);
   }
 
-  Magic.eth(String apiKey, { required EthNetwork network, MagicLocale locale = MagicLocale.en_US}) {
+  ///Initializes a new Magic SDK instance using the given [publishableKey] and ETG network,
+  Magic.eth(String apiKey,
+      {required EthNetwork network, MagicLocale locale = MagicLocale.en_US}) {
     URLBuilder.instance = URLBuilder.eth(apiKey, network, locale);
     provider = RpcProvider(relayer);
-
-    auth = AuthModule(provider);
-    user = UserModule(provider);
   }
 
-  Magic.custom(String apiKey, { required String rpcUrl, int? chainId, MagicLocale locale = MagicLocale.en_US}) {
+  /// for custom node configuration provide chain id[String] and rpc url[String
+  Magic.custom(String apiKey,
+      {required String rpcUrl,
+      int? chainId,
+      MagicLocale locale = MagicLocale.en_US}) {
     URLBuilder.instance = URLBuilder.custom(apiKey, rpcUrl, chainId, locale);
     provider = RpcProvider(relayer);
-
-    auth = AuthModule(provider);
-    user = UserModule(provider);
   }
+}
+
+/// Append basic modules on runtime
+extension MagicBaseModule on Magic {
+  AuthModule get auth => AuthModule(provider);
+  UserModule get user => UserModule(provider);
 }

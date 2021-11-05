@@ -1,30 +1,27 @@
 import 'dart:convert';
 
 import 'package:flutter_web_auth/flutter_web_auth.dart';
-import 'package:uri/uri.dart';
-
 import 'package:magic_sdk/magic_sdk.dart';
 import 'package:magic_sdk/modules/base_module.dart';
 import 'package:magic_sdk/provider/rpc_provider.dart';
 import 'package:magic_sdk/provider/types/relayer_response.dart';
 import 'package:magic_sdk/relayer/url_builder.dart';
+import 'package:uri/uri.dart';
 
-import 'types/oauth_method.dart';
+import 'oauth_configuration.dart';
 import 'types/oauth_response.dart';
 import 'utils/oauth_challenge.dart';
-import 'oauth_configuration.dart';
 
 export 'package:magic_ext_oauth/magic_ext_oauth.dart';
 export 'package:magic_ext_oauth/oauth_configuration.dart';
+
+part 'types/oauth_method.dart';
 
 /// The entry point for accessing Magic SDK.
 class OAuthExtension extends BaseModule {
   OAuthExtension(RpcProvider provider) : super(provider);
 
-  // // Disables the platform override in order to use a manually registered
-  // // See https://github.com/flutter/flutter/issues/52267 for more details.
-  // Magic._();
-
+  /// Invoke authSession in IOS and custom browser in Android to start oauth flow
   Future<OAuthResponse> loginWithPopup(OAuthConfiguration configuration) async {
     OAuthChallenge oauthChallenge = OAuthChallenge();
 
@@ -96,6 +93,7 @@ class OAuthExtension extends BaseModule {
   }
 }
 
+/// Magic extends oauth extension
 extension MagicOAuthExtension on Magic {
   OAuthExtension get oauth => OAuthExtension(provider);
 }

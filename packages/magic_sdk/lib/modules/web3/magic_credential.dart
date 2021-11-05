@@ -6,8 +6,10 @@ import 'package:web3dart/credentials.dart';
 import 'package:web3dart/crypto.dart';
 import 'package:web3dart/web3dart.dart';
 
-class MagicCredential extends CredentialsWithKnownAddress implements CustomTransactionSender {
-
+/// MagicCredential class to
+class MagicCredential extends CredentialsWithKnownAddress
+    implements CustomTransactionSender {
+  /// The provider that relays requests to the relayer
   RpcProvider provider;
 
   @override
@@ -16,28 +18,38 @@ class MagicCredential extends CredentialsWithKnownAddress implements CustomTrans
   MagicCredential(this.provider);
 
   @override
+
+  /// An override to the signToSignature, but it's not supported
+  /// as the signing is done in the relayer.
   Future<MsgSignature> signToSignature(Uint8List payload, {int? chainId}) {
-    throw UnsupportedError('Please use "MagicCredential.ethSign" method');
+    throw UnsupportedError('Not supported');
   }
 
   @override
+
+  /// An override to the signPersonalMessage, personal sign would do the same
+  /// trick without the necessity of chainId
   Future<Uint8List> signPersonalMessage(Uint8List payload, {int? chainId}) {
     throw UnsupportedError('Please use "MagicCredential.personalSign" method');
   }
 
   /// Personal Sign
   Future<String> personalSign({required Uint8List payload}) {
-    return _makeRPCCall<String>('personal_sign', [_bytesToData(payload), address.hex]);
+    return _makeRPCCall<String>(
+        'personal_sign', [_bytesToData(payload), address.hex]);
   }
 
   /// Eth Sign
   Future<String> ethSign({required Uint8List payload}) {
-    return _makeRPCCall<String>('eth_sign', [address.hex, _bytesToData(payload)]);
+    return _makeRPCCall<String>(
+        'eth_sign', [address.hex, _bytesToData(payload)]);
   }
 
   /// SignTypedDataV1
   Future<String> signTypedDataLegacy({required Map payload}) {
-    return _makeRPCCall<String>('eth_signTypedData', [[payload]]);
+    return _makeRPCCall<String>('eth_signTypedData', [
+      [payload]
+    ]);
   }
 
   /// SignTypedDataV3

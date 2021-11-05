@@ -10,7 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  magic_sdk: ^0.3.0
+  magic_sdk:
+    path: ../magic_sdk/
   uri: ^1.0.0
   flutter_web_auth: ^0.3.1
   crypto: ^3.0.1

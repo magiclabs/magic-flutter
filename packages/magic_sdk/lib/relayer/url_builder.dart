@@ -33,16 +33,11 @@ class URLBuilder {
 
   URLBuilder(this.apiKey, this.locale);
 
-  URLBuilder.custom(this.apiKey, String rpcUrl, int? chainId, this.locale){
-    _network = {
-      "rpcUrl": rpcUrl,
-      "chainId": chainId
-    };
+  URLBuilder.custom(this.apiKey, String rpcUrl, int? chainId, this.locale) {
+    _network = {"rpcUrl": rpcUrl, "chainId": chainId};
   }
 
   URLBuilder.eth(this.apiKey, EthNetwork network, this.locale) {
-    _network = {
-      "network": network.toString().split('.').last
-    };
+    _network = {"network": network.toString().split('.').last};
   }
 }

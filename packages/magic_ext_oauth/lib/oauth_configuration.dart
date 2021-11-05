@@ -1,3 +1,4 @@
+/// OAuth Configuration
 class OAuthConfiguration {
   OAuthProvider provider;
   String redirectURI;
@@ -11,6 +12,7 @@ class OAuthConfiguration {
       this.loginHint});
 }
 
+/// OAuth Supported Provider
 enum OAuthProvider {
   GOOGLE,
   FACEBOOK,
