@@ -1,6 +1,6 @@
 name: magic_sdk
 description: This is your entry-point to secure, passwordless authentication for your iOS or Android-based Flutter app.
-version: 0.3.1+1
+version: 0.3.2
 homepage: https://magic.link
 
 environment:
