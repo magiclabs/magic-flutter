@@ -1,3 +1,7 @@
+## 0.3.2
+
+Fix build fail, due to web3dart signToSignature api breaking change
+
 ## 0.3.0
 
 * Add support for Social Login
