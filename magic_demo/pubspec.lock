@@ -7,14 +7,14 @@ packages:
       name: _fe_analyzer_shared
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "29.0.0"
+    version: "30.0.0"
   analyzer:
     dependency: transitive
     description:
       name: analyzer
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.6.0"
+    version: "2.7.0"
   args:
     dependency: transitive
     description:
@@ -50,34 +50,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
-  build_daemon:
-    dependency: transitive
-    description:
-      name: build_daemon
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.0.1"
-  build_resolvers:
-    dependency: transitive
-    description:
-      name: build_resolvers
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.4"
-  build_runner:
-    dependency: "direct dev"
-    description:
-      name: build_runner
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.1.4"
-  build_runner_core:
-    dependency: transitive
-    description:
-      name: build_runner_core
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "7.2.2"
   built_collection:
     dependency: transitive
     description:
@@ -91,7 +63,7 @@ packages:
       name: built_value
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "8.1.2"
+    version: "8.1.3"
   characters:
     dependency: transitive
     description:
@@ -149,12 +121,19 @@ packages:
     source: hosted
     version: "3.0.1"
   crypto:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: crypto
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.1"
+  cupertino_icons:
+    dependency: "direct main"
+    description:
+      name: cupertino_icons
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.4"
   dart_style:
     dependency: transitive
     description:
@@ -201,19 +180,12 @@ packages:
     source: sdk
     version: "0.0.0"
   flutter_web_auth:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: flutter_web_auth
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.3.1"
-  frontend_server_client:
-    dependency: transitive
-    description:
-      name: frontend_server_client
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.1.2"
   glob:
     dependency: transitive
     description:
@@ -221,13 +193,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.2"
-  graphs:
-    dependency: transitive
-    description:
-      name: graphs
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.1.0"
   http:
     dependency: transitive
     description:
@@ -235,13 +200,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.13.4"
-  http_multi_server:
-    dependency: transitive
-    description:
-      name: http_multi_server
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.0.1"
   http_parser:
     dependency: transitive
     description:
@@ -249,13 +207,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.0"
-  io:
-    dependency: transitive
-    description:
-      name: io
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.3"
   js:
     dependency: transitive
     description:
@@ -264,12 +215,12 @@ packages:
     source: hosted
     version: "0.6.3"
   json_annotation:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: json_annotation
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.1.0"
+    version: "4.3.0"
   json_rpc_2:
     dependency: transitive
     description:
@@ -277,13 +228,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.1"
-  json_serializable:
-    dependency: "direct dev"
-    description:
-      name: json_serializable
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "5.0.2"
   lints:
     dependency: transitive
     description:
@@ -298,13 +242,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.2"
+  magic_ext_oauth:
+    dependency: "direct main"
+    description:
+      path: "../packages/magic_ext_oauth"
+      relative: true
+    source: path
+    version: "0.1.1"
   magic_sdk:
     dependency: "direct main"
     description:
-      name: magic_sdk
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.3.1"
+      path: "../packages/magic_sdk"
+      relative: true
+    source: path
+    version: "0.3.1+1"
   matcher:
     dependency: transitive
     description:
@@ -319,13 +270,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.7.0"
-  mime:
-    dependency: transitive
-    description:
-      name: mime
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.1"
   package_config:
     dependency: transitive
     description:
@@ -354,13 +298,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.4.0"
-  pool:
-    dependency: transitive
-    description:
-      name: pool
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.5.0"
   pub_semver:
     dependency: transitive
     description:
@@ -382,39 +319,11 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.1+1"
-  shelf:
-    dependency: transitive
-    description:
-      name: shelf
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.2.0"
-  shelf_web_socket:
-    dependency: transitive
-    description:
-      name: shelf_web_socket
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.1"
   sky_engine:
     dependency: transitive
     description: flutter
     source: sdk
     version: "0.0.99"
-  source_gen:
-    dependency: transitive
-    description:
-      name: source_gen
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.1.1"
-  source_helper:
-    dependency: transitive
-    description:
-      name: source_helper
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.3.0"
   source_span:
     dependency: transitive
     description:
@@ -464,13 +373,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.4.2"
-  timing:
-    dependency: transitive
-    description:
-      name: timing
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.0"
   typed_data:
     dependency: transitive
     description:
@@ -479,7 +381,7 @@ packages:
     source: hosted
     version: "1.3.0"
   uri:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: uri
       url: "https://pub.dartlang.org"
@@ -513,41 +415,34 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.3.3"
-  web_socket_channel:
-    dependency: transitive
-    description:
-      name: web_socket_channel
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.1.0"
   webview_flutter:
     dependency: transitive
     description:
       name: webview_flutter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.1"
+    version: "2.3.0"
   webview_flutter_android:
     dependency: transitive
     description:
       name: webview_flutter_android
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.15"
+    version: "2.2.1"
   webview_flutter_platform_interface:
     dependency: transitive
     description:
       name: webview_flutter_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.2.0"
+    version: "1.4.0"
   webview_flutter_wkwebview:
     dependency: transitive
     description:
       name: webview_flutter_wkwebview
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.14"
+    version: "2.2.0"
   yaml:
     dependency: transitive
     description:
