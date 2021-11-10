@@ -339,7 +339,7 @@ packages:
       name: pointycastle
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.3.4"
+    version: "3.4.0"
   pool:
     dependency: transitive
     description:
@@ -484,7 +484,7 @@ packages:
       name: web3dart
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.3.1"
+    version: "2.3.3"
   web_socket_channel:
     dependency: transitive
     description:

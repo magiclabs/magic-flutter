@@ -21,7 +21,7 @@ class MagicCredential extends CredentialsWithKnownAddress
 
   /// An override to the signToSignature, but it's not supported
   /// as the signing is done in the relayer.
-  Future<MsgSignature> signToSignature(Uint8List payload, {int? chainId}) {
+  Future<MsgSignature> signToSignature(Uint8List payload, {int? chainId, bool? isEIP1559}) {
     throw UnsupportedError('Not supported');
   }
 
