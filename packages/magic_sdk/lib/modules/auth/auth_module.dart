@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 
-import '../../magic_sdk.dart';
 import '../../provider/rpc_provider.dart';
 import '../../provider/types/relayer_response.dart';
 import '../base_module.dart';
@@ -22,6 +21,19 @@ class AuthModule extends BaseModule {
     var params = {'email': email, 'showUI': showUI};
     return sendToProvider(
         method: AuthMethod.magic_auth_login_with_magic_link.toShortString(),
+        params: [params]).then((jsMsg) {
+      var relayerResponse = RelayerResponse<String>.fromJson(
+          json.decode(jsMsg.message), (json) => json as String);
+      return relayerResponse.response.result;
+    });
+  }
+
+  /// Login with SMS
+  Future<String> loginWithSMS(
+      {required String phoneNumber}) async {
+    var params = {'phoneNumber': phoneNumber, 'showUI': true};
+    return sendToProvider(
+        method: AuthMethod.magic_auth_login_with_sms.toShortString(),
         params: [params]).then((jsMsg) {
       var relayerResponse = RelayerResponse<String>.fromJson(
           json.decode(jsMsg.message), (json) => json as String);

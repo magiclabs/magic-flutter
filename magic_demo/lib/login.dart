@@ -16,7 +16,9 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   Magic magic = Magic.instance;
 
-  final myController = TextEditingController(text: 'jerry@magic.link');
+  final emailInput = TextEditingController(text: 'jerry@magic.link');
+  final phoneNumberInput = TextEditingController(text: '+18888888888');
+  String dropdownValue = 'google';
 
   @override
   void initState() {
@@ -24,8 +26,8 @@ class _LoginPageState extends State<LoginPage> {
     var future = magic.user.isLoggedIn();
     future.then((isLoggedIn) {
       if (isLoggedIn) {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const HomePage()));
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => const HomePage()));
       }
     });
   }
@@ -38,11 +40,12 @@ class _LoginPageState extends State<LoginPage> {
           automaticallyImplyLeading: false,
         ),
         body: Center(
-            child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+            child:
+                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 32.0),
             child: TextFormField(
-              controller: myController,
+              controller: emailInput,
               decoration: const InputDecoration(
                 hintText: 'Enter your email',
               ),
@@ -60,7 +63,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             onPressed: () async {
               var token =
-                  await magic.auth.loginWithMagicLink(email: myController.text);
+                  await magic.auth.loginWithMagicLink(email: emailInput.text);
               showResult(context, 'token, $token');
 
               if (token.isNotEmpty) {
@@ -70,21 +73,78 @@ class _LoginPageState extends State<LoginPage> {
             },
             child: const Text('Login With Magic Link'),
           ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32.0),
+            child: TextFormField(
+              controller: phoneNumberInput,
+              decoration: const InputDecoration(
+                hintText: 'Enter your phone number',
+              ),
+              validator: (String? value) {
+                if (value == null || value.isEmpty) {
+                  return 'Enter your phone number';
+                }
+                return null;
+              },
+            ),
+          ),
           TextButton(
             style: ButtonStyle(
               foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
             ),
             onPressed: () async {
-              var configuration = OAuthConfiguration(provider: OAuthProvider.GITHUB, redirectURI: 'link.magic.demo://');
+              var token =
+                  await magic.auth.loginWithSMS(phoneNumber: phoneNumberInput.text);
+              showResult(context, 'token, $token');
+
+              if (token.isNotEmpty) {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const HomePage()));
+              }
+            },
+            child: const Text('Login With SMS'),
+          ),
+          DropdownButton<String>(
+            value: dropdownValue,
+            icon: const Icon(Icons.arrow_downward),
+            iconSize: 24,
+            elevation: 16,
+            style: const TextStyle(color: Colors.deepPurple),
+            underline: Container(
+              height: 2,
+              color: Colors.deepPurpleAccent,
+            ),
+            onChanged: (String? newValue) {
+              setState(() {
+                dropdownValue = newValue!;
+              });
+            },
+            items: OAuthProvider.values
+                .map<DropdownMenuItem<String>>((OAuthProvider value) {
+              return DropdownMenuItem<String>(
+                value: value.toShortString(),
+                child: Text(value.toShortString().toUpperCase()),
+              );
+            }).toList(),
+          ),
+          TextButton(
+            style: ButtonStyle(
+              foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+            ),
+            onPressed: () async {
+              var configuration = OAuthConfiguration(
+                  provider: OAuthProvider.GITHUB,
+                  redirectURI: 'link.magic.demo://');
               var result = await magic.oauth.loginWithPopup(configuration);
 
               if (result.magic!.userMetadata!.email != null) {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => const HomePage()));
               }
-              showResult(context, 'publicAddress, ${result.magic!.userMetadata!.publicAddress}');
+              showResult(context,
+                  'publicAddress, ${result.magic!.userMetadata!.publicAddress}');
             },
-            child: const Text('Github Login'),
+            child: const Text('Social Login'),
           ),
         ])));
   }
