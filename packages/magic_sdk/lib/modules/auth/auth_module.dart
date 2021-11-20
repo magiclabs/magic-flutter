@@ -29,8 +29,7 @@ class AuthModule extends BaseModule {
   }
 
   /// Login with SMS
-  Future<String> loginWithSMS(
-      {required String phoneNumber}) async {
+  Future<String> loginWithSMS({required String phoneNumber}) async {
     var params = {'phoneNumber': phoneNumber, 'showUI': true};
     return sendToProvider(
         method: AuthMethod.magic_auth_login_with_sms.toShortString(),
