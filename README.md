@@ -15,7 +15,16 @@ $ flutter pub run build_runner build --delete-conflicting-outputs
 
 ## Releasing notes
 
-o test how dart pub publish will work, you can perform a dry run:
+Before creating a PR, please go to the `/packages` folder and run the pre-publishing check 
+
+```bash
+$ sh ./pre-publish.sh
+```
+
+It will do score check and auto formatting with dart standard. Make sure the score is at least 110/120 and then you may commit the change and send the PR.
+
+---
+To test how dart pub publish will work, you can perform a dry run:
 
 ```bash
 $ dart pub publish --dry-run
