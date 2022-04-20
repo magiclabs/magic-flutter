@@ -39,4 +39,16 @@ class AuthModule extends BaseModule {
       return relayerResponse.response.result;
     });
   }
+
+  /// Login with Email OTP
+  Future<String> loginWithEmailOTP({required String email}) async {
+    var params = {'email': email};
+    return sendToProvider(
+        method: AuthMethod.magic_auth_login_with_email_otp.toShortString(),
+        params: [params]).then((jsMsg) {
+      var relayerResponse = RelayerResponse<String>.fromJson(
+          json.decode(jsMsg.message), (json) => json as String);
+      return relayerResponse.response.result;
+    });
+  }
 }
