@@ -1,3 +1,7 @@
+## 0.5.0
+
+Supports LoginWithEmailOTP
+
 ## 0.4.0
 
 Supports LoginWithSMS
