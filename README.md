@@ -4,6 +4,14 @@
 
 Install Flutter & Dart https://flutter.dev/docs/get-started/install
 
+## Start the project
+Dependency installation is included in the `flutter run` process
+
+```bash
+$ cd project_root/magic_demo
+$ flutter run
+```
+
 ## Development Caveats
 
 Files ending with `*.g.dart` are auto generated type files that are used to serialize / deserialize a class.

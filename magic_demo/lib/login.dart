@@ -73,6 +73,22 @@ class _LoginPageState extends State<LoginPage> {
             },
             child: const Text('Login With Magic Link'),
           ),
+                  TextButton(
+                    style: ButtonStyle(
+                      foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+                    ),
+                    onPressed: () async {
+                      var token =
+                      await magic.auth.loginWithEmailOTP(email: emailInput.text);
+                      showResult(context, 'token, $token');
+
+                      if (token.isNotEmpty) {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => const HomePage()));
+                      }
+                    },
+                    child: const Text('Login With Email OTP'),
+                  ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 32.0),
             child: TextFormField(
