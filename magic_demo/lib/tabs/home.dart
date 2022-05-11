@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:magic_demo/login.dart';
 import 'package:magic_demo/tabs/web3.dart';
+import 'package:magic_demo/tabs/tezos.dart';
 import 'package:magic_sdk/magic_sdk.dart';
 
 import 'magic.dart';
@@ -30,7 +30,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
 
     return DefaultTabController(
-      length: 2,
+      length: 3,
       child: Scaffold(
       appBar: AppBar(
           automaticallyImplyLeading: false,
@@ -38,6 +38,7 @@ class _HomePageState extends State<HomePage> {
         bottom: const TabBar(
           tabs: [
             Tab(icon: Icon(Icons.portrait)),
+            Tab(icon: Icon(Icons.account_balance_wallet_rounded)),
             Tab(icon: Icon(Icons.account_balance_wallet_rounded))
           ]
         )
@@ -45,7 +46,8 @@ class _HomePageState extends State<HomePage> {
       body: const TabBarView(
         children: [
           MagicPage(),
-          Web3Page()
+          Web3Page(),
+          TezosPage()
         ]
       ),
     )
