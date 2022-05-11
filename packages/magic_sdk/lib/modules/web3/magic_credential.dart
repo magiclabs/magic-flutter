@@ -6,7 +6,7 @@ import 'package:web3dart/credentials.dart';
 import 'package:web3dart/crypto.dart';
 import 'package:web3dart/web3dart.dart';
 
-/// MagicCredential class to
+/// MagicCredential class as an extension for web3dart
 class MagicCredential extends CredentialsWithKnownAddress
     implements CustomTransactionSender {
   /// The provider that relays requests to the relayer

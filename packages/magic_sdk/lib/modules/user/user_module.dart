@@ -20,7 +20,7 @@ class UserModule extends BaseModule {
       'lifespan': lifespan,
     };
     return sendToProvider(
-        method: UserMethod.magic_auth_get_id_token.toShortString(),
+        method: UserMethod.magic_auth_get_id_token,
         params: [params]).then((jsMsg) {
       var relayerResponse = RelayerResponse<String>.fromJson(
           json.decode(jsMsg.message), (json) => json as String);
@@ -33,7 +33,7 @@ class UserModule extends BaseModule {
       {int lifespan = 900, String attachment = 'none'}) async {
     var params = {'lifespan': lifespan, 'attachment': attachment};
     return sendToProvider(
-        method: UserMethod.magic_auth_generate_id_token.toShortString(),
+        method: UserMethod.magic_auth_generate_id_token,
         params: [params]).then((jsMsg) {
       var relayerResponse = RelayerResponse<String>.fromJson(
           json.decode(jsMsg.message), (json) => json as String);
@@ -44,7 +44,7 @@ class UserModule extends BaseModule {
   /// Returns [Future] of [UserMetadata], Retrieves information for the authenticated user.
   Future<UserMetadata> getMetadata() async {
     return sendToProvider(
-            method: UserMethod.magic_auth_get_metadata.toShortString())
+            method: UserMethod.magic_auth_get_metadata)
         .then((jsMsg) {
       var relayerResponse = RelayerResponse<UserMetadata>.fromJson(
           json.decode(jsMsg.message),
@@ -56,7 +56,7 @@ class UserModule extends BaseModule {
   /// Returns [Future] of [bool], which denotes if user has already logged in, or not.
   Future<bool> isLoggedIn() async {
     return sendToProvider(
-            method: UserMethod.magic_auth_is_logged_in.toShortString())
+            method: UserMethod.magic_auth_is_logged_in)
         .then((jsMsg) {
       var relayerResponse = RelayerResponse<bool>.fromJson(
           json.decode(jsMsg.message), (json) => json as bool);
@@ -70,7 +70,7 @@ class UserModule extends BaseModule {
     var params = {'email': email, 'showUI': showUI};
 
     return sendToProvider(
-        method: UserMethod.magic_auth_update_email.toShortString(),
+        method: UserMethod.magic_auth_update_email,
         params: [params]).then((jsMsg) {
       var relayerResponse = RelayerResponse<bool>.fromJson(
           json.decode(jsMsg.message), (json) => json as bool);
@@ -80,7 +80,7 @@ class UserModule extends BaseModule {
 
   /// Returns [Future] of [bool], Logs out the currently authenticated Magic user
   Future<bool> logout() async {
-    return sendToProvider(method: UserMethod.magic_auth_logout.toShortString())
+    return sendToProvider(method: UserMethod.magic_auth_logout)
         .then((jsMsg) {
       var relayerResponse = RelayerResponse<bool>.fromJson(
           json.decode(jsMsg.message), (json) => json as bool);

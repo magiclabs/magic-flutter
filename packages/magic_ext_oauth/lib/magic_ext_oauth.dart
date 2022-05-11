@@ -6,6 +6,7 @@ import 'package:magic_sdk/modules/base_module.dart';
 import 'package:magic_sdk/provider/rpc_provider.dart';
 import 'package:magic_sdk/provider/types/relayer_response.dart';
 import 'package:magic_sdk/relayer/url_builder.dart';
+import 'package:magic_sdk/utils/string.dart';
 import 'package:uri/uri.dart';
 
 import 'oauth_configuration.dart';
@@ -42,7 +43,7 @@ class OAuthExtension extends BaseModule {
     uri.host = 'auth.magic.link';
     uri.port = 443;
 
-    uri.path = '/v1/oauth2/${configuration.provider.toShortString()}/start';
+    uri.path = '/v1/oauth2/${toShortString(configuration.provider)}/start';
 
     uri.queryParameters = {
       'magic_api_key': URLBuilder.instance.apiKey,
@@ -79,7 +80,7 @@ class OAuthExtension extends BaseModule {
     Uri successUri = Uri.parse(successResult);
 
     return await sendToProvider(
-        method: OAuthMethod.magic_oauth_parse_redirect_result.toShortString(),
+        method: OAuthMethod.magic_oauth_parse_redirect_result,
         params: [
           "?${successUri.query}",
           challenge.verifier,
