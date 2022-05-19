@@ -1,3 +1,3 @@
 library blockchain_signer;
 
-export 'signer/external_signer.dart';
+export 'signer/remote/remote_signer.dart';
