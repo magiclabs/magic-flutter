@@ -12,6 +12,7 @@ class URLBuilder {
   MagicLocale locale;
 
   Map? _network;
+  Map? _ext;
 
   String get encodedParams {
     var urlObj = {};
@@ -19,7 +20,14 @@ class URLBuilder {
     urlObj['host'] = _host;
     urlObj['sdk'] = 'magic-sdk-flutter';
     urlObj['locale'] = locale.toString().split('.').last;
-    urlObj['ETH_NETWORK'] = _network;
+
+    if(_network != null) {
+      urlObj['ETH_NETWORK'] = _network;
+    }
+
+    if(_ext != null) {
+      urlObj['ext'] = _ext;
+    }
 
     // Encode params to base64
     var jsonStr = json.encode(urlObj);
@@ -39,5 +47,10 @@ class URLBuilder {
 
   URLBuilder.eth(this.apiKey, EthNetwork network, this.locale) {
     _network = {"network": network.toString().split('.').last};
+  }
+
+  URLBuilder.blockchain(this.apiKey, SupportedBlockchain chain, String rpcUrl, this.locale) {
+    String key = chain.toString().split('.').last;
+    _ext = { key: { "rpcUrl": rpcUrl }};
   }
 }

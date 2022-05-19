@@ -18,7 +18,7 @@ class RpcProvider implements RpcService {
 
   RpcProvider(this._overlay);
 
-  /// Sending message to relayer
+  /// Sends message to relayer
   Future<JavascriptMessage> send(
       {required MagicRPCRequest request,
       required Completer<JavascriptMessage> completer}) {

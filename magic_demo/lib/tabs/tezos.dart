@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:magic_sdk/magic_sdk.dart';
 import 'package:tezart/tezart.dart';
+import 'package:magic_ext_tezos/magic_ext_tezos.dart';
 
 class TezosPage extends StatefulWidget {
   const TezosPage({Key? key}) : super(key: key);
@@ -20,10 +21,9 @@ class _TezosPageState extends State<TezosPage> {
             /// get account
             ElevatedButton(
               onPressed: () async {
-                final client = TezartClient('https://ithacanet.smartpy.io/');
+                final client = TezartClient.signer('https://ithacanet.smartpy.io/', magic.tezos);
                 final amount = 10001;
-                final sourceKeystore = Keystore.fromSecretKey(
-                    'edskRpm2mUhvoUjHjXgMoDRxMKhtKfww1ixmWiHCWhHuMEEbGzdnz8Ks4vgarKDtxok7HmrEo1JzkXkdkvyw7Rtw6BNtSd7MJ7');
+                final sourceKeystore = Keystore.random();
                 final destinationKeystore = Keystore.random();
                 final operationsList = await client.transferOperation(
                   source: sourceKeystore,
