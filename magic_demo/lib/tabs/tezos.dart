@@ -13,15 +13,24 @@ class TezosPage extends StatefulWidget {
 class _TezosPageState extends State<TezosPage> {
   final magic = Magic.instance;
 
+  final client = TezartClient.signer('https://ithacanet.smartpy.io/', Magic.instance.tezos);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            /// get account
+            /// get public address
             ElevatedButton(
               onPressed: () async {
-                final client = TezartClient.signer('https://ithacanet.smartpy.io/', magic.tezos);
+                String address = await magic.tezos.publicKey;
+                print(address);
+              },
+              child: const Text('Public Key'),
+            ),
+            /// send Transaction
+            ElevatedButton(
+              onPressed: () async {
                 final amount = 10001;
                 final sourceKeystore = Keystore.random();
                 final destinationKeystore = Keystore.random();
