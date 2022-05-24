@@ -16,7 +16,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   Magic magic = Magic.instance;
 
-  final emailInput = TextEditingController(text: 'jerry@magic.link');
+  final emailInput = TextEditingController(text: 'jerry+flutter@magic.link');
   final phoneNumberInput = TextEditingController(text: '+18888888888');
   String dropdownValue = 'google';
 

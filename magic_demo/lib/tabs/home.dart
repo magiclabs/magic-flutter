@@ -24,7 +24,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   Magic magic = Magic.instance;
 
-  final myController = TextEditingController(text: 'jerry@magic.link');
+  final myController = TextEditingController(text: 'jerry+flutter@magic.link');
 
   @override
   Widget build(BuildContext context) {

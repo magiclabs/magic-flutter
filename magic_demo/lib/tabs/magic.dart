@@ -23,7 +23,7 @@ class MagicPage extends StatefulWidget {
 class _MagicPageState extends State<MagicPage> {
   Magic magic = Magic.instance;
 
-  final myController = TextEditingController(text: 'jerry@magic.link');
+  final myController = TextEditingController(text: 'jerry+flutter@magic.link');
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +41,7 @@ class _MagicPageState extends State<MagicPage> {
         ElevatedButton(
           onPressed: () async {
             var metadata = await magic.user.getMetadata();
+            print(metadata.publicAddress);
             showResult(context, "metadata email, ${metadata.email}");
           },
           child: const Text('getMetadata'),
