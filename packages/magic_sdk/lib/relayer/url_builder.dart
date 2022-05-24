@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import '../../modules/web3/eth_network.dart';
 import '../../relayer/locale.dart';
+import '../modules/blockchain/supported_blockchain.dart';
 
 class URLBuilder {
   final String _host = "https://box.magic.link";
@@ -50,7 +51,16 @@ class URLBuilder {
   }
 
   URLBuilder.blockchain(this.apiKey, SupportedBlockchain chain, String rpcUrl, this.locale) {
-    String key = chain.toString().split('.').last;
+    String key;
+    /// Compatible blockchain name mapping
+    switch (chain) {
+      case SupportedBlockchain.tezos:
+        key = 'taquito';
+        break;
+      default:
+        key = chain.toString().split('.').last;
+    }
+
     _ext = { key: { "rpcUrl": rpcUrl }};
   }
 }

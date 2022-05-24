@@ -1,6 +1,7 @@
-import 'package:magic_sdk/modules/web3/blockchain.dart';
+import 'package:magic_sdk/modules/blockchain/blockchain.dart';
 
 import 'modules/auth/auth_module.dart';
+import 'modules/blockchain/supported_blockchain.dart';
 import 'modules/user/user_module.dart';
 import 'modules/web3/eth_network.dart';
 import 'provider/rpc_provider.dart';
