@@ -12,8 +12,8 @@ dependencies:
     sdk: flutter
   magic_sdk:
     path: ../magic_sdk
-  blockchain_signer:
-    path: ../blockchain_signer
+  blockchain_mobile_signer:
+    path: ../../../blockchain-mobile-signer/flutter
 
 dev_dependencies:
   flutter_test:
