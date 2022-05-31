@@ -10,7 +10,7 @@ prepublishCheck (){
   echo "=== Start prepublish check $1 ==="
 
   cp -r "./$1" "$tempFolderPath"
-  flutter pub global run pana "$tempFolderPath"
+  dart pub global run pana "$tempFolderPath"
   rm -r "$tempFolderPath"
 
   echo
@@ -19,7 +19,7 @@ prepublishCheck (){
 }
 
 PS3='Please select the package to be checked: '
-options=("magic_sdk" "magic_ext_oauth" "Quit")
+options=("magic_sdk" "magic_ext_oauth" "magic_ext_tezos" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -28,6 +28,10 @@ do
             break
             ;;
         "magic_ext_oauth")
+            prepublishCheck "$opt"
+            break
+            ;;
+        "magic_ext_tezos")
             prepublishCheck "$opt"
             break
             ;;

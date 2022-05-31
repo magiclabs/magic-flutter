@@ -43,8 +43,7 @@ class UserModule extends BaseModule {
 
   /// Returns [Future] of [UserMetadata], Retrieves information for the authenticated user.
   Future<UserMetadata> getMetadata() async {
-    return sendToProvider(
-            method: UserMethod.magic_auth_get_metadata)
+    return sendToProvider(method: UserMethod.magic_auth_get_metadata)
         .then((jsMsg) {
       var relayerResponse = RelayerResponse<UserMetadata>.fromJson(
           json.decode(jsMsg.message),
@@ -55,8 +54,7 @@ class UserModule extends BaseModule {
 
   /// Returns [Future] of [bool], which denotes if user has already logged in, or not.
   Future<bool> isLoggedIn() async {
-    return sendToProvider(
-            method: UserMethod.magic_auth_is_logged_in)
+    return sendToProvider(method: UserMethod.magic_auth_is_logged_in)
         .then((jsMsg) {
       var relayerResponse = RelayerResponse<bool>.fromJson(
           json.decode(jsMsg.message), (json) => json as bool);
@@ -80,8 +78,7 @@ class UserModule extends BaseModule {
 
   /// Returns [Future] of [bool], Logs out the currently authenticated Magic user
   Future<bool> logout() async {
-    return sendToProvider(method: UserMethod.magic_auth_logout)
-        .then((jsMsg) {
+    return sendToProvider(method: UserMethod.magic_auth_logout).then((jsMsg) {
       var relayerResponse = RelayerResponse<bool>.fromJson(
           json.decode(jsMsg.message), (json) => json as bool);
       return relayerResponse.response.result;

@@ -1,5 +1,3 @@
-import 'package:magic_sdk/modules/blockchain/blockchain.dart';
-
 import 'modules/auth/auth_module.dart';
 import 'modules/blockchain/supported_blockchain.dart';
 import 'modules/user/user_module.dart';
@@ -48,8 +46,8 @@ class Magic {
   /// for custom node configuration provide chain id[String] and rpc url[String
   Magic.blockchain(String apiKey,
       {required String rpcUrl,
-       required SupportedBlockchain chain,
-        MagicLocale locale = MagicLocale.en_US}) {
+      required SupportedBlockchain chain,
+      MagicLocale locale = MagicLocale.en_US}) {
     URLBuilder.instance = URLBuilder.blockchain(apiKey, chain, rpcUrl, locale);
     provider = RpcProvider(relayer);
   }
