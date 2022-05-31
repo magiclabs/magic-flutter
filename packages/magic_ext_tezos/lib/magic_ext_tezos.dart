@@ -66,7 +66,7 @@ class TezosSigner extends BlockchainModule implements RemoteSigner {
 
 /// Append modules on runtime
 /// Make singleton design to ensure remote signer is the only
-extension MagicTezosExtension on Magic {
+extension TezosExtension on Magic {
   TezosSigner get tezos {
 
     if (TezosSigner.instance != null) {
