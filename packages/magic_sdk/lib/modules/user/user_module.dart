@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 
-import '../../magic_sdk.dart';
 import '../../modules/base_module.dart';
 import '../../modules/user/user_response_type.dart';
 import '../../provider/rpc_provider.dart';

@@ -2,7 +2,6 @@ import 'dart:typed_data';
 
 import '../../provider/rpc_provider.dart';
 
-import 'package:web3dart/credentials.dart';
 import 'package:web3dart/crypto.dart';
 import 'package:web3dart/web3dart.dart';
 
@@ -102,9 +101,9 @@ String? _intToQuantity(int? int) {
   return int != null ? '0x${int.toRadixString(16)}' : null;
 }
 
-Uint8List _responseToBytes(dynamic response) {
-  return hexToBytes(response as String);
-}
+// Uint8List _responseToBytes(dynamic response) {
+//   return hexToBytes(response as String);
+// }
 
 String? _bytesToData(Uint8List? data) {
   return data != null

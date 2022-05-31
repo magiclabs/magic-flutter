@@ -38,7 +38,7 @@ class WebViewRelayer extends StatefulWidget {
 
       // debugPrint("Send Message ===> \n $jsonString");
 
-      webViewCtrl.evaluateJavascript(
+      webViewCtrl.runJavascript(
           "window.dispatchEvent(new MessageEvent('message', $jsonString));");
 
       // Recursively dequeue till queue is Empty
