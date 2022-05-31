@@ -17,7 +17,7 @@ class _TezosPageState extends State<TezosPage> {
   @override
   void initState () {
     super.initState();
-    tezosSigner.fetchRemoteSigner();
+    tezosSigner.init();
   }
 
   @override
@@ -28,7 +28,7 @@ class _TezosPageState extends State<TezosPage> {
             /// get public address
             ElevatedButton(
               onPressed: () async {
-                String? address = tezosSigner.publicKey;
+                String? address = tezosSigner.address;
                 print(address);
               },
               child: const Text('Public Key'),
