@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:typed_data';
-import 'package:blockchain_mobile_signer/signer/remote/remote_signer.dart';
-import 'package:blockchain_mobile_signer/signer/response/signed_result.dart';
+import 'package:blockchain_signer/signer/remote/remote_signer.dart';
+import 'package:blockchain_signer/signer/response/signed_result.dart';
 import 'package:magic_ext_tezos/types/public_key.dart';
 import 'package:magic_sdk/magic_sdk.dart';
 import 'package:magic_sdk/modules/blockchain/blockchain.dart';

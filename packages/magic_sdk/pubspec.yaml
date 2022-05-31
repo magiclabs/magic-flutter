@@ -13,7 +13,7 @@ dependencies:
   webview_flutter: ^2.0.13
   json_annotation: ^4.5.0
   web3dart: 2.3.3
-  blockchain_mobile_signer:
+  blockchain_signer:
     path: '../../../blockchain-mobile-signer/flutter'
 
 dev_dependencies:
