@@ -9,7 +9,7 @@ class _TezosPageState extends State<TezosPage> {
   final client = TezartClient('https://ithacanet.smartpy.io/');
 
   @override
-  void initState () {
+  void initState() {
     super.initState();
     tezosSigner.init();
   }
@@ -19,35 +19,38 @@ class _TezosPageState extends State<TezosPage> {
     return Scaffold(
       body: Center(
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            /// get public address
-            ElevatedButton(
-              onPressed: () async {
-                String? address = tezosSigner.address;
-                print(address);
-              },
-              child: const Text('Public Key'),
-            ),
-            /// send Transaction
-            ElevatedButton(
-              onPressed: () async {
-                final operationsList = await client.transferOperation(
-                  source: Keystore.fromRemoteSigner(tezosSigner),
-                  destination: tezosSigner.address,
-                  amount: 10001,
-                );
-                await operationsList.executeAndMonitor();
-              },
-              child: const Text('send Transaction'),
-            ),
-            /// Get balance
-            ElevatedButton(
-              onPressed: () async {
-                final balance = await client.getBalance(address: tezosSigner.address);
-                print('balance for ${tezosSigner.address}, $balance');
-              },
-              child: const Text('get balance'),
-            ),
-          ])),
+        /// get public address
+        ElevatedButton(
+          onPressed: () async {
+            String? address = tezosSigner.address;
+            print(address);
+          },
+          child: const Text('Public Key'),
+        ),
+
+        /// send Transaction
+        ElevatedButton(
+          onPressed: () async {
+            final operationsList = await client.transferOperation(
+              source: Keystore.fromRemoteSigner(tezosSigner),
+              destination: tezosSigner.address,
+              amount: 10001,
+            );
+            await operationsList.executeAndMonitor();
+          },
+          child: const Text('send Transaction'),
+        ),
+
+        /// Get balance
+        ElevatedButton(
+          onPressed: () async {
+            final balance =
+                await client.getBalance(address: tezosSigner.address);
+            print('balance for ${tezosSigner.address}, $balance');
+          },
+          child: const Text('get balance'),
+        ),
+      ])),
     );
   }
 }

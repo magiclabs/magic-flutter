@@ -28,28 +28,27 @@ class TezosSigner extends BlockchainModule implements RemoteSigner {
   @override
   String get publicKey => _pk;
 
-
   @override
-  String get secretKey =>
-      throw UnsupportedError('Secret key is not available');
+  String get secretKey => throw UnsupportedError('Secret key is not available');
 
   /// sends unsigned payload to the Signer and wait for it to be signed
   ///
   /// @param [op] Operation to sign
   /// @param [magicByte] Magic bytes 1 for block, 2 for endorsement, 3 for generic, 5 for the PACK format of michelson
 
-
   Future<void> init() async {
-    await sendToProvider(method: TezosMethod.taquito_getPublicKeyAndHash, params: [])
-        .then((jsMsg) {
+    await sendToProvider(
+        method: TezosMethod.taquito_getPublicKeyAndHash,
+        params: []).then((jsMsg) {
       var relayerResponse = RelayerResponse<PublicKey>.fromJson(
           json.decode(jsMsg.message),
-              (json) => PublicKey.fromJson(json as Map<String, dynamic>));
+          (json) => PublicKey.fromJson(json as Map<String, dynamic>));
       _pk = relayerResponse.response.result.pk;
       _pkh = relayerResponse.response.result.pkh;
       return relayerResponse.response.result;
     });
   }
+
   @override
   Future<SignedResult> sign(String op, Uint8List magicByte) {
     final params = {"bytes": op, "watermark": magicByte};
@@ -58,7 +57,7 @@ class TezosSigner extends BlockchainModule implements RemoteSigner {
         .then((jsMsg) {
       var relayerResponse = RelayerResponse<SignedResult>.fromJson(
           json.decode(jsMsg.message),
-              (json) => SignedResult.fromJson(json as Map<String, dynamic>));
+          (json) => SignedResult.fromJson(json as Map<String, dynamic>));
       return relayerResponse.response.result;
     });
   }
@@ -68,7 +67,6 @@ class TezosSigner extends BlockchainModule implements RemoteSigner {
 /// Make singleton design to ensure remote signer is the only
 extension TezosExtension on Magic {
   TezosSigner get tezos {
-
     if (TezosSigner.instance != null) {
       return TezosSigner.instance!;
     } else {
