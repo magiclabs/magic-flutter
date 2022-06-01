@@ -8,9 +8,3 @@ enum UserMethod {
   magic_auth_update_email,
   magic_auth_logout
 }
-
-extension ParseUserMethodToString on UserMethod {
-  String toShortString() {
-    return toString().split('.').last;
-  }
-}

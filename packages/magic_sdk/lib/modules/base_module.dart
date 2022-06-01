@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:magic_sdk/utils/string.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../provider/rpc_provider.dart';
@@ -13,9 +14,9 @@ class BaseModule {
   /// As Dart doesn't support method return type inference. So we need to surface raw message and
   /// let the type in interface call to deserialize
   Future<JavascriptMessage> sendToProvider(
-      {required String method, List<dynamic>? params}) async {
+      {required Enum method, List<dynamic>? params}) async {
     MagicRPCRequest request =
-        MagicRPCRequest(method: method, params: params ?? []);
+        MagicRPCRequest(method: toShortString(method), params: params ?? []);
     return provider.send(
         request: request, completer: Completer<JavascriptMessage>());
   }

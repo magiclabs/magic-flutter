@@ -1,26 +1,25 @@
-name: magic_sdk
-description: This is your entry-point to secure, passwordless authentication for your iOS or Android-based Flutter app.
-version: 1.0.0
+name: magic_ext_tezos
+description: A Magic extension to enable interaction with Tezos on Flutter.
+version: 0.1.0
 homepage: https://magic.link
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: ">=2.16.2 <3.0.0"
   flutter: ">=1.17.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  webview_flutter: ^3.0.4
-  json_annotation: ^4.5.0
-  web3dart: ^2.3.5
+  magic_sdk: ^1.0.0
   blockchain_signer: ^0.1.0
+  json_annotation: ^4.5.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_lints: ^1.0.0
   build_runner: ^2.1.11
   json_serializable: ^6.2.0
-  flutter_lints: ^1.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

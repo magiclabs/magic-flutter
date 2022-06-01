@@ -1,3 +1,12 @@
+## 1.0.0
+
+Major version bump for stable release 🚀
+
+## 0.6.0
+
+Supports multi-blockchain
+* Tezos (via Tezart)
+
 ## 0.5.0
 
 Supports LoginWithEmailOTP

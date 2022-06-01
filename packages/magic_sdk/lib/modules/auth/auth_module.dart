@@ -20,7 +20,7 @@ class AuthModule extends BaseModule {
       {required String email, bool showUI = true}) async {
     var params = {'email': email, 'showUI': showUI};
     return sendToProvider(
-        method: AuthMethod.magic_auth_login_with_magic_link.toShortString(),
+        method: AuthMethod.magic_auth_login_with_magic_link,
         params: [params]).then((jsMsg) {
       var relayerResponse = RelayerResponse<String>.fromJson(
           json.decode(jsMsg.message), (json) => json as String);
@@ -32,7 +32,7 @@ class AuthModule extends BaseModule {
   Future<String> loginWithSMS({required String phoneNumber}) async {
     var params = {'phoneNumber': phoneNumber, 'showUI': true};
     return sendToProvider(
-        method: AuthMethod.magic_auth_login_with_sms.toShortString(),
+        method: AuthMethod.magic_auth_login_with_sms,
         params: [params]).then((jsMsg) {
       var relayerResponse = RelayerResponse<String>.fromJson(
           json.decode(jsMsg.message), (json) => json as String);
@@ -44,7 +44,7 @@ class AuthModule extends BaseModule {
   Future<String> loginWithEmailOTP({required String email}) async {
     var params = {'email': email};
     return sendToProvider(
-        method: AuthMethod.magic_auth_login_with_email_otp.toShortString(),
+        method: AuthMethod.magic_auth_login_with_email_otp,
         params: [params]).then((jsMsg) {
       var relayerResponse = RelayerResponse<String>.fromJson(
           json.decode(jsMsg.message), (json) => json as String);

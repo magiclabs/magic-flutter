@@ -40,6 +40,12 @@ dependencies:
     path: ../packages/magic_sdk/
   magic_ext_oauth:
     path: ../packages/magic_ext_oauth/
+  magic_ext_tezos:
+    path: ../packages/magic_ext_tezos/
+
+  # multi-blockchain
+  tezart:
+    path: ../third_party/tezart
 
 
   # The following adds the Cupertino Icons font to your application.

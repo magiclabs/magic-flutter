@@ -12,8 +12,8 @@ Add `magic_sdk` to your `pubspec.yaml`:
 dependencies:
   flutter:
     sdk: flutter
-  magic_sdk: ^0.3.0
-  magic_ext_oauth: ^0.1.0
+  magic_sdk: ^1.0.0
+  magic_ext_oauth: ^0.2.0
 ```
 
 Run the following command to install dependencies
@@ -36,6 +36,8 @@ void main() {
 ```
 
 Use `Stack` in the top level and add `Magic.instance.relayer` to the children of Stack to ensure the best performance
+
+Note: Relayer is required to establish communication between apps and Magic service. Make sure to have it in a stack whenever you need to authenticate or interact with blockchain
 
 ```dart
 class MyApp extends StatelessWidget {
