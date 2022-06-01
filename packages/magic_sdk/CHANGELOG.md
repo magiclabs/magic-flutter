@@ -1,3 +1,8 @@
+## 0.6.0
+
+Supports multi-blockchain
+* Tezos (via Tezart)
+
 ## 0.5.0
 
 Supports LoginWithEmailOTP
