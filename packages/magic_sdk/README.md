@@ -36,6 +36,8 @@ void main() {
 
 Use `Stack` in the top level and add `Magic.instance.relayer` to the children of Stack to ensure the best performance
 
+Note: Relayer is required to establish communication between apps and Magic service. Make sure to have it in a stack whenever you need to authenticate or interact with blockchain
+
 ```dart
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);

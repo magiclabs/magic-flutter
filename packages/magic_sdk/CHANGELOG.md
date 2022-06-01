@@ -1,3 +1,7 @@
+## 1.0.0
+
+Major version bump for stable release 🚀
+
 ## 0.6.0
 
 Supports multi-blockchain
