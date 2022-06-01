@@ -13,7 +13,7 @@ dependencies:
   webview_flutter: ^3.0.4
   json_annotation: ^4.5.0
   web3dart: ^2.3.5
-  blockchain_signer: 0.1.0
+  blockchain_signer: ^0.1.0
 
 dev_dependencies:
   flutter_test:

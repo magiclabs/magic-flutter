@@ -22,11 +22,11 @@ class URLBuilder {
     urlObj['sdk'] = 'magic-sdk-flutter';
     urlObj['locale'] = locale.toString().split('.').last;
 
-    if(_network != null) {
+    if (_network != null) {
       urlObj['ETH_NETWORK'] = _network;
     }
 
-    if(_ext != null) {
+    if (_ext != null) {
       urlObj['ext'] = _ext;
     }
 
@@ -50,8 +50,10 @@ class URLBuilder {
     _network = {"network": network.toString().split('.').last};
   }
 
-  URLBuilder.blockchain(this.apiKey, SupportedBlockchain chain, String rpcUrl, this.locale) {
+  URLBuilder.blockchain(
+      this.apiKey, SupportedBlockchain chain, String rpcUrl, this.locale) {
     String key;
+
     /// Compatible blockchain name mapping
     switch (chain) {
       case SupportedBlockchain.tezos:
@@ -61,6 +63,8 @@ class URLBuilder {
         key = chain.toString().split('.').last;
     }
 
-    _ext = { key: { "rpcUrl": rpcUrl }};
+    _ext = {
+      key: {"rpcUrl": rpcUrl}
+    };
   }
 }
