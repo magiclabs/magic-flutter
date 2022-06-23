@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:package_info_plus/package_info_plus.dart';
 
 import '../../modules/web3/eth_network.dart';
 import '../../relayer/locale.dart';
@@ -15,12 +16,13 @@ class URLBuilder {
   Map? _network;
   Map? _ext;
 
-  String get encodedParams {
+  Future<String> get encodedParams async {
     var urlObj = {};
     urlObj['API_KEY'] = apiKey;
     urlObj['host'] = _host;
     urlObj['sdk'] = 'magic-sdk-flutter';
     urlObj['locale'] = locale.toString().split('.').last;
+    urlObj['bundleId'] = (await PackageInfo.fromPlatform()).appName;
 
     if (_network != null) {
       urlObj['ETH_NETWORK'] = _network;
@@ -36,8 +38,8 @@ class URLBuilder {
     return base64.encode(bytes);
   }
 
-  String get url {
-    return '$_host/send/?params=$encodedParams';
+  Future<String> get url async {
+    return '$_host/send/?params=${await encodedParams}';
   }
 
   URLBuilder(this.apiKey, this.locale);

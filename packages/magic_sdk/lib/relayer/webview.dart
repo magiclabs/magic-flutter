@@ -132,14 +132,15 @@ class WebViewRelayerState extends State<WebViewRelayer> {
         maintainState: true,
         child: WebView(
           debuggingEnabled: true,
-          initialUrl: URLBuilder.instance.url,
           javascriptMode: JavascriptMode.unrestricted,
           javascriptChannels: {
             JavascriptChannel(
                 name: 'magicFlutter', onMessageReceived: onMessageReceived)
           },
-          onWebViewCreated: (WebViewController w) {
+          onWebViewCreated: (WebViewController w) async {
             widget.webViewCtrl = w;
+            String url = await URLBuilder.instance.url;
+            w.loadUrl(url);
           },
         ));
   }
