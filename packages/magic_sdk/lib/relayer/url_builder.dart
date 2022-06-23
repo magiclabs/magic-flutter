@@ -7,6 +7,7 @@ import '../modules/blockchain/supported_blockchain.dart';
 
 class URLBuilder {
   final String _host = "https://box.magic.link";
+  // final String _host = "http://192.168.1.18:3016";
 
   static late URLBuilder instance;
 
@@ -22,7 +23,8 @@ class URLBuilder {
     urlObj['host'] = _host;
     urlObj['sdk'] = 'magic-sdk-flutter';
     urlObj['locale'] = locale.toString().split('.').last;
-    urlObj['bundleId'] = (await PackageInfo.fromPlatform()).appName;
+    var packageInfo = await PackageInfo.fromPlatform();
+    urlObj['bundleId'] = packageInfo.packageName;
 
     if (_network != null) {
       urlObj['ETH_NETWORK'] = _network;
