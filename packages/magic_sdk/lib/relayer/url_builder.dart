@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:package_info_plus/package_info_plus.dart';
 
 import '../../modules/web3/eth_network.dart';
 import '../../relayer/locale.dart';
@@ -6,6 +7,7 @@ import '../modules/blockchain/supported_blockchain.dart';
 
 class URLBuilder {
   final String _host = "https://box.magic.link";
+  // final String _host = "http://192.168.1.18:3016";
 
   static late URLBuilder instance;
 
@@ -15,12 +17,14 @@ class URLBuilder {
   Map? _network;
   Map? _ext;
 
-  String get encodedParams {
+  Future<String> get encodedParams async {
     var urlObj = {};
     urlObj['API_KEY'] = apiKey;
     urlObj['host'] = _host;
     urlObj['sdk'] = 'magic-sdk-flutter';
     urlObj['locale'] = locale.toString().split('.').last;
+    var packageInfo = await PackageInfo.fromPlatform();
+    urlObj['bundleId'] = packageInfo.packageName;
 
     if (_network != null) {
       urlObj['ETH_NETWORK'] = _network;
@@ -36,8 +40,8 @@ class URLBuilder {
     return base64.encode(bytes);
   }
 
-  String get url {
-    return '$_host/send/?params=$encodedParams';
+  Future<String> get url async {
+    return '$_host/send/?params=${await encodedParams}';
   }
 
   URLBuilder(this.apiKey, this.locale);
