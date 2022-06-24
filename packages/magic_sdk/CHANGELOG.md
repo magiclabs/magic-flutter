@@ -1,3 +1,7 @@
+## 1.1.0
+
+Enable Bundle Id whitelisting 
+
 ## 1.0.0
 
 Major version bump for stable release 🚀
