@@ -10,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  package_info_plus: 1.4.2
+  package_info_plus: ^1.4.2
   webview_flutter: ^3.0.4
   json_annotation: ^4.5.0
   web3dart: ^2.3.5
