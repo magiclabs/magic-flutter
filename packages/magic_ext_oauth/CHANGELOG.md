@@ -1,3 +1,7 @@
+## 0.2.1
+
+Fix OAuth unable to initiate
+
 ## 0.2.0
 
 Update magic_sdk dependencies
