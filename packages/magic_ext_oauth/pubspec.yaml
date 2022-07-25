@@ -1,6 +1,6 @@
 name: magic_ext_oauth
 description: A Magic oauth extension to support Magic social login authentication
-version: 0.2.0
+version: 0.2.1
 homepage: https://magic.link
 
 environment:
