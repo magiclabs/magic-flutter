@@ -19,7 +19,7 @@ prepublishCheck (){
 }
 
 PS3='Please select the package to be checked: '
-options=("magic_sdk" "magic_ext_oauth" "magic_ext_tezos" "Quit")
+options=("magic_sdk" "magic_ext/oauth" "magic_ext/tezos" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -27,11 +27,11 @@ do
             prepublishCheck "$opt"
             break
             ;;
-        "magic_ext_oauth")
+        "magic_ext/oauth")
             prepublishCheck "$opt"
             break
             ;;
-        "magic_ext_tezos")
+        "magic_ext/tezos")
             prepublishCheck "$opt"
             break
             ;;
