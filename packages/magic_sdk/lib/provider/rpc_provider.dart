@@ -19,14 +19,14 @@ class RpcProvider implements RpcService {
   RpcProvider(this._overlay);
 
   /// Sends message to relayer
-  Future<JavascriptMessage> send(
-      {required MagicRPCRequest request,
+  Future<JavascriptMessage> send<ParamsT>(
+      {required MagicRPCRequest<ParamsT> request,
       required Completer<JavascriptMessage> completer}) {
     var msgType = OutboundMessageType.MAGIC_HANDLE_REQUEST;
 
-    var relayerRequest = RelayerRequest(
+    var relayerRequest = RelayerRequest<ParamsT>(
         msgType:
-            '${msgType.toString().split('.').last}-${URLBuilder.instance.encodedParams}',
+            '${msgType.toString().split('.').last}-${await URLBuilder.instance.encodedParams}',
         payload: request);
 
     _overlay.enqueue(

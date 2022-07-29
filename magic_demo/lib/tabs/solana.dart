@@ -28,7 +28,7 @@ class _SolanaPageState extends State<SolanaPage> {
             ElevatedButton(
               onPressed: () async {
                 String? signature = await solanaSigner.signMessage("123");
-                print(address);
+                print(signature);
               },
               child: const Text('Public Key'),
             ),
