@@ -1,3 +1,7 @@
+## 1.1.1
+
+Fix Relayer Request has wrong encodedParams 
+
 ## 1.1.0
 
 Enable Bundle Id whitelisting 
