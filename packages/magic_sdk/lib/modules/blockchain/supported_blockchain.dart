@@ -1,1 +1,1 @@
-enum SupportedBlockchain { tezos }
+enum SupportedBlockchain { tezos, solana }

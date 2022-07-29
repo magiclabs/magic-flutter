@@ -2,8 +2,10 @@
     package="com.example.magic_demo">
    <application
         android:label="magic_demo"
+        android:usesCleartextTraffic="true"
         android:icon="@mipmap/ic_launcher">
         <activity
+                android:exported="true"
             android:name=".MainActivity"
             android:launchMode="singleTop"
             android:theme="@style/LaunchTheme"
@@ -32,7 +34,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-       <activity android:name="com.linusu.flutter_web_auth.CallbackActivity" >
+       <activity android:name="com.linusu.flutter_web_auth.CallbackActivity" android:exported="true" >
            <intent-filter android:label="flutter_web_auth">
                <action android:name="android.intent.action.VIEW" />
                <category android:name="android.intent.category.DEFAULT" />

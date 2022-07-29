@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:magic_sdk/magic_sdk.dart';
+import 'package:magic_sdk/modules/blockchain/supported_blockchain.dart';
 
 import 'login.dart';
 
 void main() {
   runApp(const MyApp());
 
-  // Magic.instance = Magic("pk_test_6109DF2B98280CBB");
-  Magic.instance = Magic("pk_live_D5EA1E346A791DB7");
+  // Magic.instance = Magic.blockchain("pk_live_78EABCE90112A046", rpcUrl: "", chain: SupportedBlockchain.tezos);
+  Magic.instance = Magic.blockchain("pk_live_78EABCE90112A046", rpcUrl: "", chain: SupportedBlockchain.solana);
 }
 
 class MyApp extends StatelessWidget {
