@@ -39,9 +39,9 @@ dependencies:
   magic_sdk:
     path: ../packages/magic_sdk/
   magic_ext_oauth:
-    path: ../packages/magic_ext_oauth/
+    path: ../packages/magic_ext/oauth/
   magic_ext_tezos:
-    path: ../packages/magic_ext_tezos/
+    path: ../packages/magic_ext/tezos/
 
   # multi-blockchain
   tezart:

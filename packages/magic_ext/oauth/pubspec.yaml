@@ -1,0 +1,27 @@
+name: magic_ext_oauth
+description: A Magic oauth extension to support Magic social login authentication
+version: 0.2.1
+homepage: https://magic.link
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  magic_sdk: ^1.0.0
+  uri: ^1.0.0
+  flutter_web_auth: ^0.4.0
+  crypto: ^3.0.1
+  json_annotation: ^4.5.0
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^1.0.0
+  build_runner: ^2.1.11
+  json_serializable: ^6.2.0
+
+flutter:
