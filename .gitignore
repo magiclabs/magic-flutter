@@ -1,5 +1,5 @@
-/third_party
-/.idea
+third_party/
+.idea/
 .DS_Store
 # See https://www.dartlang.org/guides/libraries/private-files
 
