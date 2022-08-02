@@ -34,10 +34,7 @@ class WebViewRelayer extends StatefulWidget {
     if (_queue.isNotEmpty && _overlayReady) {
       var message = _queue.removeAt(0);
 
-      var messageMap = message.toJson((value) {
-          // debugPrint(value.toString());
-          return json.encode(value);
-    });
+      var messageMap = message.toJson((value) => value);
 
       //double encoding results in extra backslash. Remove them
       String jsonString = json.encode({"data": messageMap}).replaceAll("\\", "");

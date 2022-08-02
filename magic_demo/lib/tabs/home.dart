@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
         children: [
           MagicPage(),
           Web3Page(),
-          TezosPage(),
+          // TezosPage(),
           SolanaPage()
         ]
       ),
