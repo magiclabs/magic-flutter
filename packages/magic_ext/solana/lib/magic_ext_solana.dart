@@ -8,6 +8,7 @@ import 'package:magic_sdk/modules/blockchain/blockchain.dart';
 import 'package:magic_sdk/modules/blockchain/supported_blockchain.dart';
 import 'package:magic_sdk/provider/rpc_provider.dart';
 import 'package:magic_sdk/provider/types/relayer_response.dart';
+import 'package:magic_sdk/utils/typed_array_for_json.dart';
 
 part 'types/solana_method.dart';
 
@@ -29,11 +30,12 @@ class SolanaSigner extends BlockchainModule {
     // return sendToProvider(method:)
   }
 
-  Future<String> signMessage(message) {
-    return sendToProviderWithMap(method: SolanaMethod.sol_signMessage, params: { "message": message }).then((jsMsg) {
-      var relayerResponse = RelayerResponse<String>.fromJson(
-          json.decode(jsMsg.message), (json) => json as String);
-      return relayerResponse.response.result;
+  Future<Uint8List> signMessage(Uint8List message) {
+    var typedArray = MgboxTypedArray.from(message);
+    return sendToProviderWithMap(method: SolanaMethod.sol_signMessage, params: { "message": typedArray }).then((jsMsg) {
+      var relayerResponse = RelayerResponse<MgboxTypedArray>.fromJson(
+          json.decode(jsMsg.message), (json) => MgboxTypedArray.fromJson(json as Map<String, dynamic>));
+      return relayerResponse.response.result.convertToUint8List();
     });
   }
 }

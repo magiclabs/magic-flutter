@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:magic_sdk/magic_sdk.dart';
 import 'package:magic_ext_solana/magic_ext_solana.dart';
@@ -27,10 +30,12 @@ class _SolanaPageState extends State<SolanaPage> {
             /// get public address
             ElevatedButton(
               onPressed: () async {
-                String? signature = await solanaSigner.signMessage("123");
+                List<int> list = utf8.encode("hello world");
+                Uint8List message = Uint8List.fromList(list);
+                var signature = await solanaSigner.signMessage(message);
                 print(signature);
               },
-              child: const Text('Public Key'),
+              child: const Text('Sign Message'),
             ),
           ])),
     );
