@@ -10,7 +10,7 @@ part 'typed_array_for_json.g.dart';
 @JsonSerializable(explicitToJson: true)
 class MgboxTypedArray {
   String constructor;
-  String data;
+  String data; // should be in the form of "1,2,3"
   String flag = "MAGIC_PAYLOAD_FLAG_TYPED_ARRAY";
 
   MgboxTypedArray({required this.data, required this.constructor});
@@ -21,7 +21,7 @@ class MgboxTypedArray {
   }
 
   factory MgboxTypedArray.from(Uint8List data) {
-    String dataString = data.toString();
+    String dataString = data.join(",");
     debugPrint(dataString);
     return MgboxTypedArray(data: dataString, constructor: "Uint8Array");
   }
