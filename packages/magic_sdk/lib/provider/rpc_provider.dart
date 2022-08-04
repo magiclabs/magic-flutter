@@ -15,8 +15,9 @@ part 'types/outbound_message.dart';
 /// Rpc Provider
 class RpcProvider implements RpcService {
   final WebViewRelayer _overlay;
+  String? rpcUrl;
 
-  RpcProvider(this._overlay);
+  RpcProvider(this._overlay, {this.rpcUrl});
 
   /// Sends message to relayer
   Future<JavascriptMessage> send(

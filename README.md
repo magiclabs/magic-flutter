@@ -18,7 +18,7 @@ Files ending with `*.g.dart` are auto generated type files that are used to seri
 To generate a new sets of files to reflect your changes please run the command below at `your/path/to/packages/magic_sdk`
 
 ```bash
-$ flutter pub run build_runner build --delete-conflicting-outputs
+$ dart run build_runner build --delete-conflicting-outputs
 ```
 
 ## Releasing notes
