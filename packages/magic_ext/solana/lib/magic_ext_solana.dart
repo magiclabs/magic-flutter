@@ -1,8 +1,9 @@
 import 'dart:convert';
 import 'dart:typed_data';
-// import 'package:blockchain_signer/signer/remote/remote_signer.dart';
-// import 'package:blockchain_signer/signer/response/signed_result.dart';
-// import 'package:magic_ext_solana/types/public_key.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:solana/encoder.dart';
+import 'package:solana/solana.dart';
+import 'package:magic_ext_solana/types/config_type.dart';
 import 'package:magic_sdk/magic_sdk.dart';
 import 'package:magic_sdk/modules/blockchain/blockchain.dart';
 import 'package:magic_sdk/modules/blockchain/supported_blockchain.dart';
@@ -26,15 +27,64 @@ class SolanaSigner extends BlockchainModule {
 
   Future<void> init() async {}
 
-  Future<void> sendAndConfirmTransaction(Object transaction, Object? options) async {
-    // return sendToProvider(method:)
+  // Future<String> sendAndConfirmTransaction(Object transaction, Object? options) async {
+  //   return sendToProviderWithMap(method: SolanaMethod.sol_sendTransaction, params: { "message": typedArray }).then((jsMsg) {
+  //     var relayerResponse = RelayerResponse<String>.fromJson(
+  //         json.decode(jsMsg.message), (json) => json as String);
+  //     return relayerResponse.response.result;
+  //   });
+  // }
+
+  Future<Map<String, dynamic>> signTransaction(
+      List<Instruction> instructions, List<AccountMeta> signers,
+      {SerializeConfig config = const SerializeConfig()}) async {
+    // recentBlockhash
+    var client = RpcClient(provider.rpcUrl);
+    var recentBlockhash = await client.getRecentBlockhash();
+
+    // Construct instructions JSON
+    var instructionsJSON = instructions.map((i) {
+      var typedArray = MgboxTypedArray(data: i.data.join(','), constructor: "Buffer");
+      return {
+        "programId": i.programId.toBase58(),
+        "data": typedArray,
+        "keys": i.accounts
+            .map((acc) => {
+                  "pubkey": acc.pubKey.toBase58(),
+                  "isSigner": acc.isSigner,
+                  "isWritable": acc.isWriteable
+                })
+            .toList()
+      };
+    }).toList();
+
+    var params = {
+      "feePayer": signers.first.pubKey.toBase58(),
+      "instructions": instructionsJSON,
+      "recentBlockhash": recentBlockhash.blockhash,
+      "serializeConfig": config.toJson()
+    };
+
+    debugPrint("params, ${params.toString()}");
+
+    // let { instructions, recentBlockhash, feePayer,  serializeConfig } = payload.params;
+    return sendToProviderWithMap(
+            method: SolanaMethod.sol_signTransaction, params: params)
+        .then((jsMsg) {
+      var relayerResponse = RelayerResponse<Map<String, dynamic>>.fromJson(
+          json.decode(jsMsg.message), (json) => json as Map<String, dynamic>);
+      return relayerResponse.response.result;
+    });
   }
 
   Future<Uint8List> signMessage(Uint8List message) {
     var typedArray = MgboxTypedArray.from(message);
-    return sendToProviderWithMap(method: SolanaMethod.sol_signMessage, params: { "message": typedArray }).then((jsMsg) {
+    return sendToProviderWithMap(
+        method: SolanaMethod.sol_signMessage,
+        params: {"message": typedArray}).then((jsMsg) {
       var relayerResponse = RelayerResponse<MgboxTypedArray>.fromJson(
-          json.decode(jsMsg.message), (json) => MgboxTypedArray.fromJson(json as Map<String, dynamic>));
+          json.decode(jsMsg.message),
+          (json) => MgboxTypedArray.fromJson(json as Map<String, dynamic>));
       return relayerResponse.response.result.convertToUint8List();
     });
   }
@@ -47,7 +97,8 @@ extension SolanaExtension on Magic {
     if (SolanaSigner.instance != null) {
       return SolanaSigner.instance!;
     } else {
-      SolanaSigner.instance = SolanaSigner(provider, SupportedBlockchain.solana);
+      SolanaSigner.instance =
+          SolanaSigner(provider, SupportedBlockchain.solana);
       return SolanaSigner.instance!;
     }
   }

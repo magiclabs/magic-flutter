@@ -45,14 +45,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        home: Stack(children: [ // Use Stack here to make sure
-          MaterialApp(
-            title: 'Magic Demo',
-            home: const LoginPage(),
-          ),
-          Magic.instance.relayer // Insert relayer here
-        ]));
+    @override
+    Widget build(BuildContext context) {
+      return MaterialApp(
+          title: 'Magic Demo',
+          home: Stack(children: [
+            const LoginPage(),
+            Magic.instance.relayer
+          ]));
+    }
   }
 }
 ```

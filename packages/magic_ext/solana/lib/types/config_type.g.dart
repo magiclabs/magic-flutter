@@ -8,8 +8,8 @@ part of 'config_type.dart';
 
 SerializeConfig _$SerializeConfigFromJson(Map<String, dynamic> json) =>
     SerializeConfig(
-      requireAllSignatures: json['requireAllSignatures'] as bool?,
-      verifySignatures: json['verifySignatures'] as bool?,
+      requireAllSignatures: json['requireAllSignatures'] as bool? ?? true,
+      verifySignatures: json['verifySignatures'] as bool? ?? true,
     );
 
 Map<String, dynamic> _$SerializeConfigToJson(SerializeConfig instance) =>
