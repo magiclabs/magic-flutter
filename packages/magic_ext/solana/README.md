@@ -16,7 +16,7 @@ dependencies:
   magic_ext_solana: ^0.1.0
 
   # Magic Flutter SDK depends on crypto-please Solana SDK to construct instructions.  
-  solana: ^0.25.0
+  solana: ^0.26.0
 ```
 
 Run the following command to install dependencies
@@ -68,14 +68,38 @@ var token = await magic.auth.loginWithMagicLink(email: textController.text);
 After authenticated a new user, now it's time to interact with Solana.
 
 ```dart
-  // Create Solana signer
-  final magic = Magic.instance;
+// Create Solana signer
+final magic = Magic.instance;
   
-  // Now send a transaction! 
-    UserMetadata metadata = await magic.user.getMetadata();
-    Ed25519HDPublicKey solanaWallet = Ed25519HDPublicKey.fromBase58(metadata.publicAddress!);
-    var instruction = SystemInstruction.transfer(fundingAccount: solanaWallet, recipientAccount: solanaWallet, lamports: 1);
-    var signature = await magic.solana.signTransaction([instruction], instruction.accounts);
+// Now send a transaction! 
+
+// Get the authenticated wallet public key
+UserMetadata metadata = await magic.user.getMetadata();
+
+// Construct an instruction
+Ed25519HDPublicKey solanaWallet = Ed25519HDPublicKey.fromBase58(metadata.publicAddress!);
+var instruction = SystemInstruction.transfer(fundingAccount: solanaWallet, recipientAccount: solanaWallet, lamports: 1);
+
+// recentBlockhash
+var recentBlockhash = await client.getRecentBlockhash();
+
+// Message of instructions
+var message = Message.only(instruction);
+
+// Sign Transaction Remotely using Magic Auth
+var transactionSignature = await magic.solana.signTransaction(
+    recentBlockhash,
+    message,
+    instruction.accounts
+);
+
+// Create Base64 string from the signature
+var signature = await client.sendTransaction(
+    transactionSignature.encode()
+);
+
+print(signature);
 ```
 
 ## Additional information
+For other functions please check [Dart library for Solana](https://github.com/cryptoplease/cryptoplease-dart/tree/master/packages/solana)

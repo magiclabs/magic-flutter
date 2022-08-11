@@ -1,6 +1,6 @@
 name: magic_ext_solana
-description: A new Flutter package project.
-version: 0.0.1
+description: A Magic extension to enable signing with Solana on Flutter.
+version: 0.1.0
 homepage:
 
 environment:

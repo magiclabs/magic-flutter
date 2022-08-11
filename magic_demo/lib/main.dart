@@ -7,9 +7,7 @@ import 'login.dart';
 void main() {
   runApp(const MyApp());
 
-  // Magic.instance = Magic.blockchain("pk_live_BF42F29844DD0026", rpcUrl: "", chain: SupportedBlockchain.tezos);
-  // Magic.instance = Magic.blockchain("pk_live_78EABCE90112A046", rpcUrl: "https://api.devnet.solana.com", chain: SupportedBlockchain.solana);
-  Magic.instance = Magic.blockchain("pk_live_BF42F29844DD0026", rpcUrl: "https://api.devnet.solana.com", chain: SupportedBlockchain.solana);
+  Magic.instance = Magic.blockchain("YOUR_PUBLISHABLE_KEY", rpcUrl: "https://api.devnet.solana.com", chain: SupportedBlockchain.solana);
 }
 
 class MyApp extends StatelessWidget {
