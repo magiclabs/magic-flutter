@@ -52,10 +52,10 @@ class _SolanaPageState extends State<SolanaPage> {
                 // recentBlockhash
                 var recentBlockhash = await client.getRecentBlockhash();
 
-                // Message
+                // Message of instructions
                 var message = Message.only(instruction);
 
-                // Sign Transaction
+                // Sign Transaction Remotely using Magic Auth
                 var transactionSignature = await magic.solana.signTransaction(
                     recentBlockhash,
                     message,
@@ -63,8 +63,6 @@ class _SolanaPageState extends State<SolanaPage> {
                 );
 
                 // Create Base64 string from the signature
-                print('signatureInBase64 ${transactionSignature.encode()}');
-
                 var signature = await client.sendTransaction(
                     transactionSignature.encode()
                 );

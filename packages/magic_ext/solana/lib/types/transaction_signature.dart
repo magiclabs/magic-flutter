@@ -7,7 +7,9 @@ import 'package:solana/src/encoder/compact_array.dart';
 import 'package:solana/encoder.dart';
 
 part 'transaction_signature.g.dart';
-
+/// @field [rawTransaction] rawTransaction in Typed Array
+/// @field [signature] signature from
+/// @field [messageBytes] compiled Message / instructions
 class TransactionSignature {
   Uint8List rawTransaction;
   List<SolanaSignature> signature;

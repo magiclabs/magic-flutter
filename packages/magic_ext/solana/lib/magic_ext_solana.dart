@@ -1,10 +1,8 @@
 import 'dart:convert';
 import 'dart:typed_data';
-import 'package:flutter/cupertino.dart';
 import 'package:magic_ext_solana/types/transaction_signature.dart';
 import 'package:solana/dto.dart';
 import 'package:solana/encoder.dart';
-import 'package:solana/solana.dart';
 import 'package:magic_ext_solana/types/serialize_config.dart';
 import 'package:magic_sdk/magic_sdk.dart';
 import 'package:magic_sdk/modules/blockchain/blockchain.dart';
@@ -22,14 +20,15 @@ class SolanaSigner extends BlockchainModule {
 
   static SolanaSigner? instance;
 
-  /// sends unsigned payload to the Signer and wait for it to be signed
+  /// sends unsigned transaction to the Signer
   ///
-  /// @param [op] Operation to sign
-  /// @param [magicByte] Magic bytes 1 for block, 2 for endorsement, 3 for generic, 5 for the PACK format of michelson
-
+  /// @param [recentBlockhash] recentBlockhash from node
+  /// @param [message] Message of instructions
+  /// @param [signers] signers without private key
   Future<TransactionSignature> signTransaction(RecentBlockhash recentBlockhash,
       Message message, List<AccountMeta> signers,
       {SerializeConfig config = const SerializeConfig()}) async {
+
     // Construct instructions JSON
     var instructionsJSON = message.instructions.map((i) {
       var typedArray =
@@ -54,6 +53,7 @@ class SolanaSigner extends BlockchainModule {
       "serializeConfig": config.toJson()
     };
 
+    // compiled instructions
     final CompiledMessage compiledMessage = message.compile(
       recentBlockhash: recentBlockhash.blockhash,
       feePayer: signers.first.pubKey,
