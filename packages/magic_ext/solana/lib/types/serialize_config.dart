@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'config_type.g.dart';
+part 'serialize_config.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class SerializeConfig {

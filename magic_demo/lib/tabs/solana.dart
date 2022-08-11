@@ -16,7 +16,7 @@ class SolanaPage extends StatefulWidget {
 
 class _SolanaPageState extends State<SolanaPage> {
   final magic = Magic.instance;
-  // final client = SolanaClient(rpcUrl: rpcUrl, websocketUrl: websocketUrl)
+  final client = RpcClient('https://api.devnet.solana.com');
 
   @override
   void initState () {
@@ -41,13 +41,66 @@ class _SolanaPageState extends State<SolanaPage> {
             /// get public address
             ElevatedButton(
               onPressed: () async {
+
+                // Get public key
                 UserMetadata metadata = await magic.user.getMetadata();
+
+                // Construct an instruction
                 Ed25519HDPublicKey solanaWallet = Ed25519HDPublicKey.fromBase58(metadata.publicAddress!);
                 var instruction = SystemInstruction.transfer(fundingAccount: solanaWallet, recipientAccount: solanaWallet, lamports: 1);
-                var signature = await magic.solana.signTransaction([instruction], instruction.accounts);
+
+                // recentBlockhash
+                var recentBlockhash = await client.getRecentBlockhash();
+
+                // Message
+                var message = Message.only(instruction);
+
+                // Sign Transaction
+                var transactionSignature = await magic.solana.signTransaction(
+                    recentBlockhash,
+                    message,
+                    instruction.accounts
+                );
+
+                // Create Base64 string from the signature
+                print('signatureInBase64 ${transactionSignature.encode()}');
+
+                var signature = await client.sendTransaction(
+                    transactionSignature.encode()
+                );
+
                 print(signature);
               },
               child: const Text('Sign Transaction'),
+            ),
+            ElevatedButton(
+              onPressed: () async {
+
+                var sampleSigner = await Ed25519HDKeyPair.random();
+
+                final instruction = SystemInstruction.transfer(
+                  fundingAccount: sampleSigner.publicKey,
+                  recipientAccount: sampleSigner.publicKey,
+                  lamports: 1,
+                );
+
+
+                final tx = await signTransaction(
+                  await client.getRecentBlockhash(commitment: Commitment.confirmed),
+                  Message(instructions: [instruction]),
+                  [sampleSigner],
+                );
+
+                debugPrint('tx encode, ${tx.encode()}');
+                debugPrint('tx encode list, ${tx.signatures.toList()}');
+
+                final signature = await client.sendTransaction(
+                  tx.encode()
+                );
+
+                debugPrint(signature);
+              },
+              child: const Text('Original Sign Transaction'),
             ),
           ])),
     );
