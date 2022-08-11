@@ -40,7 +40,7 @@ class Magic {
       int? chainId,
       MagicLocale locale = MagicLocale.en_US}) {
     URLBuilder.instance = URLBuilder.custom(apiKey, rpcUrl, chainId, locale);
-    provider = RpcProvider(relayer);
+    provider = RpcProvider(relayer, rpcUrl: rpcUrl);
   }
 
   /// for custom node configuration provide chain id[String] and rpc url[String
@@ -49,7 +49,7 @@ class Magic {
       required SupportedBlockchain chain,
       MagicLocale locale = MagicLocale.en_US}) {
     URLBuilder.instance = URLBuilder.blockchain(apiKey, chain, rpcUrl, locale);
-    provider = RpcProvider(relayer);
+    provider = RpcProvider(relayer, rpcUrl: rpcUrl);
   }
 }
 

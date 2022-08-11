@@ -6,18 +6,24 @@ part of 'rpc_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-MagicRPCRequest _$MagicRPCRequestFromJson(Map<String, dynamic> json) =>
-    MagicRPCRequest(
+MagicRPCRequest<T> _$MagicRPCRequestFromJson<T>(
+  Map<String, dynamic> json,
+  T Function(Object? json) fromJsonT,
+) =>
+    MagicRPCRequest<T>(
       method: json['method'] as String,
-      params: json['params'] as List<dynamic>,
+      params: fromJsonT(json['params']),
     )
       ..id = json['id'] as int
       ..jsonrpc = json['jsonrpc'] as String;
 
-Map<String, dynamic> _$MagicRPCRequestToJson(MagicRPCRequest instance) =>
+Map<String, dynamic> _$MagicRPCRequestToJson<T>(
+  MagicRPCRequest<T> instance,
+  Object? Function(T value) toJsonT,
+) =>
     <String, dynamic>{
       'id': instance.id,
       'jsonrpc': instance.jsonrpc,
       'method': instance.method,
-      'params': instance.params,
+      'params': toJsonT(instance.params),
     };

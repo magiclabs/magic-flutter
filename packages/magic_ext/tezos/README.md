@@ -51,12 +51,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home: Stack(children: [ // Use Stack here to make sure
-          MaterialApp(
-            title: 'Magic Demo',
-            home: const LoginPage(),
-          ),
-          Magic.instance.relayer // Insert relayer here
+        title: 'Magic Demo',
+        home: Stack(children: [
+          const LoginPage(),
+          Magic.instance.relayer
         ]));
   }
 }

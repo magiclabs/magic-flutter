@@ -12,7 +12,7 @@ RelayerResponse<T> _$RelayerResponseFromJson<T>(
 ) =>
     RelayerResponse<T>(
       msgType: json['msgType'] as String,
-      response: MagicRPCResponse.fromJson(
+      response: MagicRPCResponse<T>.fromJson(
           json['response'] as Map<String, dynamic>,
           (value) => fromJsonT(value)),
     );

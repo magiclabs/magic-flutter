@@ -15,8 +15,17 @@ class BaseModule {
   /// let the type in interface call to deserialize
   Future<JavascriptMessage> sendToProvider(
       {required Enum method, List<dynamic>? params}) async {
-    MagicRPCRequest request =
-        MagicRPCRequest(method: toShortString(method), params: params ?? []);
+    MagicRPCRequest<List<dynamic>> request = MagicRPCRequest<List<dynamic>>(
+        method: toShortString(method), params: params ?? []);
+    return provider.send(
+        request: request, completer: Completer<JavascriptMessage>());
+  }
+
+  Future<JavascriptMessage> sendToProviderWithMap(
+      {required Enum method, Map<String, dynamic>? params}) async {
+    MagicRPCRequest<Map<String, dynamic>> request =
+        MagicRPCRequest<Map<String, dynamic>>(
+            method: toShortString(method), params: params ?? {});
     return provider.send(
         request: request, completer: Completer<JavascriptMessage>());
   }

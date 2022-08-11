@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
+
 import '../../provider/types/relayer_request.dart';
 import '../../provider/types/relayer_response.dart';
 import '../../provider/types/rpc_request.dart';
@@ -15,8 +17,9 @@ part 'types/outbound_message.dart';
 /// Rpc Provider
 class RpcProvider implements RpcService {
   final WebViewRelayer _overlay;
+  String rpcUrl;
 
-  RpcProvider(this._overlay);
+  RpcProvider(this._overlay, {this.rpcUrl = ""});
 
   /// Sends message to relayer
   Future<JavascriptMessage> send(

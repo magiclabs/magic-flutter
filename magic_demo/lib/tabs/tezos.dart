@@ -37,9 +37,10 @@ class _TezosPageState extends State<TezosPage> {
             ElevatedButton(
               onPressed: () async {
                 final operationsList = await client.transferOperation(
-                  source: Keystore.fromRemoteSigner(tezosSigner),
-                  destination: tezosSigner.address,
-                  amount: 10001,
+                    source: Keystore.fromRemoteSigner(tezosSigner),
+                    destination: tezosSigner.address,
+                    amount: 1,
+                    customFee: 1
                 );
                 await operationsList.executeAndMonitor();
               },
@@ -48,7 +49,7 @@ class _TezosPageState extends State<TezosPage> {
             /// Deposit
             ElevatedButton(
               onPressed: () async {
-                const amount = 100;
+                const amount = 10000;
                 final operationsList = await client.transferOperation(
                   source: Keystore.fromSecretKey('edskRpm2mUhvoUjHjXgMoDRxMKhtKfww1ixmWiHCWhHuMEEbGzdnz8Ks4vgarKDtxok7HmrEo1JzkXkdkvyw7Rtw6BNtSd7MJ7'), // private key from tezart
                   destination: tezosSigner.address,

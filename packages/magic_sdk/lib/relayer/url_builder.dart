@@ -6,8 +6,8 @@ import '../../relayer/locale.dart';
 import '../modules/blockchain/supported_blockchain.dart';
 
 class URLBuilder {
-  final String _host = "https://box.magic.link";
-  // final String _host = "http://192.168.1.18:3016";
+  // final String _host = "https://box.magic.link";
+  final String _host = "http://192.168.1.18:3016";
 
   static late URLBuilder instance;
 
@@ -58,17 +58,19 @@ class URLBuilder {
       this.apiKey, SupportedBlockchain chain, String rpcUrl, this.locale) {
     String key;
 
+    String chainName = chain.toString().split('.').last;
+
     /// Compatible blockchain name mapping
     switch (chain) {
       case SupportedBlockchain.tezos:
         key = 'taquito';
         break;
       default:
-        key = chain.toString().split('.').last;
+        key = chainName.toLowerCase();
     }
 
     _ext = {
-      key: {"rpcUrl": rpcUrl}
+      key: {"rpcUrl": rpcUrl, "chainType": chainName.toUpperCase()}
     };
   }
 }
