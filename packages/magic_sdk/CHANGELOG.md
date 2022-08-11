@@ -1,3 +1,11 @@
+## 1.2.1
+Fix url for local development
+
+## 1.2.0 
+(Retracted)
+Make rpcUrl accessible in providers
+Add new RPCRequest params type
+
 ## 1.1.1
 
 Fix Relayer Request has wrong encodedParams 
