@@ -10,10 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  magic_sdk:
-    path: ../../magic_sdk
-  solana:
-    path: ../../../third_party/cryptoplease-dart/packages/solana
+  magic_sdk: ^1.2.0
+  solana: ^0.26.0
   json_annotation: ^4.5.0
 
 dev_dependencies:
