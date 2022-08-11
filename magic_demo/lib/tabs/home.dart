@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:magic_demo/tabs/web3.dart';
 import 'package:magic_demo/tabs/tezos.dart';
+import 'package:magic_demo/tabs/solana.dart';
 import 'package:magic_sdk/magic_sdk.dart';
 
 import 'magic.dart';
@@ -47,7 +48,8 @@ class _HomePageState extends State<HomePage> {
         children: [
           MagicPage(),
           Web3Page(),
-          TezosPage()
+          // TezosPage(),
+          SolanaPage()
         ]
       ),
     )
