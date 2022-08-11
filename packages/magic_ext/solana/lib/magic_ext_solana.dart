@@ -28,7 +28,6 @@ class SolanaSigner extends BlockchainModule {
   Future<TransactionSignature> signTransaction(RecentBlockhash recentBlockhash,
       Message message, List<AccountMeta> signers,
       {SerializeConfig config = const SerializeConfig()}) async {
-
     // Construct instructions JSON
     var instructionsJSON = message.instructions.map((i) {
       var typedArray =

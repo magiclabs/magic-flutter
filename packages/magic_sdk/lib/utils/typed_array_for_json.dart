@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'typed_array_for_json.g.dart';
+
 // This helper class takes a JSON format like below
 // {"constructor":"Uint8Array","data":"99,53,247","flag":"MAGIC_PAYLOAD_FLAG_TYPED_ARRAY"}}}
 // to make Buffer/ TypedArray compatible between languages

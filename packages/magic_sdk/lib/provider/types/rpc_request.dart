@@ -17,7 +17,7 @@ class MagicRPCRequest<T> {
   /// from a map. Pass the map to the generated `_$UserFromJson()` constructor.
   /// The constructor is named after the source class, in this case, User.
   factory MagicRPCRequest.fromJson(
-      Map<String, dynamic> json, T Function(Object? json) fromJsonT) =>
+          Map<String, dynamic> json, T Function(Object? json) fromJsonT) =>
       _$MagicRPCRequestFromJson<T>(json, fromJsonT);
 
   /// `toJson` is the convention for a class to declare support for serialization

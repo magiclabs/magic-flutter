@@ -46,8 +46,12 @@ class _SolanaPageState extends State<SolanaPage> {
             UserMetadata metadata = await magic.user.getMetadata();
 
             // Construct an instruction that sends token to itself
-            Ed25519HDPublicKey solanaWallet = Ed25519HDPublicKey.fromBase58(metadata.publicAddress!);
-            var instruction = SystemInstruction.transfer(fundingAccount: solanaWallet, recipientAccount: solanaWallet, lamports: 1);
+            Ed25519HDPublicKey solanaWallet =
+                Ed25519HDPublicKey.fromBase58(metadata.publicAddress!);
+            var instruction = SystemInstruction.transfer(
+                fundingAccount: solanaWallet,
+                recipientAccount: solanaWallet,
+                lamports: 1);
 
             // recentBlockhash
             var recentBlockhash = await client.getRecentBlockhash();
@@ -57,15 +61,11 @@ class _SolanaPageState extends State<SolanaPage> {
 
             // Sign Transaction Remotely using Magic Auth
             var transactionSignature = await magic.solana.signTransaction(
-                recentBlockhash,
-                message,
-                instruction.accounts
-            );
+                recentBlockhash, message, instruction.accounts);
 
             // Create Base64 string from the signature
-            var signature = await client.sendTransaction(
-                transactionSignature.encode()
-            );
+            var signature =
+                await client.sendTransaction(transactionSignature.encode());
 
             print(signature);
           },

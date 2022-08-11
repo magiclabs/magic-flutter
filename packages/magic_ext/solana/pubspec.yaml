@@ -1,7 +1,8 @@
 name: magic_ext_solana
-description: A Magic extension to enable signing with Solana on Flutter.
+description: A Magic extension to enable signing with Solana on Flutter. Magic SDK is your entry-point to integrating passwordless authentication inside your application.
 version: 0.1.0
-homepage:
+homepage: https://magic.link
+#repository: https://github.com/fortmatic/magic-flutter
 
 environment:
   sdk: ">=2.17.1 <3.0.0"

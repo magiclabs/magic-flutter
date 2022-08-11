@@ -37,8 +37,9 @@ class WebViewRelayer extends StatefulWidget {
       var messageMap = message.toJson((value) => value);
       debugPrint(messageMap.toString());
       //double encoding results in extra backslash. Remove them
-      String jsonString = json.encode({"data": messageMap}).replaceAll("\\", "");
-      debugPrint("Send Message ===> \n $jsonString");
+      String jsonString =
+          json.encode({"data": messageMap}).replaceAll("\\", "");
+      // debugPrint("Send Message ===> \n $jsonString");
 
       webViewCtrl.runJavascript(
           "window.dispatchEvent(new MessageEvent('message', $jsonString));");
