@@ -23,7 +23,6 @@ class MgboxTypedArray {
 
   factory MgboxTypedArray.from(Uint8List data) {
     String dataString = data.join(",");
-    debugPrint(dataString);
     return MgboxTypedArray(data: dataString, constructor: "Uint8Array");
   }
 
