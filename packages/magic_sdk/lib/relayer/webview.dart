@@ -33,9 +33,8 @@ class WebViewRelayer extends StatefulWidget {
   void _dequeue() {
     if (_queue.isNotEmpty && _overlayReady) {
       var message = _queue.removeAt(0);
-      debugPrint('here');
       var messageMap = message.toJson((value) => value);
-      debugPrint(messageMap.toString());
+      // debugPrint(messageMap.toString());
       //double encoding results in extra backslash. Remove them
       String jsonString =
           json.encode({"data": messageMap}).replaceAll("\\", "");
@@ -104,7 +103,7 @@ class WebViewRelayerState extends State<WebViewRelayer> {
   @override
   Widget build(BuildContext context) {
     void onMessageReceived(JavascriptMessage message) {
-      debugPrint("Received message <=== \n ${message.message}");
+      // debugPrint("Received message <=== \n ${message.message}");
 
       if (message.getMsgType() ==
           InboundMessageType.MAGIC_OVERLAY_READY.toShortString()) {

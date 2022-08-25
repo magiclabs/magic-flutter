@@ -1,4 +1,3 @@
-import 'dart:convert' as json_converter;
 import 'dart:math';
 import 'package:json_annotation/json_annotation.dart';
 

@@ -25,13 +25,13 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   Magic magic = Magic.instance;
 
-  final myController = TextEditingController(text: 'jerry+flutter@magic.link');
+  final myController = TextEditingController(text: 'your.email@example.com');
 
   @override
   Widget build(BuildContext context) {
 
     return DefaultTabController(
-      length: 3,
+      length: 2,
       child: Scaffold(
       appBar: AppBar(
           automaticallyImplyLeading: false,
@@ -40,7 +40,6 @@ class _HomePageState extends State<HomePage> {
           tabs: [
             Tab(icon: Icon(Icons.portrait)),
             Tab(icon: Icon(Icons.account_balance_wallet_rounded)),
-            Tab(icon: Icon(Icons.account_balance_wallet_rounded))
           ]
         )
       ),
@@ -49,7 +48,7 @@ class _HomePageState extends State<HomePage> {
           MagicPage(),
           Web3Page(),
           // TezosPage(),
-          SolanaPage()
+          // SolanaPage()
         ]
       ),
     )

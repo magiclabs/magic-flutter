@@ -28,6 +28,7 @@ class _SolanaPageState extends State<SolanaPage> {
     return Scaffold(
       body: Center(
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+            const Text('Solana', style: TextStyle(fontSize: 30)),
             /// get public address
             ElevatedButton(
               onPressed: () async {

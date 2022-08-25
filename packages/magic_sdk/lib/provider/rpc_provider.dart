@@ -1,8 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
-
 import '../../provider/types/relayer_request.dart';
 import '../../provider/types/relayer_response.dart';
 import '../../provider/types/rpc_request.dart';

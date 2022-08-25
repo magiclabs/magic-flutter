@@ -23,7 +23,7 @@ class MagicPage extends StatefulWidget {
 class _MagicPageState extends State<MagicPage> {
   Magic magic = Magic.instance;
 
-  final myController = TextEditingController(text: 'jerry+flutter@magic.link');
+  final myController = TextEditingController(text: 'your.email@example.com');
 
   @override
   Widget build(BuildContext context) {

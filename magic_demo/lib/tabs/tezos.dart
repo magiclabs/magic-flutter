@@ -25,6 +25,7 @@ class _TezosPageState extends State<TezosPage> {
     return Scaffold(
       body: Center(
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+            const Text('Tezos', style: TextStyle(fontSize: 30)),
             /// get public address
             ElevatedButton(
               onPressed: () async {

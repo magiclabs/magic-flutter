@@ -1,6 +1,5 @@
 import 'dart:typed_data';
 
-import 'package:flutter/cupertino.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'typed_array_for_json.g.dart';
@@ -23,7 +22,6 @@ class MgboxTypedArray {
 
   factory MgboxTypedArray.from(Uint8List data) {
     String dataString = data.join(",");
-    debugPrint(dataString);
     return MgboxTypedArray(data: dataString, constructor: "Uint8Array");
   }
 

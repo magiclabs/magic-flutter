@@ -59,7 +59,7 @@ class MyApp extends StatelessWidget {
 }
 ```
 
-Authenticate your first user via OAuth!
+Authenticate your first user!
 
 ```dart
 var token = await magic.auth.loginWithMagicLink(email: textController.text);
@@ -102,4 +102,4 @@ print(signature);
 ```
 
 ## Additional information
-For other functions please check [Dart library for Solana](https://github.com/cryptoplease/cryptoplease-dart/tree/master/packages/solana)
+For other solana functions please check [Dart library for Solana](https://github.com/cryptoplease/cryptoplease-dart/tree/master/packages/solana)

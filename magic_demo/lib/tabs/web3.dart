@@ -25,6 +25,7 @@ class _Web3PageState extends State<Web3Page> {
     return Scaffold(
       body: Center(
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+            const Text('ETH', style: TextStyle(fontSize: 30)),
         /// get account
         ElevatedButton(
           onPressed: () async {

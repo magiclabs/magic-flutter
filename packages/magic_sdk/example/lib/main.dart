@@ -12,7 +12,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   Magic magic = Magic.instance;
 
-  final myController = TextEditingController(text: 'jerry+flutter@magic.link');
+  final myController = TextEditingController(text: 'your.email@example.com');
 
   @override
   void initState() {
