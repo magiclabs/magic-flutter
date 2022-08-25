@@ -3,7 +3,6 @@ import 'package:magic_ext_tezos/magic_ext_tezos.dart';
 import 'package:magic_sdk/magic_sdk.dart';
 import 'package:tezart/tezart.dart';
 
-
 class _TezosPageState extends State<TezosPage> {
   final tezosSigner = Magic.instance.tezos;
   final client = TezartClient('https://ithacanet.smartpy.io/');
