@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/cupertino.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 import '../../modules/web3/eth_network.dart';
@@ -14,7 +15,8 @@ class URLBuilder {
   String apiKey;
   MagicLocale locale;
 
-  Map? _network;
+  Map? _customUrl;
+  String? _ethNetwork;
   Map? _ext;
 
   Future<String> get encodedParams async {
@@ -26,8 +28,12 @@ class URLBuilder {
     var packageInfo = await PackageInfo.fromPlatform();
     urlObj['bundleId'] = packageInfo.packageName;
 
-    if (_network != null) {
-      urlObj['ETH_NETWORK'] = _network;
+    if (_customUrl != null) {
+      urlObj['ETH_NETWORK'] = _customUrl;
+    }
+
+    if (_ethNetwork != null) {
+      urlObj['ETH_NETWORK'] = _ethNetwork;
     }
 
     if (_ext != null) {
@@ -51,7 +57,7 @@ class URLBuilder {
   }
 
   URLBuilder.eth(this.apiKey, EthNetwork network, this.locale) {
-    _network = {"network": network.toString().split('.').last};
+    _ethNetwork = network.toString().split('.').last;
   }
 
   URLBuilder.blockchain(
