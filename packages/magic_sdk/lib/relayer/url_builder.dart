@@ -40,6 +40,9 @@ class URLBuilder {
       urlObj['ext'] = _ext;
     }
 
+    debugPrint('---');
+    debugPrint(urlObj.toString());
+
     // Encode params to base64
     var jsonStr = json.encode(urlObj);
     var bytes = utf8.encode(jsonStr);
@@ -53,7 +56,7 @@ class URLBuilder {
   URLBuilder(this.apiKey, this.locale);
 
   URLBuilder.custom(this.apiKey, String rpcUrl, int? chainId, this.locale) {
-    _network = {"rpcUrl": rpcUrl, "chainId": chainId};
+    _customUrl = {"rpcUrl": rpcUrl, "chainId": chainId};
   }
 
   URLBuilder.eth(this.apiKey, EthNetwork network, this.locale) {
