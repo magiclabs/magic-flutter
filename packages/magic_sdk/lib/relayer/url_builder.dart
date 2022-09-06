@@ -40,9 +40,6 @@ class URLBuilder {
       urlObj['ext'] = _ext;
     }
 
-    debugPrint('---');
-    debugPrint(urlObj.toString());
-
     // Encode params to base64
     var jsonStr = json.encode(urlObj);
     var bytes = utf8.encode(jsonStr);
