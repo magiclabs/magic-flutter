@@ -1,3 +1,6 @@
+## 1.2.2
+Fix unable to access testnet 
+
 ## 1.2.1
 Fix url for local development
 
