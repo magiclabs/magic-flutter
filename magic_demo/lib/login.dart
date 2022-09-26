@@ -149,7 +149,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             onPressed: () async {
               var configuration = OAuthConfiguration(
-                  provider: OAuthProvider.GITHUB,
+                  provider: OAuthProvider.values.firstWhere((element) => element.toString().toLowerCase() == 'OAuthProvider.$dropdownValue'.toLowerCase()),
                   redirectURI: 'link.magic.demo://');
               var result = await magic.oauth.loginWithPopup(configuration);
 
