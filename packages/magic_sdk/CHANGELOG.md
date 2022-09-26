@@ -1,3 +1,7 @@
+## 2.0.0
+Deprecation of Rinkeby, Kovan, Ropsten
+Add Goerli
+
 ## 1.2.2
 Fix unable to access testnet 
 
