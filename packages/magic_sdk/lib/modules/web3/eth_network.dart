@@ -1,6 +1,3 @@
 /// Supported Eth Network
 ///
-enum EthNetwork {
-  mainnet,
-  goerli
-}
+enum EthNetwork { mainnet, goerli }

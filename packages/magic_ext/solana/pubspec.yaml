@@ -11,7 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  magic_sdk: ^1.2.0
+  magic_sdk: ^2.0.0
   solana: ^0.26.0
   json_annotation: ^4.5.0
 
