@@ -1,3 +1,7 @@
+## 0.3.0
+
+Bump magic sdk core dependency version
+
 ## 0.2.1
 
 Fix OAuth unable to initiate
