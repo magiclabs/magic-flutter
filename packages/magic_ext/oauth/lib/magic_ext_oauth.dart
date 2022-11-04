@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:flutter_web_auth/flutter_web_auth.dart';
 import 'package:magic_sdk/magic_sdk.dart';
 import 'package:magic_sdk/modules/base_module.dart';
@@ -38,6 +39,7 @@ class OAuthExtension extends BaseModule {
   Future<String> _createAuthenticationSession(
       {required OAuthChallenge oauthChallenge,
       required OAuthConfiguration configuration}) async {
+    var packageInfo = await PackageInfo.fromPlatform();
     var uri = UriBuilder();
     uri.scheme = 'https';
     uri.host = 'auth.magic.link';
@@ -51,7 +53,8 @@ class OAuthExtension extends BaseModule {
       'magic_challenge': oauthChallenge.challenge,
       'state': oauthChallenge.state,
       'redirect_uri': configuration.redirectURI,
-      'platform': 'rn'
+      'platform': 'rn',
+      'bundleId': packageInfo.packageName
     };
 
     if (configuration.scope != null && configuration.scope!.isNotEmpty) {
