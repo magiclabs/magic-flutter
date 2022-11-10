@@ -1,3 +1,7 @@
+## 0.3.1
+
+Resolve Bundle Whitelisted issue in the OAuth flow
+
 ## 0.3.0
 
 Bump magic sdk core dependency version
