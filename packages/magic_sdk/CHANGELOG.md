@@ -1,5 +1,5 @@
 ## 2.0.1
-Add MagicCredential
+Add missing signToEcSignature to MagicCredential
 
 ## 2.0.0
 Deprecation of Rinkeby, Kovan, Ropsten
