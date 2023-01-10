@@ -91,6 +91,11 @@ class MagicCredential extends CredentialsWithKnownAddress
       rethrow;
     }
   }
+
+  @override
+  MsgSignature signToEcSignature(Uint8List payload, {int? chainId, bool isEIP1559 = false}) {
+    throw UnimplementedError();
+  }
 }
 
 String? _bigIntToQuantity(BigInt? int) {

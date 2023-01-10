@@ -1,3 +1,6 @@
+## 2.0.1
+Add missing signToEcSignature to MagicCredential
+
 ## 2.0.0
 Deprecation of Rinkeby, Kovan, Ropsten
 Add Goerli
