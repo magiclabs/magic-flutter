@@ -12,8 +12,8 @@ Add `magic_sdk` to your `pubspec.yaml`:
 dependencies:
   flutter:
     sdk: flutter
-  magic_sdk: ^1.0.0
-  magic_ext_oauth: ^0.2.0
+  magic_sdk: ^2.0.0
+  magic_ext_oauth: ^0.3.0
 ```
 
 Run the following command to install dependencies

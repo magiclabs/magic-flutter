@@ -1,6 +1,6 @@
 PODS:
   - Flutter (1.0.0)
-  - flutter_web_auth (0.4.3):
+  - flutter_web_auth (0.5.0):
     - Flutter
   - package_info_plus (0.4.5):
     - Flutter
@@ -25,7 +25,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
-  flutter_web_auth: 71382897b8dc10ad94a2928cbb09ddf515749808
+  flutter_web_auth: c25208760459cec375a3c39f6a8759165ca0fa4d
   package_info_plus: 6c92f08e1f853dc01228d6f553146438dafcd14e
   webview_flutter_wkwebview: b7e70ef1ddded7e69c796c7390ee74180182971f
 

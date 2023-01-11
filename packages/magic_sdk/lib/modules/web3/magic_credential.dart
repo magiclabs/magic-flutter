@@ -93,7 +93,8 @@ class MagicCredential extends CredentialsWithKnownAddress
   }
 
   @override
-  MsgSignature signToEcSignature(Uint8List payload, {int? chainId, bool isEIP1559 = false}) {
+  MsgSignature signToEcSignature(Uint8List payload,
+      {int? chainId, bool isEIP1559 = false}) {
     throw UnimplementedError();
   }
 }
