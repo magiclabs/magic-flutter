@@ -1,3 +1,8 @@
+## 0.3.2 
+
+Bump dependencies to the latest
+Remove the dependency of package_info
+
 ## 0.3.1
 
 Resolve Bundle Whitelisted issue in the OAuth flow
