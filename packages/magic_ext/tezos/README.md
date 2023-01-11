@@ -12,8 +12,8 @@ Add `magic_sdk` to your `pubspec.yaml`:
 dependencies:
   flutter:
     sdk: flutter
-  magic_sdk: ^1.0.0
-  magic_ext_tezos: ^0.1.0
+  magic_sdk: ^2.0.0
+  magic_ext_tezos: ^0.2.0
 
   # Please use a forked version of tezart, that have Remote signer enabled
   tezart:
