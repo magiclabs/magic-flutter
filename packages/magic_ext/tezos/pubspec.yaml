@@ -12,6 +12,8 @@ dependencies:
   flutter:
     sdk: flutter
   magic_sdk: ^2.0.0
+  # magic_sdk:
+  #  path: "../../magic_sdk"
   blockchain_signer: ^0.1.0
   json_annotation: ^4.5.0
 
