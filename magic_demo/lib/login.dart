@@ -153,7 +153,8 @@ class _LoginPageState extends State<LoginPage> {
                   redirectURI: 'link.magic.demo://');
               var result = await magic.oauth.loginWithPopup(configuration);
 
-              if (result.magic!.userMetadata!.email != null) {
+
+              if (result.magic!.userMetadata!.email != null || result.magic!.idToken != null) {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => const HomePage()));
               }
