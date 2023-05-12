@@ -19,8 +19,7 @@ class OidcExtension extends BaseModule {
           {'jwt': configuration.jwt, 'providerId': configuration.providerId}
         ]).then((jsMsg) {
       var relayerResponse = RelayerResponse<String>.fromJson(
-          json.decode(jsMsg.message),
-          (json) => json.toString()); //DIDToken.fromJson(json)
+          json.decode(jsMsg.message), (json) => json.toString());
       return relayerResponse.response.result;
     });
   }
