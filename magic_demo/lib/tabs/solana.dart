@@ -58,7 +58,7 @@ class _SolanaPageState extends State<SolanaPage> {
 
                 // Sign Transaction Remotely using Magic Auth
                 var transactionSignature = await magic.solana.signTransaction(
-                    recentBlockhash,
+                    recentBlockhash.value,
                     message,
                     instruction.accounts
                 );
@@ -83,9 +83,11 @@ class _SolanaPageState extends State<SolanaPage> {
                   lamports: 1,
                 );
 
+                // recentBlockhash
+                var recentBlockhashWithCommitment = await client.getRecentBlockhash(commitment: Commitment.confirmed);
 
                 final tx = await signTransaction(
-                  await client.getRecentBlockhash(commitment: Commitment.confirmed),
+                  recentBlockhashWithCommitment.value,
                   Message(instructions: [instruction]),
                   [sampleSigner],
                 );

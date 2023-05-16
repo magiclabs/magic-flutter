@@ -67,7 +67,7 @@ class SolanaSigner extends BlockchainModule {
               MgboxTransactionSignature.fromJson(json as Map<String, dynamic>));
       var result = relayerResponse.response.result;
       return TransactionSignature(
-          messageBytes: compiledMessage.data,
+          messageBytes: compiledMessage.instructions.first.data,
           rawTransaction: result.rawTransaction.convertToUint8List(),
           signature: result.signature
               .map((e) => SolanaSignature(
