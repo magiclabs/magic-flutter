@@ -39,7 +39,7 @@ dependencies:
 
   tezart:
     git: https://github.com/Ethella/tezart.git
-  solana: ^0.26.0
+  solana: ^0.29.0
 
 #  # Local imports
 #  magic_sdk:
