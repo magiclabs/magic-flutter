@@ -51,4 +51,16 @@ class RpcProvider implements RpcService {
       return relayerResponse.response;
     });
   }
+
+  @override
+  noSuchMethod(Invocation invocation) {
+    // Handle the case when a nonexistent method or property is accessed.
+    print('Error: Attempted to call a nonexistent method or property: ${invocation.memberName}');
+    return super.noSuchMethod(invocation);
+  }
+
+  @override
+  String toString() {
+    return 'RpcProvider(_overlay: $_overlay, rpcUrl: $rpcUrl)';
+  }
 }
