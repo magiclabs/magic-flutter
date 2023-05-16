@@ -10,23 +10,23 @@ class BaseModule {
 
   BaseModule(this.provider);
 
-  /// Returns <JavascriptMessage> here to decode in the last step.
+  /// Returns <JavaScriptMessage> here to decode in the last step.
   /// As Dart doesn't support method return type inference. So we need to surface raw message and
   /// let the type in interface call to deserialize
-  Future<JavascriptMessage> sendToProvider(
+  Future<JavaScriptMessage> sendToProvider(
       {required Enum method, List<dynamic>? params}) async {
     MagicRPCRequest<List<dynamic>> request = MagicRPCRequest<List<dynamic>>(
         method: toShortString(method), params: params ?? []);
     return provider.send(
-        request: request, completer: Completer<JavascriptMessage>());
+        request: request, completer: Completer<JavaScriptMessage>());
   }
 
-  Future<JavascriptMessage> sendToProviderWithMap(
+  Future<JavaScriptMessage> sendToProviderWithMap(
       {required Enum method, Map<String, dynamic>? params}) async {
     MagicRPCRequest<Map<String, dynamic>> request =
         MagicRPCRequest<Map<String, dynamic>>(
             method: toShortString(method), params: params ?? {});
     return provider.send(
-        request: request, completer: Completer<JavascriptMessage>());
+        request: request, completer: Completer<JavaScriptMessage>());
   }
 }

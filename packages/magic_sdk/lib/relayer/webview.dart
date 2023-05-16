@@ -40,7 +40,7 @@ class WebViewRelayer extends StatefulWidget {
           json.encode({"data": messageMap}).replaceAll("\\", "");
       // debugPrint("Send Message ===> \n $jsonString");
 
-      webViewCtrl.runJavascript(
+      webViewCtrl.runJavaScript(
           "window.dispatchEvent(new MessageEvent('message', $jsonString));");
 
       // Recursively dequeue till queue is Empty
@@ -56,7 +56,7 @@ class WebViewRelayer extends StatefulWidget {
     _isOverlayVisible = false;
   }
 
-  void handleResponse(JavascriptMessage message) {
+  void handleResponse(JavaScriptMessage message) {
     try {
       var json = message.decode();
 
@@ -71,7 +71,7 @@ class WebViewRelayer extends StatefulWidget {
       // get callbacks in the handlers map
       var completer = _messageHandlers[id];
 
-      // Surface the Raw JavascriptMessage back to the function call so it can converted back to Result type
+      // Surface the Raw JavaScriptMessage back to the function call so it can converted back to Result type
       // Only decode when result is not null, so the result is not null
       if (result != null) {
         completer!.complete(message);
@@ -149,7 +149,7 @@ class WebViewRelayerState extends State<WebViewRelayer> {
 }
 
 /// Extended utilities to help to decode JS Message
-extension MessageType on JavascriptMessage {
+extension MessageType on JavaScriptMessage {
   Map<String, dynamic> decode() {
     return json.decode(message);
   }
