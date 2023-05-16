@@ -35,7 +35,7 @@ dependencies:
   magic_sdk: ^2.0.0
   magic_ext_oauth: ^0.3.2
   magic_ext_tezos: ^0.2.0
-  magic_ext_solana: ^0.2.0
+  magic_ext_solana: ^0.3.0
 
   tezart:
     git: https://github.com/Ethella/tezart.git
