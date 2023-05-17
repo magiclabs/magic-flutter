@@ -62,7 +62,7 @@ class MyApp extends StatelessWidget {
 Authenticate your first user!
 
 ```dart
-var token = await magic.auth.loginWithMagicLink(email: textController.text);
+var token = await magic.auth.loginWithEmailOTP(email: textController.text);
 ```
 
 After authenticated a new user, now it's time to interact with Solana.

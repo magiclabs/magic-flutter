@@ -60,7 +60,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             onPressed: () async {
               var token =
-                  await magic.auth.loginWithMagicLink(email: myController.text);
+                  await magic.auth.loginWithEmailOTP(email: myController.text);
               debugPrint('token, $token');
 
               if (token.isNotEmpty) {
@@ -69,7 +69,7 @@ class _LoginPageState extends State<LoginPage> {
                 //     MaterialPageRoute(builder: (context) => const HomePage()));
               }
             },
-            child: const Text('Login With Magic Link'),
+            child: const Text('Login With Magic Email OTP'),
           ),
         ])));
   }
