@@ -12,9 +12,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  magic_sdk: ^2.0.0
-  # magic_sdk:
-  #  path: "../../magic_sdk"
+  magic_sdk:
+    #    path: ../mattel-magic-sdk/magic-flutter/packages/magic_sdk/
+    git:
+      url: git@github.com:Mattel/magic-flutter.git
+      ref: dev
+      path: packages/magic_sdk
   uri: ^1.0.0
   flutter_web_auth: ^0.5.0
   crypto: ^3.0.1
