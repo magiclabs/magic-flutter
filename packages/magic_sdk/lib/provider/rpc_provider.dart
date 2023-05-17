@@ -61,6 +61,6 @@ class RpcProvider implements RpcService {
 
   @override
   String toString() {
-    return 'RpcProvider(_overlay: $_overlay, rpcUrl: $rpcUrl)';
+    return 'RpcProvider(_overlay: ***, rpcUrl: $rpcUrl)';
   }
 }
