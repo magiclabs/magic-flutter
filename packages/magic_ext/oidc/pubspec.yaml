@@ -11,8 +11,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  magic_sdk: ^2.0.2
-#    path: "../../magic_sdk"
+  magic_sdk:
+    #    path: ../mattel-magic-sdk/magic-flutter/packages/magic_sdk/
+    git:
+      url: git@github.com:Mattel/magic-flutter.git
+      ref: dev
+      path: packages/magic_sdk
   web3dart: ^2.5.1
 
 dev_dependencies:
