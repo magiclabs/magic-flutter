@@ -12,8 +12,8 @@ Add `magic_sdk` to your `pubspec.yaml`:
 dependencies:
   flutter:
     sdk: flutter
-  magic_sdk: ^2.0.0
-  magic_ext_solana: ^0.2.0
+  magic_sdk: ^3.0.0
+  magic_ext_solana: ^0.3.0
 
   # Magic Flutter SDK depends on crypto-please Solana SDK to construct instructions.  
   solana: ^0.26.0

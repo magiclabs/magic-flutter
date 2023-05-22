@@ -20,9 +20,9 @@ class RpcProvider implements RpcService {
   RpcProvider(this._overlay, {this.rpcUrl = ""});
 
   /// Sends message to relayer
-  Future<JavascriptMessage> send(
+  Future<JavaScriptMessage> send(
       {required MagicRPCRequest request,
-      required Completer<JavascriptMessage> completer}) async {
+      required Completer<JavaScriptMessage> completer}) async {
     var msgType = OutboundMessageType.MAGIC_HANDLE_REQUEST;
     var encodedParams = await URLBuilder.instance.encodedParams;
 
@@ -44,11 +44,23 @@ class RpcProvider implements RpcService {
     var request = MagicRPCRequest(method: function, params: params);
 
     /* Send the RPCRequest to Magic Relayer and decode it by using RPCResponse from web3dart */
-    return send(request: request, completer: Completer<JavascriptMessage>())
+    return send(request: request, completer: Completer<JavaScriptMessage>())
         .then((jsMsg) {
       var relayerResponse = RelayerResponse<dynamic>.fromJson(
           json.decode(jsMsg.message), (json) => json as dynamic);
       return relayerResponse.response;
     });
+  }
+
+  @override
+  noSuchMethod(Invocation invocation) {
+    // Handle the case when a nonexistent method or property is accessed.
+    print('Error: Attempted to call a nonexistent method or property: ${invocation.memberName}');
+    return super.noSuchMethod(invocation);
+  }
+
+  @override
+  String toString() {
+    return 'RpcProvider(_overlay: ***, rpcUrl: $rpcUrl)';
   }
 }
