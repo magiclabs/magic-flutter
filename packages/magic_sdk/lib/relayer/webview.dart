@@ -19,7 +19,7 @@ class WebViewRelayer extends StatefulWidget {
   bool _overlayReady = false;
   bool _isOverlayVisible = false;
 
-  late WebViewController webViewCtrl;
+  WebViewController webViewCtrl = WebViewController();
 
   void enqueue(
       {required RelayerRequest relayerRequest,
@@ -120,7 +120,6 @@ class WebViewRelayerState extends State<WebViewRelayer> {
   }
 
   void loadWebView() {
-    widget.webViewCtrl = WebViewController();
     widget.webViewCtrl.setJavaScriptMode(JavaScriptMode.unrestricted);
     widget.webViewCtrl.addJavaScriptChannel('magicFlutter',
         onMessageReceived: (JavaScriptMessage message) {
