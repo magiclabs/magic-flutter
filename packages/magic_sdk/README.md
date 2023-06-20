@@ -1,5 +1,8 @@
 Magic empowers developers to protect their users via an innovative, passwordless authentication flow without the UX compromises that burden traditional OAuth implementations.
 
+## ⚠️ Removal of `loginWithMagicLink()`  ⚠️
+As of `v4.0.0`, passcodes (ie. `loginWithSMS()`, `loginWithEmailOTP()`) are replacing Magic Links (ie. `loginWithMagicLink()`) for all of our Mobile SDKs⁠. [Learn more](https://magic.link/docs/auth/login-methods/email/email-link-update-march-2023)
+
 ## Features
 
 This is your entry-point to secure, passwordless authentication for your iOS or Android-based Flutter app.
@@ -12,7 +15,7 @@ Add `magic_sdk` to your `pubspec.yaml`:
 dependencies:
   flutter:
     sdk: flutter
-  magic_sdk: ^3.0.0
+  magic_sdk: ^4.0.0
 ```
 
 Run the following command to install dependencies
@@ -61,7 +64,7 @@ class MyApp extends StatelessWidget {
 Authenticate your first user!
 
 ```dart
-var token = await magic.auth.loginWithMagicLink(email: textController.text);
+var token = await magic.auth.loginWithEmailOTP(email: textController.text);
 ```
 
 ## Additional information

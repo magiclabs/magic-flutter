@@ -12,7 +12,7 @@ Add `magic_sdk` to your `pubspec.yaml`:
 dependencies:
   flutter:
     sdk: flutter
-  magic_sdk: ^3.0.0
+  magic_sdk: ^4.0.0
   magic_ext_solana: ^0.3.0
 
   # Magic Flutter SDK depends on crypto-please Solana SDK to construct instructions.  
@@ -62,7 +62,7 @@ class MyApp extends StatelessWidget {
 Authenticate your first user!
 
 ```dart
-var token = await magic.auth.loginWithMagicLink(email: textController.text);
+var token = await magic.auth.loginWithEmailOTP(email: textController.text);
 ```
 
 After authenticated a new user, now it's time to interact with Solana.

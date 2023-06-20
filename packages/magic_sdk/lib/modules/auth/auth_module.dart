@@ -15,19 +15,6 @@ class AuthModule extends BaseModule {
   /// constructor
   AuthModule(RpcProvider provider) : super(provider);
 
-  /// Login with magic link
-  Future<String> loginWithMagicLink(
-      {required String email, bool showUI = true}) async {
-    var params = {'email': email, 'showUI': showUI};
-    return sendToProvider(
-        method: AuthMethod.magic_auth_login_with_magic_link,
-        params: [params]).then((jsMsg) {
-      var relayerResponse = RelayerResponse<String>.fromJson(
-          json.decode(jsMsg.message), (json) => json as String);
-      return relayerResponse.response.result;
-    });
-  }
-
   /// Login with SMS
   Future<String> loginWithSMS({required String phoneNumber}) async {
     var params = {'phoneNumber': phoneNumber, 'showUI': true};
