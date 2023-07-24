@@ -12,7 +12,7 @@ class TezosPage extends StatefulWidget {
 
 class _TezosPageState extends State<TezosPage> {
   final tezosSigner = Magic.instance.tezos;
-  final client = TezartClient('https://ithacanet.smartpy.io/');
+  final client = TezartClient('https://ghostnet.tezos.marigold.dev');
 
   @override
   void initState () {
