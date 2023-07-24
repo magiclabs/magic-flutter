@@ -30,7 +30,7 @@ class _TezosPageState extends State<TezosPage> {
             ElevatedButton(
               onPressed: () async {
                 String? address = tezosSigner.address;
-                print(address);
+                print("address: $address");
               },
               child: const Text('Public Key'),
             ),

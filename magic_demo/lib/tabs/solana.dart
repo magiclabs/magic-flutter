@@ -35,7 +35,7 @@ class _SolanaPageState extends State<SolanaPage> {
                 List<int> list = utf8.encode("hello world");
                 Uint8List message = Uint8List.fromList(list);
                 var signature = await magic.solana.signMessage(message);
-                print(signature);
+                print("signature: $signature");
               },
               child: const Text('Sign Message'),
             ),
@@ -68,7 +68,7 @@ class _SolanaPageState extends State<SolanaPage> {
                     transactionSignature.encode()
                 );
 
-                print(signature);
+                print("signature: $signature");
               },
               child: const Text('Sign Transaction'),
             ),
@@ -99,7 +99,7 @@ class _SolanaPageState extends State<SolanaPage> {
                   tx.encode()
                 );
 
-                debugPrint(signature);
+                print("signature: $signature");
               },
               child: const Text('Original Sign Transaction'),
             ),
