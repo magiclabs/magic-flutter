@@ -33,9 +33,9 @@ dependencies:
 
   # Live imports
   magic_sdk: ^4.0.0
-  magic_ext_oauth: ^0.3.2
-  magic_ext_tezos: ^0.2.0
-  magic_ext_solana: ^0.3.0
+  magic_ext_oauth: ^0.3.4
+  magic_ext_tezos: ^0.2.2
+  magic_ext_solana: ^0.3.1
 
   tezart:
     git: https://github.com/Ethella/tezart.git
