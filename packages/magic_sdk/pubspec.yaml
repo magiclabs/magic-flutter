@@ -12,7 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   package_info_plus: ^3.0.2
-  webview_flutter: ^3.0.4
+  webview_flutter: ^4.0.2
   json_annotation: ^4.5.0
   web3dart: 2.5.1
   blockchain_signer: ^0.1.0

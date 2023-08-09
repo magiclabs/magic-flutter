@@ -40,7 +40,7 @@ class WebViewRelayer extends StatefulWidget {
           json.encode({"data": messageMap}).replaceAll("\\", "");
       // debugPrint("Send Message ===> \n $jsonString");
 
-      webViewCtrl.runJavascript(
+      webViewCtrl.runJavaScript(
           "window.dispatchEvent(new MessageEvent('message', $jsonString));");
 
       // Recursively dequeue till queue is Empty
@@ -56,7 +56,7 @@ class WebViewRelayer extends StatefulWidget {
     _isOverlayVisible = false;
   }
 
-  void handleResponse(JavascriptMessage message) {
+  void handleResponse(dynamic message) {
     try {
       var json = message.decode();
 
@@ -102,7 +102,7 @@ class WebViewRelayerState extends State<WebViewRelayer> {
 
   @override
   Widget build(BuildContext context) {
-    void onMessageReceived(JavascriptMessage message) {
+    void onMessageReceived(dynamic message) {
       // debugPrint("Received message <=== \n ${message.message}");
 
       if (message.getMsgType() ==
@@ -134,7 +134,7 @@ class WebViewRelayerState extends State<WebViewRelayer> {
         maintainState: true,
         child: WebView(
           debuggingEnabled: true,
-          javascriptMode: JavascriptMode.unrestricted,
+          javascriptMode: JavaScriptMode.unrestricted,
           javascriptChannels: {
             JavascriptChannel(
                 name: 'magicFlutter', onMessageReceived: onMessageReceived)
@@ -142,14 +142,14 @@ class WebViewRelayerState extends State<WebViewRelayer> {
           onWebViewCreated: (WebViewController w) async {
             widget.webViewCtrl = w;
             String url = await URLBuilder.instance.url;
-            w.loadUrl(url);
+            w.loadFile(url);
           },
         ));
   }
 }
 
 /// Extended utilities to help to decode JS Message
-extension MessageType on JavascriptMessage {
+extension MessageType on dynamic {
   Map<String, dynamic> decode() {
     return json.decode(message);
   }
