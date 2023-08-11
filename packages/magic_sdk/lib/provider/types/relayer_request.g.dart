@@ -14,6 +14,8 @@ RelayerRequest<T> _$RelayerRequestFromJson<T>(
       msgType: json['msgType'] as String,
       payload: MagicRPCRequest<T>.fromJson(
           json['payload'] as Map<String, dynamic>, (value) => fromJsonT(value)),
+      rt: json['rt'] as String?,
+      jwt: json['jwt'] as String?,
     );
 
 Map<String, dynamic> _$RelayerRequestToJson<T>(
@@ -25,4 +27,6 @@ Map<String, dynamic> _$RelayerRequestToJson<T>(
       'payload': instance.payload.toJson(
         (value) => toJsonT(value),
       ),
+      'rt': instance.rt,
+      'jwt': instance.jwt,
     };

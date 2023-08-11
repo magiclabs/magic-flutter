@@ -15,6 +15,7 @@ RelayerResponse<T> _$RelayerResponseFromJson<T>(
       response: MagicRPCResponse<T>.fromJson(
           json['response'] as Map<String, dynamic>,
           (value) => fromJsonT(value)),
+      rt: json['rt'] as String?,
     );
 
 Map<String, dynamic> _$RelayerResponseToJson<T>(
@@ -26,4 +27,5 @@ Map<String, dynamic> _$RelayerResponseToJson<T>(
       'response': instance.response.toJson(
         (value) => toJsonT(value),
       ),
+      'rt': instance.rt,
     };
