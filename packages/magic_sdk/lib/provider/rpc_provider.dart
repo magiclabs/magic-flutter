@@ -6,6 +6,7 @@ import '../../provider/types/relayer_response.dart';
 import '../../provider/types/rpc_request.dart';
 import '../../relayer/url_builder.dart';
 import '../../relayer/webview.dart';
+import '../../relayer/types/DPop.dart';
 
 import 'package:web3dart/json_rpc.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -19,22 +20,31 @@ class RpcProvider implements RpcService {
 
   RpcProvider(this._overlay, {this.rpcUrl = ""});
 
-  /// Sends message to relayer
-  Future<JavaScriptMessage> send(
-      {required MagicRPCRequest request,
-      required Completer<JavaScriptMessage> completer}) async {
-    var msgType = OutboundMessageType.MAGIC_HANDLE_REQUEST;
-    var encodedParams = await URLBuilder.instance.encodedParams;
+Future<JavaScriptMessage> send({
+  required MagicRPCRequest request,
+  required Completer<JavaScriptMessage> completer,
+}) async {
+  var msgType = OutboundMessageType.MAGIC_HANDLE_REQUEST;
+  var encodedParams = await URLBuilder.instance.encodedParams;
 
-    var relayerRequest = RelayerRequest(
-        msgType: '${msgType.toString().split('.').last}-$encodedParams',
-        payload: request);
+  // Get the JWT value from the createJwt() method
+  String? jwt = await createJwt();
 
-    _overlay.enqueue(
-        relayerRequest: relayerRequest, id: request.id, completer: completer);
+  var relayerRequest = RelayerRequest(
+    msgType: '${msgType.toString().split('.').last}-$encodedParams',
+    payload: request,
+    rt: null,
+    jwt: jwt,
+  );
 
-    return completer.future;
-  }
+  _overlay.enqueue(
+    relayerRequest: relayerRequest,
+    id: request.id,
+    completer: completer,
+  );
+
+  return completer.future;
+}
 
   /* web3dart wrapper */
   @override
