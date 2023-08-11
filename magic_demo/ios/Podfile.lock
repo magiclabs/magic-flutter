@@ -1,32 +1,44 @@
 PODS:
+  - agent_dart (1.0.0):
+    - Flutter
   - Flutter (1.0.0)
   - flutter_web_auth (0.5.0):
     - Flutter
   - package_info_plus (0.4.5):
     - Flutter
+  - secp256r1 (0.1.0):
+    - Flutter
   - webview_flutter_wkwebview (0.0.1):
     - Flutter
 
 DEPENDENCIES:
+  - agent_dart (from `.symlinks/plugins/agent_dart/ios`)
   - Flutter (from `Flutter`)
   - flutter_web_auth (from `.symlinks/plugins/flutter_web_auth/ios`)
   - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
+  - secp256r1 (from `.symlinks/plugins/secp256r1/ios`)
   - webview_flutter_wkwebview (from `.symlinks/plugins/webview_flutter_wkwebview/ios`)
 
 EXTERNAL SOURCES:
+  agent_dart:
+    :path: ".symlinks/plugins/agent_dart/ios"
   Flutter:
     :path: Flutter
   flutter_web_auth:
     :path: ".symlinks/plugins/flutter_web_auth/ios"
   package_info_plus:
     :path: ".symlinks/plugins/package_info_plus/ios"
+  secp256r1:
+    :path: ".symlinks/plugins/secp256r1/ios"
   webview_flutter_wkwebview:
     :path: ".symlinks/plugins/webview_flutter_wkwebview/ios"
 
 SPEC CHECKSUMS:
+  agent_dart: 60b2c0137d382ac8e72defc2a6d8907d94d92bd7
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   flutter_web_auth: c25208760459cec375a3c39f6a8759165ca0fa4d
   package_info_plus: 6c92f08e1f853dc01228d6f553146438dafcd14e
+  secp256r1: c4054eb1aa9e47c266a9c2914e9c8c5dd17b8ffd
   webview_flutter_wkwebview: 2e2d318f21a5e036e2c3f26171342e95908bd60a
 
 PODFILE CHECKSUM: ef19549a9bc3046e7bb7d2fab4d021637c0c58a3
