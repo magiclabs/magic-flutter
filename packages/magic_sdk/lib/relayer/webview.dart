@@ -4,6 +4,8 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:webview_flutter_wkwebview/webview_flutter_wkwebview.dart';
+import 'package:webview_flutter_android/webview_flutter_android.dart';
 
 import '../../provider/types/relayer_request.dart';
 import '../../provider/types/relayer_response.dart';
@@ -19,7 +21,7 @@ class WebViewRelayer extends StatefulWidget {
   bool _overlayReady = false;
   bool _isOverlayVisible = false;
 
-  WebViewController webViewCtrl = WebViewController();
+  final WebViewController _webViewCtrl = WebViewController();
 
   void enqueue(
       {required RelayerRequest relayerRequest,
@@ -34,13 +36,12 @@ class WebViewRelayer extends StatefulWidget {
     if (_queue.isNotEmpty && _overlayReady) {
       var message = _queue.removeAt(0);
       var messageMap = message.toJson((value) => value);
-      // debugPrint(messageMap.toString());
       //double encoding results in extra backslash. Remove them
       String jsonString =
           json.encode({"data": messageMap}).replaceAll("\\", "");
       // debugPrint("Send Message ===> \n $jsonString");
 
-      webViewCtrl.runJavaScript(
+      _webViewCtrl.runJavaScript(
           "window.dispatchEvent(new MessageEvent('message', $jsonString));");
 
       // Recursively dequeue till queue is Empty
@@ -120,12 +121,21 @@ class WebViewRelayerState extends State<WebViewRelayer> {
   }
 
   void loadWebView() {
-    widget.webViewCtrl.setJavaScriptMode(JavaScriptMode.unrestricted);
-    widget.webViewCtrl.addJavaScriptChannel('magicFlutter',
+    // enable inspector
+    if (WebViewPlatform.instance is WebKitWebViewPlatform) {
+      final WebKitWebViewController webKitController =
+      widget._webViewCtrl.platform as WebKitWebViewController;
+      webKitController.setInspectable(true);
+    } else if (WebViewPlatform.instance is AndroidWebViewPlatform) {
+      AndroidWebViewController.enableDebugging(true);
+    }
+
+    widget._webViewCtrl.setJavaScriptMode(JavaScriptMode.unrestricted);
+    widget._webViewCtrl.addJavaScriptChannel('magicFlutter',
         onMessageReceived: (JavaScriptMessage message) {
       onMessageReceived(message);
     });
-    widget.webViewCtrl.loadRequest(Uri.parse(url!));
+    widget._webViewCtrl.loadRequest(Uri.parse(url!));
   }
 
   void onMessageReceived(JavaScriptMessage message) {
@@ -160,9 +170,9 @@ class WebViewRelayerState extends State<WebViewRelayer> {
     return Visibility(
       visible: widget._isOverlayVisible,
       maintainState: true,
-      child: WebViewWidget(controller: widget.webViewCtrl),
+      child: WebViewWidget(controller: widget._webViewCtrl),
     );
-  } 
+  }
 }
 
 /// Extended utilities to help to decode JS Message
