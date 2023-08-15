@@ -7,8 +7,9 @@ part 'relayer_response.g.dart';
 class RelayerResponse<T> {
   String msgType;
   MagicRPCResponse<T> response;
+  String? rt;
 
-  RelayerResponse({required this.msgType, required this.response});
+  RelayerResponse({required this.msgType, required this.response, this.rt});
 
   /// A necessary factory constructor for creating a new User instance
   /// from a map. Pass the map to the generated `_$UserFromJson()` constructor.
