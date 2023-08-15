@@ -2,8 +2,8 @@
 
 > Magic empowers developers to protect their users via an innovative, passwordless authentication flow without the UX compromises that burden traditional OAuth implementations.
 
-## ⚠️ Removal of `loginWithMagicLink()`  ⚠️
-As of `v4.0.0`, passcodes (ie. `loginWithSMS()`, `loginWithEmailOTP()`) are replacing Magic Links (ie. `loginWithMagicLink()`) for all of our Mobile SDKs⁠. [Learn more](https://magic.link/docs/auth/login-methods/email/email-link-update-march-2023)
+## ⚠️ Device Registration Requirement  ⚠️
+As of `v4.1.0`, users will be asked to go through a device registration flow to securely confirm any new device they use to login. If you run into [this issue](https://github.com/magiclabs/magic-flutter/issues/31), please consider upgrading to the latest version of the SDK.
 
 ## Get started
 
