@@ -16,6 +16,11 @@ dependencies:
   json_annotation: ^4.5.0
   web3dart: 2.6.1
   blockchain_signer: ^0.1.0
+  webview_flutter_wkwebview: ^3.7.3
+  webview_flutter_android: ^3.9.3
+  crypto: ^3.0.3
+  uuid: ^3.0.7
+  secp256r1: ^0.1.0-dev.7
 
 dev_dependencies:
   flutter_test:
