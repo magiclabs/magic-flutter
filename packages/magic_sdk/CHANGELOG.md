@@ -1,3 +1,6 @@
+## 4.1.0
+Prevents "Device requesting login is not supported" for Flutter SDKs 
+
 ## 2.0.1
 Add missing signToEcSignature to MagicCredential
 
