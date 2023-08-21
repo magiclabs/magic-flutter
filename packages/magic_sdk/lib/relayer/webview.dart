@@ -123,9 +123,13 @@ class WebViewRelayerState extends State<WebViewRelayer> {
   void loadWebView() {
     // enable inspector
     if (WebViewPlatform.instance is WebKitWebViewPlatform) {
-      final WebKitWebViewController webKitController =
-      widget._webViewCtrl.platform as WebKitWebViewController;
-      webKitController.setInspectable(true);
+      final double? iosVersion = double.tryParse(Platform.operatingSystemVersion.split(' ')[1]);
+
+      if (iosVersion != null && iosVersion >= 16.0) {  // setInspectable isn't avaliable in earlier iOS versions
+        final WebKitWebViewController webKitController =
+        widget._webViewCtrl.platform as WebKitWebViewController;
+        webKitController.setInspectable(true);
+      }
     } else if (WebViewPlatform.instance is AndroidWebViewPlatform) {
       AndroidWebViewController.enableDebugging(true);
     }
