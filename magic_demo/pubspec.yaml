@@ -32,7 +32,7 @@ dependencies:
 
 
   # Live imports
-  magic_sdk: ^4.1.0
+  magic_sdk: ^4.1.1
   magic_ext_oauth: ^0.3.4
   magic_ext_tezos: ^0.2.2
   magic_ext_solana: ^0.3.1
