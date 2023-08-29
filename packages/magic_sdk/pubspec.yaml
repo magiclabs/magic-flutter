@@ -1,6 +1,6 @@
 name: magic_sdk
 description: This is your entry-point to secure, passwordless authentication for your iOS or Android-based Flutter app.
-version: 4.1.1
+version: 4.1.2
 homepage: https://magic.link
 repository: https://github.com/magiclabs/magic-flutter
 
@@ -34,6 +34,10 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
+  plugin:
+    platforms:
+      ios:
+        minimum_ios_version: "14.0"
 
   # To add assets to your package, add an assets section, like this:
   # assets:
