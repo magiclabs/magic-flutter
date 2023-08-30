@@ -29,15 +29,14 @@ dev_dependencies:
   json_serializable: ^6.2.0
   flutter_lints: ^2.0.1
 
-platforms:
-  ios:
-    minimum_ios_version: "14.0"
-
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter.
 flutter:
+  platforms:
+    ios:
+      minimum_ios_version: 14.0
 
   # To add assets to your package, add an assets section, like this:
   # assets:
