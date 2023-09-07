@@ -135,6 +135,7 @@ class WebViewRelayerState extends State<WebViewRelayer> {
     }
 
     widget._webViewCtrl.setJavaScriptMode(JavaScriptMode.unrestricted);
+    widget._webViewCtrl.removeJavaScriptChannel("magicFlutter");
     widget._webViewCtrl.addJavaScriptChannel('magicFlutter',
         onMessageReceived: (JavaScriptMessage message) {
       onMessageReceived(message);
