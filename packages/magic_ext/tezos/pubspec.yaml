@@ -1,6 +1,6 @@
 name: magic_ext_tezos
 description: A Magic extension to enable interaction with Tezos on Flutter.
-version: 0.2.2
+version: 0.2.3
 homepage: https://magic.link
 repository: https://github.com/magiclabs/magic-flutter
 
@@ -11,7 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  magic_sdk: ^4.0.0
+  magic_sdk: ^5.0.0
   # magic_sdk:
   #  path: "../../magic_sdk"
   blockchain_signer: ^0.1.0
