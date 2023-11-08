@@ -21,7 +21,7 @@ dependencies:
   crypto: ^3.0.3
   uuid: ^3.0.7
   secp256r1:
-    git: https://github.com/Ariflo/flutter_secp256r1
+    git: https://github.com/magiclabs/flutter_secp256r1
 
 dev_dependencies:
   flutter_test:
