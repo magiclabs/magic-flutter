@@ -20,8 +20,7 @@ dependencies:
   webview_flutter_android: ^3.9.3
   crypto: ^3.0.3
   uuid: ^3.0.7
-  secp256r1:
-    git: https://github.com/magiclabs/flutter_secp256r1
+  secp256r1: ^0.1.0-dev.7
 
 dev_dependencies:
   flutter_test:
