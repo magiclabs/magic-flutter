@@ -1,3 +1,7 @@
+## 0.2.3
+
+Bump dependencies to the latest
+
 ## 0.2.0
 
 Bump magic sdk core dependency version
