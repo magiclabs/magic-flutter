@@ -1,3 +1,7 @@
+## 0.3.5
+
+Bump dependencies to the latest
+
 ## 0.3.2 
 
 Bump dependencies to the latest
