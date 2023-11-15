@@ -45,7 +45,9 @@ To generate a new sets of files to reflect your changes please run the command b
 $ dart run build_runner build --delete-conflicting-outputs
 ```
 
-### Proguard rules
+### Proguard rules 
+Relates to [issue #43](https://github.com/magiclabs/magic-flutter/issues/43).
+
 Add a `proguard-rules.pro` file under your `android/app` folder (or update your existing one), with the following rule:
 ```
 # Preserve annotated Javascript interface methods.
