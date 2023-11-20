@@ -13,7 +13,7 @@ dependencies:
   flutter:
     sdk: flutter
   magic_sdk: ^4.0.0
-  magic_ext_oauth: ^0.3.0
+  magic_ext_oauth: ^1.0.0
 ```
 
 Run the following command to install dependencies
@@ -64,7 +64,7 @@ Authenticate your first user via OAuth!
 import 
 
 var configuration = OAuthConfiguration(provider: OAuthProvider.GITHUB, redirectURI: 'YOUR_APP_SCHEME://');
-var result = await magic.oauth.loginWithPopup(configuration);
+var result = await magic.oauth.loginWithRedirect(configuration);
 ```
 
 ## Additional information
