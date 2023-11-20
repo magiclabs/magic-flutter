@@ -24,7 +24,7 @@ class OAuthExtension extends BaseModule {
   OAuthExtension(RpcProvider provider) : super(provider);
 
   /// Invoke authSession in IOS and custom browser in Android to start oauth flow
-  Future<OAuthResponse> loginWithPopup(OAuthConfiguration configuration) async {
+  Future<OAuthResponse> loginWithRedirect(OAuthConfiguration configuration) async {
     OAuthChallenge oauthChallenge = OAuthChallenge();
 
     // Create Auth Session

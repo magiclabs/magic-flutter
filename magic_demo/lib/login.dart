@@ -135,7 +135,7 @@ class _LoginPageState extends State<LoginPage> {
               var configuration = OAuthConfiguration(
                   provider: OAuthProvider.values.firstWhere((element) => element.toString().toLowerCase() == 'OAuthProvider.$dropdownValue'.toLowerCase()),
                   redirectURI: 'link.magic.demo://');
-              var result = await magic.oauth.loginWithPopup(configuration);
+              var result = await magic.oauth.loginWithRedirect(configuration);
 
 
               if (result.magic!.userMetadata!.email != null || result.magic!.idToken != null) {

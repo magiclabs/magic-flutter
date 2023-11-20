@@ -64,7 +64,7 @@ Authenticate your first user via OAuth!
 import 
 
 var configuration = OAuthConfiguration(provider: OAuthProvider.GITHUB, redirectURI: 'YOUR_APP_SCHEME://');
-var result = await magic.oauth.loginWithPopup(configuration);
+var result = await magic.oauth.loginWithRedirect(configuration);
 ```
 
 ## Additional information
