@@ -1,6 +1,6 @@
 name: magic_ext_oidc
 description: A Magic oidc extension to support Magic login authentication
-version: 0.0.2
+version: 0.0.3
 homepage: https://magic.link
 
 environment:
@@ -11,6 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   magic_sdk: ^6.0.0
+  webview_flutter: ^4.2.0
   # magic_sdk:
   #  path: "../../magic_sdk"
 

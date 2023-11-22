@@ -18,6 +18,7 @@ Integrating your Flutter app with Magic will require our Flutter package and the
 # Via pub.dev:
 flutter pub add magic_sdk
 flutter pub add magic_ext_oidc
+```
 
 ## ⚡️ Quick Start
 
@@ -26,6 +27,7 @@ Sign up or log in to the [developer dashboard](https://dashboard.magic.link) to 
 Request access to this feature sending the API key you want enabled to our customer support.
 
 In your Flutter app, typically in the login screen:
+
 
 ```
 import 'package:magic_sdk/magic_sdk.dart';
@@ -43,5 +45,4 @@ void main() {
   // Use the DID token for further authentication or requests
   print('DID Token: $didToken');
 }
-
 ```
