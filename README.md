@@ -27,6 +27,7 @@ or README in each package directory
 | [`magic_ext_oauth`](https://pub.dev/packages/magic_ext_oauth)   | [CHANGELOG](./packages/magic_ext/oauth/CHANGELOG.md)  | An Extension to access OAuth providers                                |
 | [`magic_ext_tezos`](https://pub.dev/packages/magic_ext_tezos)   | [CHANGELOG](./packages/magic_ext/tezos/CHANGELOG.md)  | Tezos blockchain extension that integrates with Tezart                |
 | [`magic_ext_solana`](https://pub.dev/packages/magic_ext_solana) | [CHANGELOG](./packages/magic_ext/solana/CHANGELOG.md) | Solana blockchain extension that integrates with crypto-please/solana |
+| [`magic_ext_oidc`](https://pub.dev/packages/magic_ext_oidc) | [CHANGELOG](./packages/magic_ext/oidc/CHANGELOG.md) | Magic Open Id Connect SDK extension for Flutter |
 
 ### Blockchain access
 
