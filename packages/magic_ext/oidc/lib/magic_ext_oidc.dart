@@ -14,7 +14,7 @@ class OIDCExtension extends BaseModule {
   Future<String> loginWithOIDC(OpenIdConfiguration configuration) async {
     var configJson = configuration.toJson();
 
-    JavaScriptMessage response = await sendToProviderWithList(
+    JavaScriptMessage response = await sendToProvider(
       method: OIDCMethod.magic_auth_login_with_oidc,
       params: [configJson],
     );

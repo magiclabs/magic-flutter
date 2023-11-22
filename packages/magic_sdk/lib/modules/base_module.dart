@@ -29,20 +29,4 @@ class BaseModule {
     return provider.send(
         request: request, completer: Completer<JavaScriptMessage>());
   }
-
-  Future<JavaScriptMessage> sendToProviderWithList({
-    required Enum method, 
-    List<dynamic>? params
-  }) async {
-    // Prepare the RPC request
-    MagicRPCRequest<List<dynamic>> request = MagicRPCRequest<List<dynamic>>(
-        method: toShortString(method), params: params ?? []);
-
-    // Create a Completer to handle the asynchronous response
-    Completer<JavaScriptMessage> completer = Completer<JavaScriptMessage>();
-
-    // Send the request
-    return provider.send(
-        request: request, completer: completer);
-  }
 }
