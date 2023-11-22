@@ -3,16 +3,36 @@ import 'package:json_annotation/json_annotation.dart';
 part 'user_response_type.g.dart';
 
 @JsonSerializable(explicitToJson: true)
-class UserMetadata {
+class RecoveryFactor {
+  String value;
+  String type;
+
+  RecoveryFactor({required this.value, required this.type});
+
+  factory RecoveryFactor.fromJson(Map<String, dynamic> json) =>
+      _$RecoveryFactorFromJson(json);
+
+  Map<String, dynamic> toJson() => _$RecoveryFactorToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class UserInfo {
   String? issuer;
-  String? email;
   String? publicAddress;
+  String? email;
+  bool isMfaEnabled;
+  List<RecoveryFactor> recoveryFactors;
 
-  UserMetadata(
-      {required this.issuer, required this.email, required this.publicAddress});
+  UserInfo({
+    required this.issuer,
+    required this.publicAddress,
+    required this.email,
+    required this.isMfaEnabled,
+    required this.recoveryFactors,
+  });
 
-  factory UserMetadata.fromJson(Map<String, dynamic> json) =>
-      _$UserMetadataFromJson(json);
+  factory UserInfo.fromJson(Map<String, dynamic> json) =>
+      _$UserInfoFromJson(json);
 
-  Map<String, dynamic> toJson() => _$UserMetadataToJson(this);
+  Map<String, dynamic> toJson() => _$UserInfoToJson(this);
 }

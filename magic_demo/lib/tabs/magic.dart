@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:magic_demo/login.dart';
 import 'package:magic_sdk/magic_sdk.dart';
@@ -27,6 +29,7 @@ class _MagicPageState extends State<MagicPage> {
 
   @override
   Widget build(BuildContext context) {
+    final jsonEncoder = JsonEncoder();
 
     return Scaffold(
       body: Center(
@@ -40,11 +43,11 @@ class _MagicPageState extends State<MagicPage> {
         ),
         ElevatedButton(
           onPressed: () async {
-            var metadata = await magic.user.getMetadata();
-            print(metadata.publicAddress);
-            showResult(context, "metadata email, ${metadata.email}");
+            var info = await magic.user.getInfo();
+            print(info.publicAddress);
+            showResult(context, "info: ${jsonEncoder.convert(info)}");
           },
-          child: const Text('getMetadata'),
+          child: const Text('getInfo'),
         ),
         ElevatedButton(
           onPressed: () async {

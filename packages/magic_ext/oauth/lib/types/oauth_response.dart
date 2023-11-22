@@ -8,9 +8,9 @@ part 'oauth_response.g.dart';
 @JsonSerializable(explicitToJson: true)
 class MagicPartialResult {
   String? idToken;
-  UserMetadata? userMetadata;
+  UserInfo? userInfo;
 
-  MagicPartialResult(this.idToken, this.userMetadata);
+  MagicPartialResult(this.idToken, this.userInfo);
 
   factory MagicPartialResult.fromJson(Map<String, dynamic> json) =>
       _$MagicPartialResultFromJson(json);
