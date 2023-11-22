@@ -1,6 +1,6 @@
 name: magic_ext_oidc
 description: A Magic oidc extension to support Magic login authentication
-version: 0.0.1
+version: 0.0.2
 homepage: https://magic.link
 
 environment:
