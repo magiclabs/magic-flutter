@@ -1,6 +1,6 @@
 name: magic_ext_oauth
 description: A Magic oauth extension to support Magic social login authentication
-version: 1.0.0
+version: 0.4.6
 homepage: https://magic.link
 repository: https://github.com/magiclabs/magic-flutter
 
