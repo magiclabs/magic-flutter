@@ -36,22 +36,24 @@ dependencies:
   magic_ext_oauth: ^0.3.5
   magic_ext_tezos: ^0.2.3
   magic_ext_solana: ^0.3.2
+  magic_ext_oidc: ^0.0.1
 
   tezart:
     git: https://github.com/magiclabs/tezart
   solana: ^0.30.0
 
 #  # Local imports
-  # magic_sdk:
-  #  path: ../packages/magic_sdk/
-  # magic_ext_oauth:
-  #  path: ../packages/magic_ext/oauth/
-  # magic_ext_tezos:
-  #  path: ../packages/magic_ext/tezos/
-  # magic_ext_solana:
-  #  path: ../packages/magic_ext/solana/
-  # magic_ext_oidc:
-  #  path: ../packages/magic_ext/oidc/
+#  magic_sdk:
+#    path: ../packages/magic_sdk/
+#  magic_ext_oauth:
+#    path: ../packages/magic_ext/oauth/
+#  magic_ext_tezos:
+#    path: ../packages/magic_ext/tezos/
+#  magic_ext_solana:
+#    path: ../packages/magic_ext/solana/
+#  magic_ext_oidc:
+#   path: ../packages/magic_ext/oidc/
+#
 #
 #  # multi-blockchain
 #  tezart:
