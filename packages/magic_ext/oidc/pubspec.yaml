@@ -10,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  magic_sdk: ^5.1.0
+  magic_sdk: ^5.0.1
   # magic_sdk:
   #  path: "../../magic_sdk"
 

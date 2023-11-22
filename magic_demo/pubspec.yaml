@@ -32,10 +32,10 @@ dependencies:
 
 
   # Live imports
-  magic_sdk: ^5.1.0
-  magic_ext_oauth: ^0.3.5
-  magic_ext_tezos: ^0.2.3
-  magic_ext_solana: ^0.3.2
+  magic_sdk: ^5.0.1
+  magic_ext_oauth: ^0.3.6
+  magic_ext_tezos: ^0.2.4
+  magic_ext_solana: ^0.3.3
   magic_ext_oidc: ^0.0.1
 
   tezart:
