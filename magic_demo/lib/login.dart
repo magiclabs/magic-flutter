@@ -138,12 +138,12 @@ class _LoginPageState extends State<LoginPage> {
               var result = await magic.oauth.loginWithPopup(configuration);
 
 
-              if (result.magic!.userMetadata!.email != null || result.magic!.idToken != null) {
+              if (result.magic!.userInfo!.email != null || result.magic!.idToken != null) {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => const HomePage()));
               }
               showResult(context,
-                  'publicAddress, ${result.magic!.userMetadata!.publicAddress}');
+                  'publicAddress, ${result.magic!.userInfo!.publicAddress}');
             },
             child: const Text('Social Login'),
           ),

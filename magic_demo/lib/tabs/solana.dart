@@ -44,10 +44,10 @@ class _SolanaPageState extends State<SolanaPage> {
               onPressed: () async {
 
                 // Get public key
-                UserMetadata metadata = await magic.user.getMetadata();
+                UserInfo info = await magic.user.getInfo();
 
                 // Construct an instruction
-                Ed25519HDPublicKey solanaWallet = Ed25519HDPublicKey.fromBase58(metadata.publicAddress!);
+                Ed25519HDPublicKey solanaWallet = Ed25519HDPublicKey.fromBase58(info.publicAddress!);
                 var instruction = SystemInstruction.transfer(fundingAccount: solanaWallet, recipientAccount: solanaWallet, lamports: 1);
 
                 // recentBlockhash
