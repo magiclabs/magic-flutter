@@ -65,13 +65,13 @@ class _LoginPageState extends State<LoginPage> {
                   redirectURI: 'link.magic.demo://');
               var result = await magic.oauth.loginWithPopup(configuration);
 
-              if (result.magic!.userMetadata!.email != null) {
+              if (result.magic!.userInfo!.email != null) {
                 /// Navigate to a new page
                 // Navigator.push(context,
                 //     MaterialPageRoute(builder: (context) => const HomePage()));
               }
               debugPrint(
-                  'publicAddress, ${result.magic!.userMetadata!.publicAddress}');
+                  'publicAddress, ${result.magic!.userInfo!.publicAddress}');
             },
             child: const Text('Github Login'),
           ),

@@ -40,13 +40,13 @@ class UserModule extends BaseModule {
     });
   }
 
-  /// Returns [Future] of [UserMetadata], Retrieves information for the authenticated user.
-  Future<UserMetadata> getMetadata() async {
-    return sendToProvider(method: UserMethod.magic_auth_get_metadata)
+  /// Returns [Future] of [UserInfo], Retrieves information for the authenticated user.
+  Future<UserInfo> getInfo() async {
+    return sendToProvider(method: UserMethod.magic_get_info)
         .then((jsMsg) {
-      var relayerResponse = RelayerResponse<UserMetadata>.fromJson(
+      var relayerResponse = RelayerResponse<UserInfo>.fromJson(
           json.decode(jsMsg.message),
-          (json) => UserMetadata.fromJson(json as Map<String, dynamic>));
+          (json) => UserInfo.fromJson(json as Map<String, dynamic>));
       return relayerResponse.response.result;
     });
   }
