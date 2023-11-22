@@ -1,11 +1,10 @@
-name: magic_ext_solana
-description: A Magic extension to enable signing with Solana on Flutter. Magic SDK is your entry-point to integrating passwordless authentication inside your application.
-version: 0.3.3
+name: magic_ext_oidc
+description: A Magic oidc extension to support Magic login authentication
+version: 0.0.1
 homepage: https://magic.link
-repository: https://github.com/magiclabs/magic-flutter
 
 environment:
-  sdk: '>=3.0.0 <4.0.0'
+  sdk: '>=3.2.0 <4.0.0'
   flutter: ">=1.17.0"
 
 dependencies:
@@ -14,15 +13,11 @@ dependencies:
   magic_sdk: ^5.0.1
   # magic_sdk:
   #  path: "../../magic_sdk"
-  solana: ^0.30.0
-  json_annotation: ^4.5.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
-  build_runner: ^2.1.11
-  json_serializable: ^6.2.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
