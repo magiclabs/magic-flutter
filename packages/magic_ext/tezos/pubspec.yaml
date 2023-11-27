@@ -1,11 +1,11 @@
 name: magic_ext_tezos
 description: A Magic extension to enable interaction with Tezos on Flutter.
-version: 0.2.5
+version: 0.2.6
 homepage: https://magic.link
 repository: https://github.com/magiclabs/magic-flutter
 
 environment:
-  sdk: '>=3.0.0 <4.0.0'
+  sdk: '>=2.12.0 <4.0.0'
   flutter: ">=1.17.0"
 
 dependencies:

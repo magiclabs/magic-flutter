@@ -34,7 +34,7 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/webview_flutter_wkwebview/ios"
 
 SPEC CHECKSUMS:
-  agent_dart: b46ed8b9fdc343017e835108e2275124166df4f7
+  agent_dart: 579ef96d89c45efe36a53acaeee2ebdf646a7878
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   flutter_web_auth: c25208760459cec375a3c39f6a8759165ca0fa4d
   package_info_plus: 115f4ad11e0698c8c1c5d8a689390df880f47e85
