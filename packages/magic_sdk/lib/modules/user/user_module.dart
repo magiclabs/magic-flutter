@@ -83,4 +83,13 @@ class UserModule extends BaseModule {
       return relayerResponse.response.result;
     });
   }
+
+  /// Returns [Future] of [bool], Reveals the user's private key
+  Future<bool> revealPrivateKey() async {
+    return sendToProvider(method: UserMethod.magic_reveal_key).then((jsMsg) {
+      var relayerResponse = RelayerResponse<bool>.fromJson(
+          json.decode(jsMsg.message), (json) => json as bool);
+      return relayerResponse.response.result;
+    })
+  }
 }
