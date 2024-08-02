@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
-import 'package:crypto/crypto.dart';
+import 'package:pointycastle/export.dart';
+import 'package:convert/convert.dart';
 import 'package:uuid/uuid.dart';
-import 'package:secp256r1/secp256r1.dart';
 
 final _alias = "link.magic.auth.dpop";
 
@@ -15,17 +15,32 @@ String base64UrlEncoded(List<int> data) {
   return b64;
 }
 
+// Function to convert BigInt to fixed-size byte array
+Uint8List bigIntToBytes(BigInt number, int length) {
+  var result = Uint8List(length);
+  for (var i = length - 1; i >= 0; i--) {
+    result[i] = number.toUnsigned(256).toInt() & 0xff;
+    number = number >> 8;
+  }
+  return result;
+}
+
 Future<String?> createJwt() async {
   try {
-    // Get the public key.
-    final publicKey = await SecureP256.getPublicKey(_alias);
-    
-    // Get the public key, raw representation.
-    final rawPublicKey = publicKey.rawKey;
+    final keyParams = ECKeyGeneratorParameters(ECCurve_secp256r1());
+    final random = FortunaRandom();
+    random.seed(KeyParameter(Uint8List.fromList(List.generate(32, (_) => 0))));
+    final keyGen = ECKeyGenerator()
+      ..init(ParametersWithRandom(keyParams, random));
+    final keyPair = keyGen.generateKeyPair();
+    final ecPublicKey = keyPair.publicKey as ECPublicKey;
+    final ecPrivateKey = keyPair.privateKey as ECPrivateKey;
 
-    // Extract the x and y coordinates.
-    final xCoordinateData = rawPublicKey.sublist(1, 33);
-    final yCoordinateData = rawPublicKey.sublist(33, 65);
+    final xCoordinateHex = ecPublicKey.Q!.x!.toBigInteger()!.toRadixString(16);
+    final yCoordinateHex = ecPublicKey.Q!.y!.toBigInteger()!.toRadixString(16);
+
+    final xCoordinateData = hex.decode(xCoordinateHex);
+    final yCoordinateData = hex.decode(yCoordinateHex);
 
     // If you need base64-encoded strings for JWK:
     final xCoordinateBase64 = base64UrlEncoded(xCoordinateData);
@@ -51,23 +66,32 @@ Future<String?> createJwt() async {
     var uuid = Uuid();
     final jti = uuid.v4().toLowerCase();
 
-    final claims = {
-      "iat": iat,
-      "jti": jti
-    };
+    final claims = {"iat": iat, "jti": jti};
     final claimsData = utf8.encode(json.encode(claims));
     final claimsB64 = base64UrlEncoded(claimsData);
 
     // sign
     final signingInput = headersB64 + "." + claimsB64;
-    final signature = await SecureP256.sign(_alias, Uint8List.fromList(utf8.encode(signingInput)));
 
-    final signatureB64 = base64UrlEncoded(signature);
+    // Sign the data
+    final signer = Signer("SHA-256/DET-ECDSA")
+      ..init(true, PrivateKeyParameter<ECPrivateKey>(ecPrivateKey));
+    final signature =
+        signer.generateSignature(Uint8List.fromList(utf8.encode(signingInput)))
+            as ECSignature;
 
-    final jwt = signingInput + "." + signatureB64;
+    final rBytes =
+        bigIntToBytes(signature.r, 32); // Convert BigInt to 32-byte array
+    final sBytes =
+        bigIntToBytes(signature.s, 32); // Convert BigInt to 32-byte array
+
+    final rBase64 = base64UrlEncoded(rBytes);
+    final sBase64 = base64UrlEncoded(sBytes);
+    final signatureB64 = "$rBase64.$sBase64";
+
+    final jwt = "$signingInput.$signatureB64";
 
     return jwt;
-
   } catch (error) {
     // handle error
     print(error);
