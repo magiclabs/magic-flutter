@@ -6,5 +6,6 @@ enum UserMethod {
   magic_get_info,
   magic_auth_is_logged_in,
   magic_auth_update_email,
-  magic_auth_logout
+  magic_auth_logout,
+  magic_reveal_key
 }
